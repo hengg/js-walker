@@ -51,7 +51,6 @@ class ViewController: UIViewController {
         do {
             try managedContext.save()
             items.append(item)
-            // Append ?
         } catch {
             print("error")
         }
@@ -64,7 +63,6 @@ class ViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 
