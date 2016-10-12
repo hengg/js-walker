@@ -44,3 +44,15 @@ DispatchQueue.global().async {
         }
     })
 }
+
+//WRITE IMAGE AND PLIST IN SANDBOX
+let image = UIImage(name:"img.png")
+let imagePath = NSHomeDirectory()+"/Documents/image.png"
+let imageData:NSData = UIImagePNGRepresentation(image!)! as NSData
+imageData.write(imagePath: iconPath, atomically: true)
+                
+let plistPath = NSArray(contentsOfFile: NSHomeDirectory() + "/Documents/property.plist")
+let name = "name"
+let port = "port"
+let dic = [["name":name,"port":port]]
+NSArray(array: dic).write(toFile: plistPath, atomically: true)
