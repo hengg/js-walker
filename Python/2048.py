@@ -1,3 +1,7 @@
+# coding:utf-8
+# author:hengg
+# shiyanlou/courses/368
+
 import curses
 from random import randrange,choice
 from collections import defaultdict
