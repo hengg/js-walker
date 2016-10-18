@@ -2,20 +2,28 @@
 # author:hengg
 # shiyanlou/courses/368
 
+# curses是一个提供终端屏幕输出和键盘处理的库
+# curses.wrapper()能有效避免将异常与预期混合输出
+# 参考:http://www.cnblogs.com/nzhl/p/5603600.html
 import curses
 from random import randrange,choice
 from collections import defaultdict
 
+# 全部状态包括上下左右重置退出
+# 有效输入键是最常见的WASDQR,不区分大小写
+# 通过zip函数关联按键与状态
 letter_codes = [ord(ch) for ch in 'WASDRQwasdrq']
 actions = ['Up','Left','Down','Right','Restart','Exit']
 actions_dict = dict(zip(letter_codes,actions*2))
 
+# 获取键盘输入，非有效输入则循环直至获取有效输入
 def get_user_action(keyboard):
 	char = "N"
 	while char not in actions_dict:
 		char = keyboard.getch()
 	return actions_dict[char]
-
+	
+# 矩阵转置与矩阵逆转
 def transpose(field):
 	return [list(row) for row in zip(*field)]
 
@@ -71,7 +79,7 @@ class GameField(object):
 			transpose(moves['Left'](transpose(field)))
 		moves['Down'] = lambda field:				\
 			transpose(moves['Right'](transpose(field)))
-		
+
 		if direction in moves:
 			if self.move_is_possible(direction):
 				self.field = moves[direction](self.field)
@@ -98,7 +106,7 @@ class GameField(object):
 			separator = defaultdict(lambda: line)
 			if not hasattr(draw_hor_separator,"counter"):
 				draw_hor_separator.counter = 0
-			cast(separator[draw_hor_separator.counter])	
+			cast(separator[draw_hor_separator.counter])
 			draw_hor_separator.counter += 1
 
 		def draw_row(row):
@@ -112,7 +120,7 @@ class GameField(object):
 			draw_hor_separator()
 			draw_row(row)
 		draw_hor_separator()
-		if self.is_win():	
+		if self.is_win():
 			cast(win_string)
 		else:
 			if self.is_gameover():
@@ -160,7 +168,7 @@ def main(stdscr):
 		responses = defaultdict(lambda: state)
 		responses['Restart'],response['Exit'] = 'Init','Exit'
 		return responses[action]
-	
+
 	def game():
 		game_field.draw(stdscr)
 		action = get_user_action(stdscr)
@@ -191,4 +199,3 @@ def main(stdscr):
 		state = state_actions[state]()
 
 curses.wrapper(main)
-
