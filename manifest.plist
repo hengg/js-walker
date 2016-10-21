@@ -11,19 +11,31 @@
 					<key>kind</key>
 					<string>software-package</string>
 					<key>url</key>
-					<string>https://icam.thtf.com.cn/HeatNetworkAPP_Old/bd/ios/iCAMDH_iOS_bd_1.2.7.ipa</string>
+					<string>.IPA-FILE-PATH(https)</string>
+				</dict>
+				<dict>
+					<key>kind</key>
+					<string>display-image</string>
+					<key>url</key>
+					<string>display-image-path</string>
+				</dict>
+				<dict>
+					<key>kind</key>
+					<string>full-size-image</string>
+					<key>url</key>
+					<string>full-size-image-path</string>
 				</dict>
 			</array>
 			<key>metadata</key>
 			<dict>
 				<key>bundle-identifier</key>
-				<string>com.thtf.icam.bd</string>
+				<string>APP-IDENTIFIER</string>
 				<key>bundle-version</key>
-				<string>1.2.7</string>
+				<string>1.2.7APP-VERSION</string>
 				<key>kind</key>
 				<string>software</string>
 				<key>title</key>
-				<string>DaTang</string>
+				<string>APP-NAME</string>
 			</dict>
 		</dict>
 	</array>
