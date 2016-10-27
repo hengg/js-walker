@@ -12,6 +12,7 @@ import {
   StyleSheet,
   Text,
   View,
+  TouchableHighlight,
 } from 'react-native';
 
 var MOCKED_MOVIES_DATA = [
@@ -100,6 +101,7 @@ fetchData() {
        <Text>
          正在加载电影数据……
        </Text>
+       <MyButton/>
      </View>
    );
  }
@@ -120,4 +122,17 @@ fetchData() {
  }
 }
 
+class MyButton extends Component {
+  _onPressButton() {
+    console.log("You tapped the button!");
+  }
+
+  render() {
+    return (
+      <TouchableHighlight onPress={this._onPressButton}>
+        <Text>Button</Text>
+      </TouchableHighlight>
+    );
+  }
+}
 AppRegistry.registerComponent('SampleAppMovies', () => SampleAppMovies);
