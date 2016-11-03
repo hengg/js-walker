@@ -1,3 +1,8 @@
+
+//http://www.infoq.com/cn/es6-in-depth/
+//https://developer.mozilla.org/zh-CN/docs/Web/JavaScript
+
+
 for(var obj of array){
 // for-of 
 }
@@ -38,3 +43,14 @@ var chewToys = puppies.map(puppy => {});   // 这样写会报Bug！
 var chewToys = puppies.map(puppy => ({})); 
 // 一个空对象{}和一个空的块{}看起来完全一样,所以用小括号包裹对象字面量
 
+//function* 声明（function关键字后跟一个星号）定义一个generator（生成器）函数，返回一个Generator对象
+function* fibs() {
+    var a = 0;
+    var b = 1;
+    while (true) {
+        yield a;
+        [a, b] = [b, a + b];
+    }
+}
+var [first, second, third, fourth, fifth, sixth] = fibs();
+console.log(sixth);// 5
