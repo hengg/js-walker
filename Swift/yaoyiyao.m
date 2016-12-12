@@ -1,10 +1,3 @@
-//
-//  ViewController.m
-//  yaoyiyao
-//
-//  Created by GK-N-WANGLIANG on 15/8/26.
-//  Copyright (c) 2015年 thtf. All rights reserved.
-//
 
 #import "ViewController.h"
 #import <AVFoundation/AVFoundation.h>
