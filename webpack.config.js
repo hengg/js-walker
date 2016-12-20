@@ -7,16 +7,28 @@ var config = {
     },
     module: {
         loaders: [{
-            test: /\.jsx?$/,
-            loader: "babel",
-            query: {
-                presets: ['es2015', 'react']
+                test: /\.jsx?$/,
+                loader: "babel",
+                query: {
+                    presets: ['es2015', 'react']
+                }
+            }, {
+                test: /\.css$/, // Only .css files
+                loader: 'style!css' // Run both loaders
+            },
+            // LESS
+            {
+                test: /\.less$/,
+                loader: 'style!css!less'
+            },
+
+            // SASS
+            {
+                test: /\.scss$/,
+                loader: 'style!css!sass'
             }
-        }, {
-      test: /\.css$/, // Only .css files
-      loader: 'style!css' // Run both loaders
-    }]
-  }
+        ]
+    }
 };
 
 module.exports = config;
