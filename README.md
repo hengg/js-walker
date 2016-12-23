@@ -74,3 +74,91 @@ module.exports = {
 }
 ```
 另外，通过引入css-loader和style-loader，Webpack能够把样式表嵌入webpack打包后的JS文件中.
+
+##Redux
+[Redux中文文档](http://cn.redux.js.org/index.html)
+
+Redux是state管理器，它适用于多交互、多数据源的场景，它的设计思想：
+
+
+    （1）Web 应用是一个状态机，视图与状态是一一对应的。
+
+    （2）所有的状态，保存在一个对象里面。
+
+
+### Action
+Action 是把数据从应用传到 store 的有效载荷，而 store 是应用全局唯一的。一般使用 store.dispatch() 将 action 传到 store。
+
+Action 是一个 JavaScript 对象。它使用一个字符串类型的 type 字段来表示要执行的动作，其余的结构则可以自定义:
+```javascript
+{
+  type: 'ADD_TODO',
+  text: 'Build my first Redux app'
+}
+```
+为了使 action 更容易移植和测试，通常使用 action 创建函数：
+```javascript
+function addTodo(text) {
+  return {
+    type: 'ADD_TODO',
+    text
+  }
+}
+```
+Dispatch：
+```javascript
+dispatch(addTodo(text))
+```
+### Reducer
+Reducer 是一个函数，它接收旧的 state 和 action，返回新的 state。
+不要在 reducer 中做如下操作：
+- 修改传入参数；
+- 执行有副作用的操作，如 API 请求和路由跳转；
+- 调用非纯函数，如 Date.now() 或 Math.random()。
+
+```javascript
+function todos(state = [], action) {
+  switch (action.type) {
+    case ADD_TODO:
+      return [
+        ...state,
+        {
+          text: action.text,
+          completed: false
+        }
+      ]
+    case COMPLETE_TODO:
+      return [
+        ...state.slice(0, action.index),
+        Object.assign({}, state[action.index], {
+          completed: true
+        }),
+        ...state.slice(action.index + 1)
+      ]
+    default:
+      return state
+  }
+}
+```
+
+
+不要修改 state。 使用 ```Object.assign()``` 新建一个副本；
+在 default 情况下返回旧的 state。遇到未知的 action 时，一定要返回旧的 state。
+
+### Store
+一个 redux 应用只有一个单一的 store。
+
+Store 有以下职责：
+
+- 维持应用的 state；
+- 提供 getState() 方法获取 state；
+- 提供 dispatch(action) 方法更新 state；
+- 通过 subscribe(listener) 注册监听器;
+- 通过 subscribe(listener) 返回的函数注销监听器。
+
+```javascript
+import { createStore } from 'redux'
+import todoApp from './reducers'
+
+let store = createStore(todoApp)
+```
