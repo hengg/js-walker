@@ -6,8 +6,9 @@ React 不是完整的 MVC/MVVM 框架，它专注于视图层。它提供了 vir
 ### JSX
 JSX 是类 XML 语法的 JavaScript 扩展。使用 react 不强制使用 JSX，但官方强烈建议这么做。
 
-[react-webpack-cookbook](http://fakefish.github.io/react-webpack-cookbook/Split-app-and-vendors.html)
 ## Webpack
+
+[react-webpack-cookbook](http://fakefish.github.io/react-webpack-cookbook/Split-app-and-vendors.html)
 
 Webpack分析项目结构，将JavaScript模块及less/scss/TypeScript等浏览器不能直接运行的语言打包为浏览器可使用的文件。
 
