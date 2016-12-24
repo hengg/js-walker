@@ -5,6 +5,23 @@ React 不是完整的 MVC/MVVM 框架，它专注于视图层。它提供了 vir
 真实的页面对应着一个 DOM 树，每次变更页面时，都需要操作 DOM 树，而它的开销非常大。React 把 DOM 树映射成 JavaScript 对象，即 Virtual DOM，每次更新数据后，首先计算 Virtual DOM 并和上一次的 Virtual DOM 进行比较，仅对发生变化的部分做更新。
 ### JSX
 JSX 是类 XML 语法的 JavaScript 扩展。使用 react 不强制使用 JSX，但官方强烈建议这么做。
+```javascript
+#使用JSX
+render(
+    <div>
+        <h1>Hello World</div>
+    </div>,
+    document.getElementById('example')
+);
+
+#不使用JSX
+render(
+    React.createElement('div', null,
+        React.createElement('h1', null,'Hello World')
+    ),
+    document.getElementById('example')
+);
+```
 
 ## Webpack
 
