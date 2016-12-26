@@ -30,9 +30,55 @@ render(
 JSX 使用类 XML 语法来创建虚拟元素，所以它的标签也可以任意嵌套。注意：标签必须闭合；定义组件元素时只允许被一个标签包裹。
 
 JSX 中首字母为大写的标签对应组件元素，小写的则对应 DOM 元素。由于 class 和 for 是 JavaScript 关键字，所以在 JSX 中 DOM 元素的 class 属性改为 className；for 属性改为 htmlFor。其他属性与标准属性相同。而组件元素的属性则是自定义属性，相当于函数的参数。
-在 JSX 中已声明未赋值的 Boolean 属性值默认为 true，所以属性为 true 时```<Checkbox checked={true}>```可以简写为```<Checkbox checked>```，反之```<Checkbox checked={false}>```可以省略 checked 属性为```<Checkbox >```。
-组件可以使用 ES6 的展开属性：```props={name:'name' value:'value'} <Component {...props}>```相当于```<Component name='name' value='value'>```。
 
+在 JSX 中已声明未赋值的 Boolean 属性值默认为 true，所以属性为 true 时```<Checkbox checked={true}>```可以简写为```<Checkbox checked>```，反之```<Checkbox checked={false}>```可以省略 checked 属性为```<Checkbox >```。
+
+组件可以使用 ES6 的展开属性：```props={name:'name' value:'value'} <Component {...props}>```相当于```<Component name='name' value='value'>```。
+### 组件
+React 组件基本由 props、state 及生命周期方法构成。
+
+#### ES6 classes 构建组件：
+```JavaScript
+import React, { Component } from 'react'
+
+export default class Button extends Component {
+  constructor(props){
+    super(props);
+  }
+
+  static defaultProps={
+    color:'blue',
+    text:'OK',
+  }
+
+  render() {
+    return (
+      <button className={'btn btn-${color}'}>
+        <em>{text}</em>
+      </button>
+    );
+  }
+}
+```
+当另一个组件调用此组件时会创建实例对象，调用几次则创建几个实例。
+
+#### 无状态函数
+
+```JavaScript
+function Button({color='blue',text='OK'}){
+  return(
+    <button className={'btn btn-${color}'}>
+      <em>{text}</em>
+    </button>
+  );
+}
+```
+这种方式定义的组件不存在 state，也没有生命周期方法。无状态组件在创建时始终保持了一个实例。理想情况下，大部分组件都应该是无状态的，可以具有更好的性能。
+
+### 数据流
+
+### 生命周期
+![react生命周期](/img/react生命周期.png)
 ## Webpack
 
 [react-webpack-cookbook](http://fakefish.github.io/react-webpack-cookbook/Split-app-and-vendors.html)
