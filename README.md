@@ -83,8 +83,89 @@ React 会根据 props 或 state 更新视图状态。两者区别如下：
 React 中有一个内置的 prop:children，它代表子组件的集合。
 
 ### 生命周期
-在 ES6 中```getDefaultProps```和```getInitialState```的工作由```constructor```完成。
+在 ES6 中```getDefaultProps```和```getInitialState```的工作分别由```defaultProps```和```constructor```中的```this.state```代替。
 ![react生命周期](/img/react生命周期.png)
+### 事件
+```html
+#JSX
+<button onClick={this.handleClick}>Click</button>
+#DOM
+<button onclick="handleClick()">Click</button>
+```
+事件委派：React 把所有事件绑定到结构的最外层，使用一个统一的事件监听器来维护所有组件内部的事件监听和处理函数。
+
+事件绑定：需要将每个方法的上下文（this）绑定为当前组件。ES6 下需要手动绑定：
+```JavaScript
+/*bind方法*/
+handleClick(arg){console.log(arg);}
+
+render(){
+    return <button onClick={this.handleClick.bind(this,'arg')}></button>
+}
+/*如果方法只绑定不传参则可以使用双冒号语法，等价于this.handleClick.bind(this)*/
+handleClick(){console.log('handle');}
+
+render(){
+    return <button onClick={::this.handleClick}></button>
+}
+/*在构造器内声明*/
+handleClick(){
+  console.log('handle');
+  this.handleClick=this.handleClick.bind(this);
+}
+
+render(){
+    return <button onClick={this.handleClick}></button>
+}
+/*箭头函数1*/
+const handleClick = () => {
+  console.log('handle');
+  this.handleClick=this.handleClick.bind(this);
+}
+
+render(){
+    return <button onClick={this.handleClick}></button>
+}
+/*箭头函数2*/
+handleClick(){
+  console.log('handle');
+}
+
+render(){
+    return <button onClick={() => this.handleClick()}></button>
+}
+```
+在 React 中也可以使用原生事件：
+```javascript
+componentDidMount(){
+  /*此时组件在浏览器中存在真实的DOM*/
+  this.refs.button.addEventListener('click',e => {
+    handleClick(e);
+  });
+}
+
+handleClick(e){
+  console.log(e);
+}
+
+componentWillUnmont(){
+  /*在组件卸载时手动移除原生事件，否则容易造成内存泄漏*/
+  this.refs.button.removeEventListener('click');
+}
+
+render(){
+    return <button ref="button"></button>
+}
+```
+### 样式处理
+可以通过```style```prop 设置组件的行内样式：
+```javascript
+const style = {
+  color:'white'
+}
+const component = <Component style={style} />;
+```
+也可以像普通 HTML 一样使用 CSS。如果想给组件设置类名，需要设置```className```prop 来避免冲突。
 ## Webpack
 
 [react-webpack-cookbook](http://fakefish.github.io/react-webpack-cookbook/Split-app-and-vendors.html)
