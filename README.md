@@ -9,7 +9,12 @@ JSX 是类 XML 语法的 JavaScript 扩展。使用 react 不强制使用 JSX，
 #使用JSX
 render(
     <div>
-        <h1>Hello World</div>
+      {/* JSX 本质上是 JavaScript，所以可以这样注释 */}
+        <h1
+        /*多行注释
+          在标签外注释需要使用{}包裹
+          标签内则不需要*/
+        >Hello World</div>
     </div>,
     document.getElementById('example')
 );
@@ -22,6 +27,11 @@ render(
     document.getElementById('example')
 );
 ```
+JSX 使用类 XML 语法来创建虚拟元素，所以它的标签也可以任意嵌套。注意：标签必须闭合；定义组件元素时只允许被一个标签包裹。
+
+JSX 中首字母为大写的标签对应组件元素，小写的则对应 DOM 元素。由于 class 和 for 是 JavaScript 关键字，所以在 JSX 中 DOM 元素的 class 属性改为 className；for 属性改为 htmlFor。其他属性与标准属性相同。而组件元素的属性则是自定义属性，相当于函数的参数。
+在 JSX 中已声明未赋值的 Boolean 属性值默认为 true，所以属性为 true 时```<Checkbox checked={true}>```可以简写为```<Checkbox checked>```，反之```<Checkbox checked={false}>```可以省略 checked 属性为```<Checkbox >```。
+组件可以使用 ES6 的展开属性：```props={name:'name' value:'value'} <Component {...props}>```相当于```<Component name='name' value='value'>```。
 
 ## Webpack
 
