@@ -76,8 +76,14 @@ function Button({color='blue',text='OK'}){
 这种方式定义的组件不存在 state，也没有生命周期方法。无状态组件在创建时始终保持了一个实例。理想情况下，大部分组件都应该是无状态的，可以具有更好的性能。
 
 ### 数据流
+React 会根据 props 或 state 更新视图状态。两者区别如下：
+- props 会在整个组件数中传递数据和配置，props 可以设置任意类型的数据（包括组件），用于父组件与子组件的通信。props 改变时会向下遍历整个组件树，并重新渲染使用这个属性的组件。通过 function prop 子组件可以与父组件通信。
+- state 只能在组件内部使用，state 只应该用于存储简单的视图状。state 改变时该组件重新渲染。
+- props 和 state 都不能直接修改，应该使用```setProps()```和```setSate()```方法修改。
+React 中有一个内置的 prop:children，它代表子组件的集合。
 
 ### 生命周期
+在 ES6 中```getDefaultProps```和```getInitialState```的工作由```constructor```完成。
 ![react生命周期](/img/react生命周期.png)
 ## Webpack
 
