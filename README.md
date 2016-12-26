@@ -166,6 +166,131 @@ const style = {
 const component = <Component style={style} />;
 ```
 也可以像普通 HTML 一样使用 CSS。如果想给组件设置类名，需要设置```className```prop 来避免冲突。
+#### CSS modules
+待填
+
+### 组件间通信
+#### 父组件到子组件
+通过 props 传递。
+#### 子组件到父组件
+- 利用回调函数
+- 利用自定义事件
+```JavaScript
+/*ListItem*/
+static defaultProps = {
+  text:'',
+  checked:false,
+}
+render(){
+  return(
+    <li>
+      <input type="checkbox" checked={this.props.checked} onChange={this.props.onChange}/>
+      <span>{this.props.value}</span>
+    </li>
+  );
+}
+/*List*/
+static defaultProps={
+  list:[],
+  handleItemChange:()=>{},
+}
+
+constructor(props){
+  super(props);
+  this.state={
+    list:this.props.list.map(entry => ({
+      text:entry.text,
+      checked:entry.checked,
+    })),
+  };
+}
+
+onItemChange(entry){
+  const {list} = this.state;
+  this.setState({
+    list:list.map(prevEntry => ({
+      text:prevEntry.text,
+      checked:prevEntry.checked,
+    })),
+  });
+  this.props.handleItemChange(entry);
+}
+
+render(){
+  return (
+    <div>
+      <ul>
+        {this.state.list.map((entry,index) => (
+          <ListItem key={'list-${index}'}
+            value = {entry.text}
+            checked = {entry.checked}
+            onChange = {this.onItemChange.bind(this,entry)}
+          />
+        ))}
+      </ul>
+    </div>
+  );
+}
+/*使用List*/
+constructor(props){
+  super(props);
+  this.handleItemChange=this.handleItemChange.bind(this);
+}
+
+handleItemChange(item){
+  console.log(item);
+}
+
+render(){
+  return (
+    <List list={[/*list*/]}
+      handleItemChange={this.handleItemChange}
+    />
+  );
+}
+```
+#### 跨级组件通信
+使用```context```:
+```JavaScript
+/*ListItem*/
+static contextTypes = {
+  color:PropTypes.string,
+}
+
+render(){
+  const {value} = this.props;
+  return(
+    <li style={{background:this.context.color}}>
+      <span>{value}</span>
+    </li>
+  );
+}
+/*List*/
+static childContextTypes = {
+  color:PropTypes.string,
+}
+
+getChildContext(){
+  return {
+    color:'blue',
+  }
+}
+
+render(){
+  const {list} = this.props;
+  return (
+    <div>
+      <ul>
+        {list.map((entry,index) => (
+          <ListItem key={'list-${index}'}
+            value = {entry.text}
+          />
+        ))}
+      </ul>
+    </div>
+  );
+}
+```
 ## Webpack
 
 [react-webpack-cookbook](http://fakefish.github.io/react-webpack-cookbook/Split-app-and-vendors.html)
@@ -178,7 +303,7 @@ npm init命令创建```package.json```，它是npm的说明文件，声明了当
 {
     "name": "react-learning",
     "version": "0.0.1",
-    "description": "Learning react with webpack and babel",
+    "description": "Learning react with webpack,babel and redux",
     "author": "hengg",
     "license": "MIT",
     "main": "app/main.js",
