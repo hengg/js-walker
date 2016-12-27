@@ -1,12 +1,22 @@
 # React Learning
+
+[pure render](https://zhuanlan.zhihu.com/purerender)
+[Redux中文文档](http://cn.redux.js.org/index.html)
+[react-webpack-cookbook](http://fakefish.github.io/react-webpack-cookbook/Split-app-and-vendors.html)
+
 ## React
+
 React 不是完整的 MVC/MVVM 框架，它专注于视图层。它提供了 virtual DOM 来减少对 DOM 的直接操作从而提升性能。
+
 ### Virtual DOM
+
 真实的页面对应着一个 DOM 树，每次变更页面时，都需要操作 DOM 树，而它的开销非常大。React 把 DOM 树映射成 JavaScript 对象，即 Virtual DOM，每次更新数据后，首先计算 Virtual DOM 并和上一次的 Virtual DOM 进行比较，仅对发生变化的部分做更新。
+
 ### JSX
+
 JSX 是类 XML 语法的 JavaScript 扩展。使用 react 不强制使用 JSX，但官方强烈建议这么做。
 ```javascript
-#使用JSX
+//使用JSX
 render(
     <div>
       {/* JSX 本质上是 JavaScript，所以可以这样注释 */}
@@ -19,7 +29,7 @@ render(
     document.getElementById('example')
 );
 
-#不使用JSX
+//不使用JSX
 render(
     React.createElement('div', null,
         React.createElement('h1', null,'Hello World')
@@ -34,10 +44,13 @@ JSX 中首字母为大写的标签对应组件元素，小写的则对应 DOM �
 在 JSX 中已声明未赋值的 Boolean 属性值默认为 true，所以属性为 true 时```<Checkbox checked={true}>```可以简写为```<Checkbox checked>```，反之```<Checkbox checked={false}>```可以省略 checked 属性为```<Checkbox >```。
 
 组件可以使用 ES6 的展开属性：```props={name:'name' value:'value'} <Component {...props}>```相当于```<Component name='name' value='value'>```。
+
 ### 组件
+
 React 组件基本由 props、state 及生命周期方法构成。
 
 #### ES6 classes 构建组件：
+
 ```JavaScript
 import React, { Component } from 'react'
 
@@ -76,6 +89,7 @@ function Button({color='blue',text='OK'}){
 这种方式定义的组件不存在 state，也没有生命周期方法。无状态组件在创建时始终保持了一个实例。理想情况下，大部分组件都应该是无状态的，可以具有更好的性能。
 
 ### 数据流
+
 React 会根据 props 或 state 更新视图状态。两者区别如下：
 - props 会在整个组件数中传递数据和配置，props 可以设置任意类型的数据（包括组件），用于父组件与子组件的通信。props 改变时会向下遍历整个组件树，并重新渲染使用这个属性的组件。通过 function prop 子组件可以与父组件通信。
 - state 只能在组件内部使用，state 只应该用于存储简单的视图状。state 改变时该组件重新渲染。
@@ -83,13 +97,16 @@ React 会根据 props 或 state 更新视图状态。两者区别如下：
 React 中有一个内置的 prop:children，它代表子组件的集合。
 
 ### 生命周期
+
 在 ES6 中```getDefaultProps```和```getInitialState```的工作分别由```defaultProps```和```constructor```中的```this.state```代替。
 ![react生命周期](/img/react生命周期.png)
+
 ### 事件
+
 ```html
-#JSX
+<!-- JSX -->
 <button onClick={this.handleClick}>Click</button>
-#DOM
+<!-- DOM -->
 <button onclick="handleClick()">Click</button>
 ```
 事件委派：React 把所有事件绑定到结构的最外层，使用一个统一的事件监听器来维护所有组件内部的事件监听和处理函数。
@@ -158,6 +175,7 @@ render(){
 }
 ```
 ### 样式处理
+
 可以通过```style```prop 设置组件的行内样式：
 ```javascript
 const style = {
@@ -166,13 +184,43 @@ const style = {
 const component = <Component style={style} />;
 ```
 也可以像普通 HTML 一样使用 CSS。如果想给组件设置类名，需要设置```className```prop 来避免冲突。
-#### CSS modules
-待填
+
+#### CSS Modules
+
+使用 JavaScript 来管理样式依赖。```webpack css-loader```内置此功能。启用后样式默认局部化，且经过混淆的 class 名基本不会重复。
+```javascript
+/*webpack.config.js*/
+{
+    test: /\.css$/,
+    loader: 'style!css?modules&localIdentName=[name]__[local]-[hash:base64:5]' //localIdentName 是混淆 class 命名规则
+},
+```
+CSS 文件：
+```css
+.base { /*通用基本样式*/ }
+
+.disabledConfirmButton {
+  /* 使用 composes 复用样式组合*/
+  composes: base;
+  /* button 相关的其他样式 */
+}
+```
+在 JS 文件中引用：
+```javascript
+import styles from './Button.css';
+...
+  <button class=${styles.disabledConfirmButton}>OK</button>
+...
+```
 
 ### 组件间通信
+
 #### 父组件到子组件
+
 通过 props 传递。
+
 #### 子组件到父组件
+
 - 利用回调函数
 - 利用自定义事件
 ```JavaScript
@@ -249,7 +297,9 @@ render(){
   );
 }
 ```
+
 #### 跨级组件通信
+
 使用```context```:
 ```JavaScript
 /*ListItem*/
@@ -291,13 +341,25 @@ render(){
   );
 }
 ```
-## Webpack
 
-[react-webpack-cookbook](http://fakefish.github.io/react-webpack-cookbook/Split-app-and-vendors.html)
+### 高阶组件
+
+高阶组件类似于高阶函数，输入 React 组件，返回新的 React 组件，这样就可以实现组件共用。在 React 中有属性代理（props proxy）和反向继承（inheritance inversion）两种方式。
+
+#### 属性代理
+
+高阶组件通过被包裹的组件来操作 props.
+
+#### 反向继承
+
+
+
+## Webpack
 
 Webpack分析项目结构，将JavaScript模块及less/scss/TypeScript等浏览器不能直接运行的语言打包为浏览器可使用的文件。
 
 ### 项目的说明文件
+
 npm init命令创建```package.json```，它是npm的说明文件，声明了当前项目的依赖模块，自定义的脚本任务等:
 ```json
 {
@@ -327,6 +389,7 @@ npm init命令创建```package.json```，它是npm的说明文件，声明了当
 
 ```
 ### webpack的配置文件
+
 ```javascript
 //webpack.config.js
 ...
@@ -342,11 +405,13 @@ module.exports = {
 通过指定的入口文件，webpack能够识别项目所依赖的其他模块;上述文件中的__dirname是node.js的指向当前执行脚本所在目录的全局变量。
 
 ### loaders
+
 通过loader，webpack调用外部的脚本或工具可以对各种各样的格式的文件进行处理。通过使用```Babel```可以将ES6及JSX转换为浏览器可识别的JS文件。
 
-
 ## Babel
+
 ### 在Webpack中配置Babel
+
 为了转换ES6及JSX,需要如下配置：
 ```javascript
 module.exports = {
@@ -369,7 +434,6 @@ module.exports = {
 另外，通过引入css-loader和style-loader，Webpack能够把样式表嵌入webpack打包后的JS文件中.
 
 ##Redux
-[Redux中文文档](http://cn.redux.js.org/index.html)
 
 Redux是state管理器，它适用于多交互、多数据源的场景，它的设计思想：
 
@@ -380,6 +444,7 @@ Redux是state管理器，它适用于多交互、多数据源的场景，它的�
 
 
 ### Action
+
 Action 是把数据从应用传到 store 的有效载荷，而 store 是应用全局唯一的。一般使用 store.dispatch() 将 action 传到 store。
 
 Action 是一个 JavaScript 对象。它使用一个字符串类型的 type 字段来表示要执行的动作，其余的结构则可以自定义:
@@ -402,7 +467,9 @@ Dispatch：
 ```javascript
 dispatch(addTodo(text))
 ```
+
 ### Reducer
+
 Reducer 是一个函数，它接收旧的 state 和 action，返回新的 state。
 不要在 reducer 中做如下操作：
 - 修改传入参数；
@@ -439,6 +506,7 @@ function todos(state = [], action) {
 在 default 情况下返回旧的 state。遇到未知的 action 时，一定要返回旧的 state。
 
 ### Store
+
 一个 redux 应用只有一个单一的 store。
 
 Store 有以下职责：

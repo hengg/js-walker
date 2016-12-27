@@ -14,7 +14,7 @@ var config = {
                 }
             }, {
                 test: /\.css$/, // Only .css files
-                loader: 'style!css' // Run both loaders
+                loader: 'style!css?modules&localIdentName=[name]__[local]-[hash:base64:5]' // Run CSS Modules loaders
             },
             // LESS
             {
