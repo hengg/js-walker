@@ -1,7 +1,9 @@
 # React Learning
 
 [pure render](https://zhuanlan.zhihu.com/purerender)
+
 [Redux中文文档](http://cn.redux.js.org/index.html)
+
 [react-webpack-cookbook](http://fakefish.github.io/react-webpack-cookbook/Split-app-and-vendors.html)
 
 ## React
@@ -99,7 +101,7 @@ React 中有一个内置的 prop:children，它代表子组件的集合。
 ### 生命周期
 
 在 ES6 中```getDefaultProps```和```getInitialState```的工作分别由```defaultProps```和```constructor```中的```this.state```代替。
-![react生命周期](/img/react生命周期.png)
+![react生命周期](/imgs/react生命周期.png)
 
 ### 事件
 
