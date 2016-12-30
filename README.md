@@ -358,6 +358,11 @@ render(){
 
 ### 动画
 
+### 服务端渲染
+React提供了`renderToString`和`renderToStaticMarkup`两个API来实现服务端渲染。
+- `renderToString`把React元素转换成HTML字符串并在服务端标识reactid。在浏览器端再次渲染时只需事件绑定而无需重新渲染整个DOM树。
+- `renderToStaticMarkup`相当于简化版的`renderToString`，如果应用基本是静态文本，建议使用这个方法。
+
 ## Webpack
 
 Webpack分析项目结构，将JavaScript模块及less/scss/TypeScript等浏览器不能直接运行的语言打包为浏览器可使用的文件。
