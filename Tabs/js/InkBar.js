@@ -8,6 +8,7 @@ import styles from '../css/style.scss';
 @CSSModules(styles, { allowMultiple: true })
 class InkBar extends Component {
   render() {
+    /*Destructuring ES6解构语法*/
     const { left, width } = this.props;
 
     const classes = classnames({
