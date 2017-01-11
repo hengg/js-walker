@@ -2,18 +2,14 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
-    <script
-			  src="http://code.jquery.com/jquery-1.12.4.min.js"
-			  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-			  crossorigin="anonymous"></script>
+    <title>spinner</title>
     <style>
         *{padding: 0; margin: 0}
         .overlay{
             position: fixed;
             width: 100%;
             height: 100%;
-            background: #666666 url("images/ui-bg_diagonals-thick_20_666666_40x40.png") 50% 50% repeat;
+            background: #666666;
             opacity: .5;
             display: none;
         }
@@ -22,7 +18,6 @@
             height: 200px;
             position: fixed;left: 50%; top: 25%;
             margin-left: -250px;
-            /*border: 1px solid #000000;*/
             background: #fff;
         }
 
@@ -140,9 +135,9 @@
 
 </head>
 <body>
-    <div class="overlay">
-        <div class="box">
-          <button onclick="jQuery('.overlay').hide()" >Close</button>
+    <div class="overlay" id="overlay">
+        <div class="box" id="box">
+          <button onclick="document.getElementById('overlay').style.display='none'" >❌</button>
           <div class="sk-fading-circle">
               <div class="sk-circle1 sk-circle"></div>
               <div class="sk-circle2 sk-circle"></div>
@@ -157,9 +152,20 @@
               <div class="sk-circle11 sk-circle"></div>
               <div class="sk-circle12 sk-circle"></div>
             </div>
+            <div>数据请求中...</div>
         </div>
     </div>
-    <a href="javascript:;" onclick="jQuery('.overlay').show()" class="show">显示</a>
+    <button id="btn-show" onclick="document.getElementById('overlay').style.display" class="show">显示</button>
+    <script>
+        var btn=document.getElementById('btn-show');
+        btn.addEventListener('click',function(){
+            var overlay=document.getElementById('overlay');
+            overlay.style.display='block';
+            setTimeout(function(){
+                overlay.style.display='none';
+            },5000)
+        })
+
+    </script>
 </body>
 </html>
-
