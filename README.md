@@ -224,6 +224,15 @@ import styles from './Button.css';
 #### 子组件到父组件
 
 - 利用回调函数
+
+```javascript
+/*父组件*/
+<Form onSubmit={(e) => {this.setState({data: e})}}/>
+
+/*子组件 Form*/
+<button onClick={()=>{this.props.onSubmit(data)}}>查询</button>
+```
+
 - 利用自定义事件
 ```JavaScript
 /*ListItem*/
