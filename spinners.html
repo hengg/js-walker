@@ -377,6 +377,19 @@
         opacity: 1;
       }
     }
+    
+    .move {
+		width: 20px;
+		height: 20px;
+		background-color: red;
+		position: relative;
+		animation: move 3s infinite ease-in-out;
+	}
+	@keyframes move{
+	  0% {left: 0; }
+	  50% {left: 200px; }
+	  100% {left: 0;}
+	}
   </style>
 </head>
 
@@ -422,6 +435,7 @@
     <div class="spinner2-circle11 spinner2-circle"></div>
     <div class="spinner2-circle12 spinner2-circle"></div>
   </div>
+  <div class="move"/>
 </body>
 
 </html>
