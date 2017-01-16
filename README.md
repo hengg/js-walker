@@ -526,6 +526,21 @@ module.exports = {
 
 ## Babel
 
+Babel是一个转码器，可以将ES6转码为ES5。
+
+### 配置文件
+
+Babel的配置文件是.babelrc，React配置如下：
+```json
+
+    {
+      "presets": ["react", "es2015", "stage-0"],
+      "plugins": []
+    }
+
+```
+`presets`设置转码规则。"react"代表支持react转码规则, "es2015"代表支持ES6转码（ES2015是ES6的官方称呼）, "stage-0"则代表ES7第一阶段语法提案的转码规则。
+
 ### 在Webpack中配置Babel
 
 为了转换ES6及JSX,需要如下配置：
