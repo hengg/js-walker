@@ -33,7 +33,7 @@ let members:NSArray = data.objectForKey("members") as! NSArray
 print(members)
 ```
 
-```C
+```objectivec
 NSString *properties = [[NSBundle mainBundle] pathForResource:@"property" ofType:@"plist"];
     NSMutableDictionary *data = [NSMutableDictionary dictionaryWithContentsOfFile:properties];
     NSArray *members = [data objectForKey:@"members"];
