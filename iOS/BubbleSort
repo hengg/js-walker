@@ -1,9 +1,0 @@
-num = [23,2,3,6,18,9,33,13,24,19]
-for j in range(len(num))[::-1]:
-    for i in range(j):
-        if (i<len(num)-1):
-            if (num[i] > num[i+1]):
-                temp = num[i]
-                del num[i]
-                num.insert(i+1, temp)
-print num
