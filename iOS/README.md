@@ -1,5 +1,5 @@
 ## This is my Swift exercise project
-[读取.plist文件](../docs/readplist.md)
+[读取.plist文件](docs/readplist.md)
 ### 读取.plist文件
 
 ### 调用地理信息
