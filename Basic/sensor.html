@@ -18,8 +18,8 @@
   </section>
   <script type="text/javascript">
     function uploadSvg() {
-        var form = document.forms["selectSvgForm"];
-        if (form["file"].files.length > 0) {
+      var form = document.forms["selectSvgForm"];
+      if (form["file"].files.length > 0) {
         // 寻找表单域中的 <input type="file" ... /> 标签
         var file = form["file"].files[0];
         // try sending
@@ -27,7 +27,7 @@
 
         reader.onload = function (event) {
           var contents = event.target.result;
-           document.getElementById("svg").innerHTML=contents;
+          document.getElementById("svg").innerHTML = contents;
         };
 
         reader.onerror = function (event) {
@@ -44,7 +44,7 @@
       var fileName = prompt("请输入图片名", "");
       var data = document.getElementById("svg").innerHTML;
       var name = fileName + ".svg";
-  
+
       var urlObject = window.URL || window.webkitURL || window;
       var exportBlob = new Blob([data]);
       var saveLink = document.createElementNS("http://www.w3.org/1999/xhtml", "a")
