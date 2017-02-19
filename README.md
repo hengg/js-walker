@@ -2,11 +2,11 @@
 
 ## 笔记
 
-- **[HTML]() ** 
-- **[CSS]() ** 
-- **[JavaScript](NOTES/JavaScript/README.md) ** 
-- **[React]() ** 
-- **[ReactNative]() ** 
+- HTML 
+- CSS 
+- [JavaScript](/NOTES/JavaScript/README.md)
+- React
+- Vue
 
 ## 参考手册
  
