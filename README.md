@@ -4,7 +4,7 @@
 
 - HTML 
 - CSS 
-- [JavaScript](/NOTES/JavaScript/README.md)
+- [JavaScript](Notes/JavaScript/README.md)
 - React
 - Vue
 
