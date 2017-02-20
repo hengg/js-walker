@@ -26,3 +26,6 @@
 - **JS**[基本教程](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/A_re-introduction_to_JavaScript),[完全教程](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide),[阮一峰的教程](http://javascript.ruanyifeng.com/)
 - **AJAX**[教程](http://javascript.ruanyifeng.com/bom/ajax.html)
 - **正则**[教程](http://deerchao.net/tutorials/regex/regex.htm)
+
+
+[简历模板](https://github.com/jirengu-inc/frontend-resumes/issues)
