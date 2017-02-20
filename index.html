@@ -336,80 +336,15 @@
 
       
         
-          
-            <h2 id="什么是命令行"><a href="#什么是命令行" class="headerlink" title="什么是命令行"></a>什么是命令行</h2><p>命令行是用户通过键盘输入字符指令、计算机输出字符结果的一种人机交互的方式。在熟记命令的前提下，使用命令行往往要较使用图形用户界面的操作速度要快，并且更容易执行批量操作。</p>
-<p>Bash是比较常用的命令行shell，它是大多数Linux系统以及Mac OS X默认的shell，它能运行于大多数类Unix风格的操作系统之上，甚至被移植到了Microsoft Windows上的Cygwin系统中，以实现Windows的POSIX虚拟接口。</p>
-<blockquote>
-<p>Cygwin是一个在windows平台上运行的类UNIX模拟环境。</p>
-<p>shell是指操作系统最外层（壳），通常指的是命令行界面的解析器。</p>
-<p>POSIX表示可移植操作系统接口（Portable Operating System Interface），POSIX标准定义了操作系统应该为应用程序提供的接口标准，是IEEE为要在各种操作系统上运行的软件而定义的一系列API标准的总称。</p>
-</blockquote>
-<h2 id="为什么要使用命令行"><a href="#为什么要使用命令行" class="headerlink" title="为什么要使用命令行"></a>为什么要使用命令行</h2><h3 id="高效-批量"><a href="#高效-批量" class="headerlink" title="高效/批量"></a>高效/批量</h3><p>举个例子：为了调试某功能，需要频繁的切换本机IP，如果每次都从图形界面手动更改显然太浪费时间，而使用命令行则简洁轻松：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netsh interface ip set address &quot;本地连接&quot; static 192.168.0.127 255.255.255.0 192.168.0.x1 auto</div></pre></td></tr></table></figure></p>
-<h3 id="强力工具"><a href="#强力工具" class="headerlink" title="强力工具"></a>强力工具</h3><p>有许多开发中常用的强力工具和命令行更搭，比如Vim，Git和npm</p>
-<blockquote>
-<p>Vim是一个功能强大、在程序员中被广泛使用的文本编辑器。</p>
-<p>Git是Linus Torvalds开发的分布式版本控制工具,几乎所有的开源软件都在使用Git，同时使用了Git的<a href="github.com">github</a>也是世界上最受欢迎的软件项目托管平台</p>
-<p>NPM (Node Package Manager)，是一个NodeJS包管理和分发工具，已经成为了事实上发布Node模块的标准。<br>前端常用模块如SASS，LESS，webpack，babel等都需要使用npm命令来安装。</p>
-</blockquote>
-<h2 id="使用命令行"><a href="#使用命令行" class="headerlink" title="使用命令行"></a>使用命令行</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>路径：从起点到终点的全程路由；路径分为绝对路径和相对路径。</p>
-<ul>
-<li>绝对路径，以 / 开头，能唯一确定一个节点，如<code>/tmp/a/1.txt</code></li>
-<li>相对路径，不以 / 开头，是一个相对值，如 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">a/, ./a/</div><div class="line">b.txt, ./b.txt</div><div class="line">a/b.txt, ./a/b.txt</div><div class="line">../c/d.txt</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>在路径中当前目录用 . 表示，一般可省略；父目录用 .. 表示。</p>
-<h3 id="命令行格式"><a href="#命令行格式" class="headerlink" title="命令行格式"></a>命令行格式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ 命令 -选项缩写 --选项 参数</div><div class="line">结果</div></pre></td></tr></table></figure>
-<h3 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h3><ul>
-<li><p>目录操作</p>
-<p>  <code>cd</code>：Change Directory的缩写，切换目录  </p>
-<p>  <code>pwd</code>：Print Working Directory的缩写，显示当前目录    </p>
-<p>  <code>mkdir [-p] directoryname</code>：mkdir是Make Directory的缩写，创建目录; 使用参数-p时若路径中的某些目录尚不存在，将创建这些尚不存在的目录。</p>
-</li>
-<li><p>查看路径 </p>
-<p>  <code>ls [-al] path</code>：ln是List的缩写，查看路径；参数a：列出目录下的一切文件，包括隐藏文件；参数l：列出目录下文件的具体信息，包括权限，大小，创建者等等</p>
-</li>
-<li><p>创建文件</p>
-<p>  <code>cho &#39;1&#39; &gt; filepath</code>：创建文件 </p>
-<p>  <code>touch filename</code>：创建文件，如果文件已存在则改变文件更新时间 </p>
-</li>
-<li><p>复制及移动</p>
-<p>  <code>cp [-r] source_file target_file</code>：cp是cpoy的缩写，复制文件；参数r代表recursive，递归复制目录及其内容</p>
-<p>  <code>mv source target</code>：mv是move缩写，移动节点 </p>
-</li>
-<li><p>删除</p>
-<p>  <code>rm [-fr] file</code>：rm是remove的缩写，删除文件；参数f代表force，忽略提示；参数r代表recursive递归删除目录及其内容</p>
-</li>
-<li><p>其他</p>
-<p>  <code>tree</code>：查看目录结构  </p>
-<p>  <code>ln source_file target_dir</code>：建立软链接 （ Windows 系统默认不支持链接）</p>
-</li>
-</ul>
-<p><strong>详情参照：<a href="http://explainshell.com/" target="_blank" rel="external">ExplainShell</a></strong></p>
-<h3 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h3><ul>
-<li><p>一句话执行两个命令：</p>
-<p><code>mkdi； a;mkdir b</code> 命令1成功与否不影响命令2执行；</p>
-<p><code>mkdir a&amp;&amp;mkdir b</code>命令1成功才执行命令2</p>
-</li>
-<li>回车： \后面接回车  </li>
-<li>有空格等特殊字符的时候需要加引号</li>
-</ul>
-<h3 id="bashrc"><a href="#bashrc" class="headerlink" title=".bashrc"></a>.bashrc</h3><p>.bashrc是一个文件，主要保存用户的一些个性化设置，如命令别名、路径等。bash 会在启动时运行 ~/.bashrc 里面的内容。</p>
-<ul>
-<li><p>在~/.bashrc里添加alias（别名）：<br>打开~/.bashrc，添加 <code>alias ga=&#39;git add .&#39;</code>,然后重启bash或在bash中运行<code>source ~/.bashrc</code>，即可使用<code>ga</code>代替<code>git add .</code></p>
-</li>
-<li><p>在~/.bashrc里定义如下函数，重启bash或在bash中运行<code>source ~/.bashrc</code>，即可调用<code>mcd dirname</code>创建并进入文件夹：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mcd() &#123; </div><div class="line">  mkdir -p &quot;$1&quot;; </div><div class="line">  cd &quot;$1&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li>使用z命令：下载 <a href="https://github.com/rupa/z" target="_blank" rel="external">z.sh</a>,在~/.bashrc里面加入<code>source /path/to/z.sh</code>,重启bash或在bash中运行<code>source ~/.bashrc</code>，即可调用z命令。<blockquote>
-<p>z命令是多个目录切换利器。进入某目录后，输入<code>z</code>命令，便会出现该目录的完整目录名，下次再进入的话，只需输入<code>z 字符</code>（按下tab键会自动补齐）</p>
-</blockquote>
-</li>
-</ul>
-<p><a href="https://linux.cn/article-4585-1.html" target="_blank" rel="external">一大波有用的 bash 别名和函数 </a></p>
-
-          
+          <h2 id="什么是命令行"><a href="#什么是命令行" class="headerlink" title="什么是命令行"></a>什么是命令行</h2><p>命令行是用户通过键盘输入字符指令、计算机输出字符结果的一种人机交互的方式。在熟记命令的前提下，使用命令行往往要较使用图形用户界面的操作速度要快，并且更容易执行批量操作。</p>
+<p>Bash是比较常用的命令行shell，它是大多数Linux系统以及Mac OS X默认的shell，它能运行于大多数类Unix风格的操作系统之上，甚至被移植到了Microsoft Windows上的Cygwin系统中，以实现Windows的POSIX虚拟接口。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/02/20/初探命令行/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -537,26 +472,16 @@
 
       
         
-          
-            <p>昨天看到的一的文章:<br><em><a href="https://zhuanlan.zhihu.com/p/25259283?refer=c_73534733" target="_blank" rel="external">如果你想靠前端技术还房贷，你不能连这个都不会</a></em></p>
+          <p>昨天看到的一的文章:<br><em><a href="https://zhuanlan.zhihu.com/p/25259283?refer=c_73534733">如果你想靠前端技术还房贷，你不能连这个都不会</a></em></p>
 <p>刚好最近在学习 JavaScript ，对第一题很感兴趣：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//请问输出什么</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) &#123;</div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(i)</div><div class="line">    &#125;, <span class="number">0</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>预期的输出是从0到9，但实际上输出的是10个10。为什么会这样呢</p>
-<p>这要从 JavaScript 的起源说起，JavaScript 最初是作为浏览器脚本语言推出的，它主要用于 DOM 操作，为避免同步问题，JavaScript的设计就是<strong>单线程</strong>的。</p>
-<p>在 JavaScript 中任务可以分成两种：同步任务(synchronous)和异步任务(asynchronous)。同步任务在主线程上排队执行，而异步任务进入任务队列(task queue)的任务。</p>
-<ol>
-<li>所有同步任务都在主线程上执行，形成一个执行栈（execution context stack）。</li>
-<li>主线程之外，还存在一个”任务队列”（task queue）。只要异步任务有了运行结果，就在”任务队列”之中放置一个事件。</li>
-<li>一旦”执行栈”中的所有同步任务执行完毕，系统就会读取”任务队列”，看看里面有哪些事件。那些对应的异步任务，于是结束等待状态，进入执行栈，开始执行。</li>
-<li>主线程不断重复上面的第三步。</li>
-</ol>
-<p>而异步任务必须指定回调函数(callback)，主线程会挂起回调函数直至执行异步任务。在这个问题中<code>setTimeout</code>就是异步任务，循环结束毕后会执行10次回调函数<code>function(){console.log(i)}</code></p>
-<p>而在 JavaScript 中语句块(blocks)是没有作用域的，只有函数有作用域。因此在一个复合语句中（比如此例中的for循环）使用 var 声明一个变量，那么它的作用域是复合语句所在的函数，本例中for循环在主线程中，<code>i</code>就可以认为是全局的。而循环执行完后<code>i</code>的值是10，所以会输出10个10。<br>如果在这里使用 ES6 的 let 关键字来创建块作用域的变量，就会得到预期的结果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) &#123;</div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(i)</div><div class="line">    &#125;, <span class="number">0</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>也可以使用<code>立即执行函数</code>：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) &#123;</div><div class="line">    (<span class="function"><span class="keyword">function</span> (<span class="params">index</span>) </span>&#123;</div><div class="line">        setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(index);</div><div class="line">        &#125;, <span class="number">0</span>);</div><div class="line">    &#125;)(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>立即执行函数的定义：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(function()&#123; /* code */ &#125;());</div><div class="line">// 或者</div><div class="line">(function()&#123; /* code */ &#125;)();</div></pre></td></tr></table></figure></p>
-<p>在本例中这个立即执行函数是一个闭包（closure）。在 JavaScript 中可以将闭包理解为定义在函数中的函数。闭包的最大用处有两个，一个是可以读取函数内部的变量，另一个就是让这些变量始终保持在内存中。在本例中闭包读取了变量<code>i</code>并把它赋值给<code>index</code>,实际上添加到任务队列中的代码是<code>console.log(1)</code>，<code>console.log(2)</code>……因此也会得到预期的结果。</p>
-<p>参考:<a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html" target="_blank" rel="external">阮一峰-JavaScript 运行机制详解：再谈Event Loop</a></p>
-
-          
+<p>预期的输出是从0到9，但实际上输出的是10个10。为什么会这样呢<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/02/19/JavaScript异步任务与闭包/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

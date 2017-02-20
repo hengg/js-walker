@@ -97,7 +97,7 @@
 <meta property="og:description" content="昨天看到的一的文章:如果你想靠前端技术还房贷，你不能连这个都不会
 刚好最近在学习 JavaScript ，对第一题很感兴趣：123456//请问输出什么for (var i = 0; i &amp;lt; 10; ++i) &amp;#123;    setTimeout(function()&amp;#123;        console.log(i)    &amp;#125;, 0);&amp;#125;
 预期的输出是从0到9，">
-<meta property="og:updated_time" content="2017-02-19T13:47:46.000Z">
+<meta property="og:updated_time" content="2017-02-20T13:32:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript异步任务与闭包">
 <meta name="twitter:description" content="昨天看到的一的文章:如果你想靠前端技术还房贷，你不能连这个都不会
@@ -342,8 +342,7 @@
       
         <p>昨天看到的一的文章:<br><em><a href="https://zhuanlan.zhihu.com/p/25259283?refer=c_73534733" target="_blank" rel="external">如果你想靠前端技术还房贷，你不能连这个都不会</a></em></p>
 <p>刚好最近在学习 JavaScript ，对第一题很感兴趣：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//请问输出什么</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) &#123;</div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(i)</div><div class="line">    &#125;, <span class="number">0</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>预期的输出是从0到9，但实际上输出的是10个10。为什么会这样呢</p>
-<p>这要从 JavaScript 的起源说起，JavaScript 最初是作为浏览器脚本语言推出的，它主要用于 DOM 操作，为避免同步问题，JavaScript的设计就是<strong>单线程</strong>的。</p>
+<p>预期的输出是从0到9，但实际上输出的是10个10。为什么会这样呢<br><a id="more"></a><br>这要从 JavaScript 的起源说起，JavaScript 最初是作为浏览器脚本语言推出的，它主要用于 DOM 操作，为避免同步问题，JavaScript的设计就是<strong>单线程</strong>的。</p>
 <p>在 JavaScript 中任务可以分成两种：同步任务(synchronous)和异步任务(asynchronous)。同步任务在主线程上排队执行，而异步任务进入任务队列(task queue)的任务。</p>
 <ol>
 <li>所有同步任务都在主线程上执行，形成一个执行栈（execution context stack）。</li>
