@@ -1,0 +1,704 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript,Promise,异步," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="在单线程的Javascript中，任务分为两种：同步（Synchronous）和异步（Asynchronous）。所有耗时较长的任务都该异步执行。
+Promise是抽象异步处理对象以及对其进行各种操作的组件。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈Promise">
+<meta property="og:url" content="http://hengg.github.Extensions/2017/02/28/浅谈Promise/index.html">
+<meta property="og:site_name" content="hengg's Blog">
+<meta property="og:description" content="在单线程的Javascript中，任务分为两种：同步（Synchronous）和异步（Asynchronous）。所有耗时较长的任务都该异步执行。
+Promise是抽象异步处理对象以及对其进行各种操作的组件。">
+<meta property="og:updated_time" content="2017-02-28T10:49:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅谈Promise">
+<meta name="twitter:description" content="在单线程的Javascript中，任务分为两种：同步（Synchronous）和异步（Asynchronous）。所有耗时较长的任务都该异步执行。
+Promise是抽象异步处理对象以及对其进行各种操作的组件。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://hengg.github.Extensions/2017/02/28/浅谈Promise/"/>
+
+
+
+
+
+  <title> 浅谈Promise | hengg's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">hengg's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://hengg.github.Extensions/2017/02/28/浅谈Promise/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="hengg">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="hengg's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="hengg's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                浅谈Promise
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-28T18:47:29+08:00">
+                2017-02-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/28/浅谈Promise/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/28/浅谈Promise/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在单线程的Javascript中，任务分为两种：同步（Synchronous）和异步（Asynchronous）。所有耗时较长的任务都该异步执行。</p>
+<p>Promise是抽象异步处理对象以及对其进行各种操作的组件。<br><a id="more"></a></p>
+<h2 id="异步处理"><a href="#异步处理" class="headerlink" title="异步处理"></a>异步处理</h2><p>使用回调函数进行异步处理：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//传给回调函数的参数为(error对象， 执行结果)组合</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">readFile</span>(<span class="params"><span class="string">"file.txt"</span>, (error, result</span>) =&gt; </span>&#123;</div><div class="line">    <span class="keyword">if</span>(error)&#123;</div><div class="line">        <span class="comment">// 取得失败时的处理</span></div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 取得成功时的处理</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>使用Promise进行异步处理：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> promise = readFilePromise(<span class="string">"file.txt"</span>);</div><div class="line">promise.then(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</div><div class="line">    <span class="comment">//执行成功时的处理</span></div><div class="line">&#125;).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</div><div class="line">    <span class="comment">//执行失败时的处理</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h2 id="Promise和回调函数的不同"><a href="#Promise和回调函数的不同" class="headerlink" title="Promise和回调函数的不同"></a>Promise和回调函数的不同</h2><p>Promise对异步处理对象和处理规则进行规范化，并按照采用统一的接口来编写。在使用promise时，无法使用promise对象规定的方法（then或catch）以外的方法，而回调函数可以自由的定义参数。使用Promise可以进行链式调用，整个流程更加清晰。</p>
+<h2 id="使用promise"><a href="#使用promise" class="headerlink" title="使用promise"></a>使用promise</h2><p>创建promise对象的流程如下所示。</p>
+<ul>
+<li><code>new Promise(fn)</code>返回一个promise对象，该对象有<strong>Pending</strong>（初始化），<strong>Fulfilled</strong>（成功）和<strong>Rejected</strong>（失败）三种状态</li>
+<li>在<code>fn</code>中指定异步处理</li>
+<li>执行成功则调用<code>resolve(result)</code>；异常则调用<code>reject(Error)</code></li>
+</ul>
+<p><em>通常用.then或 .catch添加promise对象的处理函数</em></p>
+<p>promise对象的状态从Pending转换为Fulfilled或Rejected之后不会再发生变化。所以在.then 后执行的函数只会被调用一次。</p>
+<p>示例代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">readFilePromise</span>(<span class="params">fileName</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</div><div class="line">        fs.readFile(fileName, (err, result) =&gt; &#123;</div><div class="line">            <span class="keyword">if</span> (err) &#123;</div><div class="line">                reject(err);</div><div class="line">            &#125;</div><div class="line">            resolve(result);</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line"><span class="comment">// 运行示例</span></div><div class="line">readFilePromise(<span class="string">"readme.txt"</span>)</div><div class="line">.then(<span class="function"><span class="params">value</span> =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(value);</div><div class="line">&#125;)</div><div class="line">.catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.error(error);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="语法糖"><a href="#语法糖" class="headerlink" title="语法糖"></a>语法糖</h2><p>静态方法<code>Promise.resolve(value)</code>可以认为是<code>new Promise()</code>方法的快捷方式：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//resolve</span></div><div class="line"><span class="built_in">Promise</span>.resolve(<span class="number">42</span>); </div><div class="line"><span class="comment">//等价于</span></div><div class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</div><div class="line">    resolve(<span class="number">42</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">Promise</span>.resolve(<span class="number">42</span>).then(<span class="function"><span class="params">value</span> =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(value);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>在这段代码中<code>resolve(42)</code>会让<code>promise</code>对象立即进入<strong>Fulfilled</strong>（即成功）状态，并将值传递给后面then里所指定的函数。<br><code>Promise.resolve(value)</code>的返回值也是一个<code>promise</code>对象，所以能够对其进行<code>.then</code>调用。</p>
+<p><code>Promise.reject(error)</code>也是同理，不过它一般用于debug:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//reject</span></div><div class="line"><span class="built_in">Promise</span>.reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"出错了"</span>))</div><div class="line"><span class="comment">//等价于</span></div><div class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>) =&gt;</span> &#123;</div><div class="line">    reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"出错了"</span>));</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">Promise</span>.reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"出错了!"</span>)).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.error(error);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>参考：<a href="http://liubin.org/promises-book/" target="_blank" rel="external">JavaScript Promise迷你书</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/Promise/" rel="tag"># Promise</a>
+          
+            <a href="/tags/异步/" rel="tag"># 异步</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/27/简单理解递归/" rel="next" title="简单理解递归">
+                <i class="fa fa-chevron-left"></i> 简单理解递归
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/28/浅谈Promise/"
+           data-title="浅谈Promise" data-url="http://hengg.github.Extensions/2017/02/28/浅谈Promise/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="hengg" />
+          <p class="site-author-name" itemprop="name">hengg</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#异步处理"><span class="nav-number">1.</span> <span class="nav-text">异步处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Promise和回调函数的不同"><span class="nav-number">2.</span> <span class="nav-text">Promise和回调函数的不同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用promise"><span class="nav-number">3.</span> <span class="nav-text">使用promise</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法糖"><span class="nav-number">4.</span> <span class="nav-text">语法糖</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hengg</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"henggblog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
