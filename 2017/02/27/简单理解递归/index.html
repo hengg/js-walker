@@ -93,12 +93,10 @@
 <meta property="og:url" content="http://hengg.github.Extensions/2017/02/27/简单理解递归/index.html">
 <meta property="og:site_name" content="hengg's Blog">
 <meta property="og:description" content="欲理解递归，则首先必理解递归">
-<meta property="og:image" content="https://pic2.zhimg.com/2a6fa5d0e01454ce4f8fa41a3d2e47e5_b.jpg">
-<meta property="og:updated_time" content="2017-02-26T09:19:14.000Z">
+<meta property="og:updated_time" content="2017-02-28T11:02:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简单理解递归">
 <meta name="twitter:description" content="欲理解递归，则首先必理解递归">
-<meta name="twitter:image" content="https://pic2.zhimg.com/2a6fa5d0e01454ce4f8fa41a3d2e47e5_b.jpg">
 
 
 
@@ -339,7 +337,6 @@
         <blockquote>
 <p>欲理解递归，则首先必理解递归</p>
 </blockquote>
-<p><img src="https://pic2.zhimg.com/2a6fa5d0e01454ce4f8fa41a3d2e47e5_b.jpg" alt="递归小鲤鱼"></p>
 <a id="more"></a>
 <p>以前我会简单的认为递归就是函数自己调用自己。这种看法不能算错，但不完全。递归的思想就是：把问题分解成为规模更小的、具有与原问题有着相同解法的问题。比如使用递归求阶乘和使用递归二分查找。</p>
 <p>递归的写法更简洁，也有许多迭代不能解决的、必须使用递归的场景。但递归要进行多层函数调用，所以会消耗很多堆栈空间和函数调用时间。</p>
@@ -352,6 +349,9 @@
 <p>递归求阶乘:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">num</span>)</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (num &lt; <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (num == <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> (num * factorial(num - <span class="number">1</span>));</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> result = factorial(<span class="number">8</span>);</div><div class="line"><span class="built_in">console</span>.log(result);</div></pre></td></tr></table></figure>
 <p>递归判断是否回文，回文是一种正着读和反着读都一样的字符串：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPalindrome</span>(<span class="params">str</span>)</span></div><div class="line"> &#123;</div><div class="line">    <span class="keyword">var</span> n = str.length;</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(n == <span class="number">0</span> || n == <span class="number">1</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">var</span> newStr = [];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>;i&lt;str.length<span class="number">-1</span>;i++)&#123;</div><div class="line">            newStr.push(str[i]);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> ((str[<span class="number">0</span>] == str[n<span class="number">-1</span>]) ? isPalindrome(newStr, n<span class="number">-2</span>) : <span class="literal">false</span>);</div><div class="line">    &#125;</div><div class="line"> &#125;</div><div class="line"> </div><div class="line"><span class="keyword">var</span> result = isPalindrome(<span class="string">"level"</span>.split(<span class="string">""</span>));</div><div class="line"><span class="built_in">console</span>.log(result);</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>据说<code>GUN</code>是<code>GUN&#39;s Not Unix</code>的缩写哦！</p>
+</blockquote>
 
       
     </div>
