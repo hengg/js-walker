@@ -1,0 +1,721 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="HTTP,Cookie," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="上周写了篇博客：打开某个页面的时候发生了什么 ，文中更关注的是HTTP的请求与响应，今天就简要了解下HTTP本身。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP入门">
+<meta property="og:url" content="http://hengg.github.Extensions/2017/03/01/HTTP入门/index.html">
+<meta property="og:site_name" content="hengg's Blog">
+<meta property="og:description" content="上周写了篇博客：打开某个页面的时候发生了什么 ，文中更关注的是HTTP的请求与响应，今天就简要了解下HTTP本身。">
+<meta property="og:updated_time" content="2017-03-01T11:46:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTTP入门">
+<meta name="twitter:description" content="上周写了篇博客：打开某个页面的时候发生了什么 ，文中更关注的是HTTP的请求与响应，今天就简要了解下HTTP本身。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://hengg.github.Extensions/2017/03/01/HTTP入门/"/>
+
+
+
+
+
+  <title> HTTP入门 | hengg's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">hengg's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://hengg.github.Extensions/2017/03/01/HTTP入门/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="hengg">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="hengg's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="hengg's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                HTTP入门
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-01T19:19:57+08:00">
+                2017-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/01/HTTP入门/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/01/HTTP入门/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>上周写了篇博客：<a href="https://hengg.github.io/2017/02/26/%E6%89%93%E5%BC%80%E6%9F%90%E4%B8%AA%E7%BD%91%E9%A1%B5%E6%97%B6%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/" target="_blank" rel="external">打开某个页面的时候发生了什么</a> ，文中更关注的是HTTP的请求与响应，今天就简要了解下HTTP本身。</p>
+<a id="more"></a>
+<h2 id="TCP-IP协议族"><a href="#TCP-IP协议族" class="headerlink" title="TCP/IP协议族"></a>TCP/IP协议族</h2><p>HTTP（HyperText Transfer Protocol，超文本传输协议），顾名思义，用于在Web上传输文件。毫不夸张的说，整个互联网就是建立在HTTP协议基础之上的。 </p>
+<p>网络上不同硬件，不同操作系统的设备之间想要进行通信，就必须遵守相同的规则，如怎样发起通信、通信内容格式、如何结束通信等，这一系列事先约定的规则就是协议（protocol）。</p>
+<p>HTTP是TCP/IP协议族的一个子集。TCP/IP协议族分为以下4层:应用层、传输层、网络层和数据链路层。</p>
+<blockquote>
+<p>“计算机科学的任何问题都可以通过增加一个中间层来解决”</p>
+</blockquote>
+<h3 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h3><p>应用层为应用程序提供网络服务。FTP和DNS服务以及HTTP都位于该层。</p>
+<h3 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h3><p>传输层为应用层提供处于网络连接中的两台计算机之间的数据传输。TCP(Transmission Control Protocol，传输控制协议)和 UDP(User Data Protocol，用户数据报协议)位于传输层。</p>
+<blockquote>
+<p>TCP的三次握手：</p>
+<p>通过TCP协议发送数据包后，TCP会向对方确认是否成功送达。握手过程中<br>发送端首先发送一个带SYN（synchronize）标志的数据包给对方。接收端收到后，回传一个带有SYN/ACK（acknowledgement）标志的数据包以示传达确认信息。最后，发送端再回传一个带ACK标志的数据包，代表“握手”结束。<br>若在握手过程中某个阶段莫名中断，TCP 协议会再次以相同的顺序 发送相同的数据包。</p>
+<p>我讲了一个UDP的笑话，但是你可能没听到</p>
+</blockquote>
+<h3 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h3><p>网络层用来处理在网络上流动的数据包。IP位于该层。</p>
+<blockquote>
+<p>IP和IP地址：</p>
+<p>IP是把各种数据包传送给对方的协议。IP地址是节点被分配到的地址。</p>
+</blockquote>
+<h3 id="链路层"><a href="#链路层" class="headerlink" title="链路层"></a>链路层</h3><p>用来处理连接网络的硬件部分。</p>
+<p>利用 TCP/IP 协议族进行网络通信时，会通过分层顺序与对方进行 通信。发送端从应用层往下走，每经过一层时必定就会被打上一个 该层所属的首部信息。接收端则往应用层往上走，每经过一层 时会把对应的首部消去。</p>
+<h2 id="持久链接和管线化"><a href="#持久链接和管线化" class="headerlink" title="持久链接和管线化"></a>持久链接和管线化</h2><p>请求头中常见的属性<code>Connection: keep-alive</code>，意为持久连接。<br>持久连接的特点是，只要任意一端没 有明确提出断开连接，则保持TCP连接状态。</p>
+<p>持久连接的好处在于减少了TCP连接的重复建立和断开所造成的 额外开销，减轻了服务器端的负载，也就相应的提高Web页面的显示速度。<br>在 HTTP/1.1 中，所有的连接默认都是持久连接。</p>
+<p>持久连接使得多数请求以管线化（pipelining）方式发送成为可能。管线化技术是指并行发送多个请求。</p>
+<h2 id="Cookie的用途"><a href="#Cookie的用途" class="headerlink" title="Cookie的用途"></a>Cookie的用途</h2><p>HTTP是无状态协议，它不对之前发生过的请求和响应的状态进行管理。而随着Web的发展，许多业务处理需要保持状态，比如用户的登录状态。为了实现保持状态功能，HTTP引入了Cookie技术来管理状态。Cookie技术通过在请求和响应报文中写入 Cookie信息来控制客户端的状态。</p>
+<p>Cookie 会根据从服务器端发送的响应报文内的一个叫做Set-Cookie的首部字段信息，通知客户端保存Cookie。当下次客户端再往该服务器发送请求时，客户端会自动在请求报文中加入Cookie值后发送出去。</p>
+<p>服务器端发现客户端发送过来的Cookie后，会去检查是从哪一个客户端发来的连接请求，然后对比服务器上的记录，最后得到之前的状态信息。</p>
+<h2 id="HTTP报文"><a href="#HTTP报文" class="headerlink" title="HTTP报文"></a>HTTP报文</h2><p>用于HTTP协议交互的信息被称为HTTP报文。报文本身是由多行数据构成的字符串文本。HTTP报文大致可分为报文首部和报文主体两块，首部和主体由换行符分隔。报文主体不是必须的。</p>
+<h3 id="报文首部"><a href="#报文首部" class="headerlink" title="报文首部"></a>报文首部</h3><p>报文首部的内容如下：</p>
+<h4 id="请求行-状态行"><a href="#请求行-状态行" class="headerlink" title="请求行/状态行"></a>请求行/状态行</h4><p>请求行包含用于请求的方法，请求 URI 和 HTTP 版本。 状态行包含表明响应结果的状态码，原因短语和 HTTP 版本。 </p>
+<h4 id="首部字段"><a href="#首部字段" class="headerlink" title="首部字段"></a>首部字段</h4><p>包含表示请求和响应的各种条件和属性的各类首部。通常有如下四种首部:通用首部、请求首部、响应首部和实体首部。</p>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>未定义的首部如Cookie等。</p>
+<h3 id="报文主体"><a href="#报文主体" class="headerlink" title="报文主体"></a>报文主体</h3><p>通常，报文主体等于实体主体。只有当传输中进行编码操作时，实体主体的内容发生变化，才导致它和报文主体产生差异。</p>
+<p>为什么进行编码操作？举例来说，将文件压缩后会减小体积从而获得更高效的传输效率。压缩就是典型的文件编码操作。</p>
+<h4 id="内容编码"><a href="#内容编码" class="headerlink" title="内容编码"></a>内容编码</h4><p><a href="https://hengg.github.io/2017/02/26/%E6%89%93%E5%BC%80%E6%9F%90%E4%B8%AA%E7%BD%91%E9%A1%B5%E6%97%B6%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/" target="_blank" rel="external">打开某个页面的时候发生了什么</a>，文中提到<code>Accept-Encoding: gzip, deflate</code>，就是在声明内容编码格式。</p>
+<p>常见的内容编码有以下几种：</p>
+<ul>
+<li>gzip： GNU zip</li>
+<li>compress： UNIX系统的标准压缩</li>
+<li>deflate： zlib</li>
+<li>identity： 不进行编码</li>
+</ul>
+<h4 id="分块编码"><a href="#分块编码" class="headerlink" title="分块编码"></a>分块编码</h4><p>在传输大容量数据时，可以把数据分割成多块来传输，这种方式叫做分块编码。</p>
+<blockquote>
+<p>在对HTTP有了一个简单的认识之后，还有状态码和首部字段等内容需要了解。</p>
+</blockquote>
+<p><em>参考资料：《图解HTTP》</em></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HTTP/" rel="tag"># HTTP</a>
+          
+            <a href="/tags/Cookie/" rel="tag"># Cookie</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/28/浅谈Promise/" rel="next" title="浅谈Promise">
+                <i class="fa fa-chevron-left"></i> 浅谈Promise
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/01/HTTP入门/"
+           data-title="HTTP入门" data-url="http://hengg.github.Extensions/2017/03/01/HTTP入门/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="hengg" />
+          <p class="site-author-name" itemprop="name">hengg</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-IP协议族"><span class="nav-number">1.</span> <span class="nav-text">TCP/IP协议族</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#应用层"><span class="nav-number">1.1.</span> <span class="nav-text">应用层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#传输层"><span class="nav-number">1.2.</span> <span class="nav-text">传输层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络层"><span class="nav-number">1.3.</span> <span class="nav-text">网络层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链路层"><span class="nav-number">1.4.</span> <span class="nav-text">链路层</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#持久链接和管线化"><span class="nav-number">2.</span> <span class="nav-text">持久链接和管线化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie的用途"><span class="nav-number">3.</span> <span class="nav-text">Cookie的用途</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP报文"><span class="nav-number">4.</span> <span class="nav-text">HTTP报文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#报文首部"><span class="nav-number">4.1.</span> <span class="nav-text">报文首部</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#请求行-状态行"><span class="nav-number">4.1.1.</span> <span class="nav-text">请求行/状态行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#首部字段"><span class="nav-number">4.1.2.</span> <span class="nav-text">首部字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他"><span class="nav-number">4.1.3.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#报文主体"><span class="nav-number">4.2.</span> <span class="nav-text">报文主体</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内容编码"><span class="nav-number">4.2.1.</span> <span class="nav-text">内容编码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分块编码"><span class="nav-number">4.2.2.</span> <span class="nav-text">分块编码</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hengg</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"henggblog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
