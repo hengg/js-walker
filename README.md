@@ -32,3 +32,4 @@ func fn(){
 param|参数说明
 
 流程图：
+![UML](http://p1.bqimg.com/567571/7176913f26e7ae98.png)
