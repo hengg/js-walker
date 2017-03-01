@@ -15,7 +15,6 @@
  - 工作年限：
  - 技术博客：http://blog.hengg.net 
  - Github： http://github.com/hengg 
-
  - 期望职位：大前端
  - 期望薪资：
  - 期望城市：北京
