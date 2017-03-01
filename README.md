@@ -23,7 +23,8 @@ func fn(){
   dispaly(json);
 }
 ```
-生成文档格式如下：
+生成Markdown文档格式如下：
+
 函数: fn
 功能: 功能描述
  
@@ -32,4 +33,5 @@ func fn(){
 param|参数说明
 
 流程图：
+
 ![UML](http://p1.bqimg.com/567571/7176913f26e7ae98.png)
