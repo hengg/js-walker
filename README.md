@@ -14,7 +14,7 @@
  - 本科/吉林化工学院计算机系 
  - 工作年限：
  - 技术博客：http://blog.hengg.net 
- - Github：http://github.com/hengg 
+ - Github： http://github.com/hengg 
 
  - 期望职位：大前端
  - 期望薪资：
@@ -47,8 +47,8 @@
 
 ## 开源项目
 
- - [HenggDocGen](http://github.com/yourname/projectname)：项目的简要说明，Star和Fork数多的可以注明
-
+ - [HenggDocGen](https://github.com/hengg/SimpleDocGen)：根据代码注释自动生成带有流程图的文档。
+ 
 ## 技术文章
 
 - [ADD](http://github.com/yourname/projectname)
@@ -62,7 +62,7 @@
 - 开发语言：JavaScript(ES6)/Objective-C/Swift/CSS3/HTML5/Python/Java
 - 前端框架：Bootstrap/React/ReactNative
 - 前端工具：Babel/Webpack/SaSS/LeSS
-- 版本管理、文档工具：Git/[HenggDocGen]()
+- 版本管理、文档工具：Git/[HenggDocGen](https://github.com/hengg/SimpleDocGen)
 - 云和开放平台：微信应用开发
 
 ## 参考技能关键字
@@ -70,13 +70,11 @@
 - javascript
 - css3
 - html5
-- react
-- react native
-- json
+- react/react native
 - python
 - ios
 - github
-- mac
+- swift
 
 ---
 
