@@ -2,20 +2,19 @@
 
 # 联系方式
 
-- 手机/微信：
+- 手机/微信：188
 - Email：
-- QQ：
+
 
 ---
 
 # 个人信息
 
- - 王亮/男/1987 
- - 本科/吉林化工学院计算机系 
+ - 王亮/男/本科/计算机科学与技术
  - 工作年限：
- - 技术博客：http://blog.hengg.net 
- - Github： http://github.com/hengg 
- - 期望职位：大前端
+ - 技术博客：<http://blog.hengg.net>
+ - Github： <http://github.com/hengg>
+ - 期望职位：
  - 期望薪资：
  - 期望城市：北京
 
