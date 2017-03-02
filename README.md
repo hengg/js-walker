@@ -3,7 +3,7 @@
 # 联系方式
 
 - 手机/微信：18801353721
-- Email：<wangliang826@hotmail.com>
+- Email：wangliang826@hotmail.com
 
 
 ---
