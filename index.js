@@ -12,13 +12,43 @@ var server = http.createServer(function(request, response){
   var query = temp.query
 
   //从这里开始看，上面不要看
+	
+	console.log(path);
+	switch(path){
+            case "/main.css":
+		fs.readFile("main.css", 'utf-8',function (err, data) {
+                    if (err) throw err;
+                    response.writeHead(200, {
+                        "Content-Type": "text/css"
+                    });
+                    response.write(data);
+                    response.end();
+                });
+                break;
+            case "/main.js":
+                fs.readFile("main.js", 'utf-8',function (err, data) {
+		    if (err) throw err;
+                    response.writeHead(200, {
+                        "Content-Type":"application/javascript",
+                    });
+                    response.write(data);
+                    response.end();
+                });
+                break;
+            default:
+                fs.readFile('index.html', 'utf-8',function (err, data) {
+                    if (err) throw err;
+                    response.writeHead(200, {
+                        "Content-Type": "text/html"
+                    });
+                    response.write(data);
+                    response.end();
+                });
+ 
+        }
 
-  if(path === '/index.html'|| path === '/'){
-	  var html = fs.readFileSync('index.html')
-	  response.end(html)
-  }else{
-	  response.end('404')
-  }
+
+
 
   // 代码结束，下面不要看
 })
