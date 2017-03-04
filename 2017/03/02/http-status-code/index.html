@@ -93,7 +93,7 @@
 <meta property="og:url" content="http://hengg.github.Extensions/2017/03/02/http-status-code/index.html">
 <meta property="og:site_name" content="hengg's Blog">
 <meta property="og:description" content="状态码的职责是当客户端向服务器端发送请求时，描述返回的请求结果。借助状态码，用户可以知道服务器端是正常处理了请求，还是出现了错误。状态码如200 OK，以 3位数字和原因短语组成。">
-<meta property="og:updated_time" content="2017-03-02T11:00:47.000Z">
+<meta property="og:updated_time" content="2017-03-02T11:04:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTP的状态码">
 <meta name="twitter:description" content="状态码的职责是当客户端向服务器端发送请求时，描述返回的请求结果。借助状态码，用户可以知道服务器端是正常处理了请求，还是出现了错误。状态码如200 OK，以 3位数字和原因短语组成。">
@@ -211,12 +211,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            归档
+            标签
           </a>
         </li>
       
@@ -351,9 +351,9 @@
 <li><font color="red"><strong>204 No Content</strong></font> ：<br>该状态码代表服务器接收的请求已成功处理，但在返回的响应报文中不含实体的主体部分。另外，也不允许返回任何实体的主体。比如， 当从浏览器发出请求处理后，返回 204 响应，那么浏览器显示的页面不 发生更新。<br>一般在只需要从客户端往服务器发送信息，而对客户端不需要发送新信息内容的情况下使用。</li>
 <li>205 Reset Content：<br>服务器成功处理了请求，且没有返回任何内容。告知浏览器清除当前页面中的所有HTML表单元素。</li>
 <li><font color="red"><strong>206 Partial Content</strong></font> ：<br>该状态码表示客户端进行了范围请求，而服务器成功执行了这部分 的 GET 请求。响应报文中包含由 Content-Range 指定范围的实体内容。</li>
-<li>207 Multi-Status：<br>由WebDAV(RFC 2518)扩展的状态码，代表之后的消息体将是一个XML消息。<h2 id="3XX-重定向"><a href="#3XX-重定向" class="headerlink" title="3XX 重定向"></a>3XX 重定向</h2></li>
+<li>207 Multi-Status：<br>由WebDAV(RFC 2518)扩展的状态码，代表之后的消息体将是一个XML消息。</li>
 </ul>
-<p>重定向状态码告知客户端其请求的资源已被替代或移动。</p>
+<h2 id="3XX-重定向"><a href="#3XX-重定向" class="headerlink" title="3XX 重定向"></a>3XX 重定向</h2><p>重定向状态码告知客户端其请求的资源已被替代或移动。</p>
 <ul>
 <li>300 Multiple Choices：客户端请求一个实际指向多个资源的URL时会返回此状态码，比如多语言版本；返回这个状态码时会带有可用选项列表。</li>
 <li><font color="red"><strong>301 Moved Permanently</strong></font> ：<br>永久性重定向。该状态码表示请求的资源已被分配了新的URL，以后应使用资源现在所指的URL。新的URL应当在响应的Location首部中返回。</li>
@@ -441,6 +441,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2017/03/04/charset-encoding/" rel="prev" title="字符编码：计算机的巴别塔">
+                字符编码：计算机的巴别塔 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -514,8 +518,8 @@
         
           
             <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">11</span>
+              <a href="/">
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -525,10 +529,10 @@
 
           
             <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">19</span>
+              <a href="/tags">
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">标签</span>
-              
+              </a>
             </div>
           
 

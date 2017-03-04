@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="JavaScript,递归," />
+  <meta name="keywords" content="charset,encoding," />
 
 
 
@@ -87,16 +87,16 @@
 
 
 
-<meta name="description" content="欲理解递归，则首先必理解递归">
+<meta name="description" content="巴别塔：《圣经·旧约·创世记》第11章宣称，当时人类联合起来兴建希望能通往天堂的高塔；为了阻止人类的计划，上帝让人类说不同的语言，使人类相互之间不能沟通，计划因此失败，人类自此各散东西。此故事试图为世上出现不同语言和种族提供解释。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="简单理解递归">
-<meta property="og:url" content="http://hengg.github.Extensions/2017/02/27/study-on-recursion/index.html">
+<meta property="og:title" content="字符编码：计算机的巴别塔">
+<meta property="og:url" content="http://hengg.github.Extensions/2017/03/04/charset-encoding/index.html">
 <meta property="og:site_name" content="hengg's Blog">
-<meta property="og:description" content="欲理解递归，则首先必理解递归">
-<meta property="og:updated_time" content="2017-03-02T10:56:14.000Z">
+<meta property="og:description" content="巴别塔：《圣经·旧约·创世记》第11章宣称，当时人类联合起来兴建希望能通往天堂的高塔；为了阻止人类的计划，上帝让人类说不同的语言，使人类相互之间不能沟通，计划因此失败，人类自此各散东西。此故事试图为世上出现不同语言和种族提供解释。">
+<meta property="og:updated_time" content="2017-03-04T07:06:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="简单理解递归">
-<meta name="twitter:description" content="欲理解递归，则首先必理解递归">
+<meta name="twitter:title" content="字符编码：计算机的巴别塔">
+<meta name="twitter:description" content="巴别塔：《圣经·旧约·创世记》第11章宣称，当时人类联合起来兴建希望能通往天堂的高塔；为了阻止人类的计划，上帝让人类说不同的语言，使人类相互之间不能沟通，计划因此失败，人类自此各散东西。此故事试图为世上出现不同语言和种族提供解释。">
 
 
 
@@ -124,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://hengg.github.Extensions/2017/02/27/study-on-recursion/"/>
+  <link rel="canonical" href="http://hengg.github.Extensions/2017/03/04/charset-encoding/"/>
 
 
 
 
 
-  <title> 简单理解递归 | hengg's Blog </title>
+  <title> 字符编码：计算机的巴别塔 | hengg's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -249,7 +249,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://hengg.github.Extensions/2017/02/27/study-on-recursion/">
+  <link itemprop="mainEntityOfPage" href="http://hengg.github.Extensions/2017/03/04/charset-encoding/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="hengg">
@@ -273,7 +273,7 @@
             
             
               
-                简单理解递归
+                字符编码：计算机的巴别塔
               
             
           </h1>
@@ -288,8 +288,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-27T17:18:44+08:00">
-                2017-02-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-04T13:14:33+08:00">
+                2017-03-04
               </time>
             
 
@@ -307,8 +307,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/02/27/study-on-recursion/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/27/study-on-recursion/" itemprop="commentCount"></span>
+                <a href="/2017/03/04/charset-encoding/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/04/charset-encoding/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -335,23 +335,44 @@
 
       
         <blockquote>
-<p>欲理解递归，则首先必理解递归</p>
+<p>巴别塔：《圣经·旧约·创世记》第11章宣称，当时人类联合起来兴建希望能通往天堂的高塔；为了阻止人类的计划，上帝让人类说不同的语言，使人类相互之间不能沟通，计划因此失败，人类自此各散东西。此故事试图为世上出现不同语言和种族提供解释。</p>
 </blockquote>
 <a id="more"></a>
-<p>以前我会简单的认为递归就是函数自己调用自己。这种看法不能算错，但不完全。递归的思想就是：把问题分解成为规模更小的、具有与原问题有着相同解法的问题。比如使用递归求阶乘和使用递归二分查找。</p>
-<p>递归的写法更简洁，也有许多迭代不能解决的、必须使用递归的场景。但递归要进行多层函数调用，所以会消耗很多堆栈空间和函数调用时间。</p>
-<p>一般来讲，能用递归来解决的问题必须满足两个条件：</p>
-<ul>
-<li>可以通过递归调用来缩小问题规模，且新问题与原问题有着相同的形式。</li>
-<li>存在一种简单情境，可以使递归在简单情境下退出。</li>
-</ul>
-<p>在编写递归调用的函数的时候，一定要把对退出的判断写在最前面，以保证函数在检查到退出条件的时候能够及时地中止。</p>
-<p>递归求阶乘:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">num</span>)</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (num &lt; <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (num == <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> (num * factorial(num - <span class="number">1</span>));</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> result = factorial(<span class="number">8</span>);</div><div class="line"><span class="built_in">console</span>.log(result);</div></pre></td></tr></table></figure>
-<p>递归判断是否回文，回文是一种正着读和反着读都一样的字符串：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPalindrome</span>(<span class="params">str</span>)</span></div><div class="line"> &#123;</div><div class="line">    <span class="keyword">var</span> n = str.length;</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(n == <span class="number">0</span> || n == <span class="number">1</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">var</span> newStr = [];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>;i&lt;str.length<span class="number">-1</span>;i++)&#123;</div><div class="line">            newStr.push(str[i]);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> ((str[<span class="number">0</span>] == str[n<span class="number">-1</span>]) ? isPalindrome(newStr, n<span class="number">-2</span>) : <span class="literal">false</span>);</div><div class="line">    &#125;</div><div class="line"> &#125;</div><div class="line"> </div><div class="line"><span class="keyword">var</span> result = isPalindrome(<span class="string">"level"</span>.split(<span class="string">""</span>));</div><div class="line"><span class="built_in">console</span>.log(result);</div></pre></td></tr></table></figure></p>
+<p>我们曾经在HTTP的响应头中见到过<code>Content-Type:text/html; charset=utf-8</code>，也曾在HTML文件中见到过<code>&lt;meta charset=&quot;utf-8&quot;&gt;</code>。它们都是用于声明字符编码为<code>utf-8</code>。那么<code>utf-8</code>到底是什么？这要从计算机的起源说起。</p>
+<p>最早的计算机是机械式继电器计算机，通过继电器的开关状态来表示0和1。后来的电子管计算机、晶体管计算机、集成电路计算机都继承了这一设定，这也是为什么计算机以二进制来存储数据。</p>
+<p>人类发明计算机的目的是处理数据，而绝大多数数据都是文本形式的，所以要把这些文本转换为计算机可识别的二进制数据，再把计算机处理过的二进制数据转换为人类可识别的文本。这个二进制和文本的对照表就是字符集。</p>
+<h2 id="ASCII"><a href="#ASCII" class="headerlink" title="ASCII"></a>ASCII</h2><p>美国人发明了最早的现代计算机。所以美国人最初制定了ASCII（American Standard Code for Information Interchange，美国信息互换标准代码）来保存<strong>控制码</strong>、空格、标点符号、数字、大小写字母。计算机的一个字节可以组合出2^8种不同的状态。 ASCII使用了128个状态。</p>
 <blockquote>
-<p>据说<code>GUN</code>是<code>GUN&#39;s Not Unix</code>的缩写哦！</p>
+<p>编号从0开始的32种状态分别规定了特殊的用途，这些0×20以下的字节状态称为”控制码”。</p>
 </blockquote>
+<p>随着世界各地的不同国家开始使用计算机，为了可以在计算机中使用ASCII中没有制定的文字，在128至255号之后的状态来表示这些新的字母、符号。这些字符集被称“扩展字符集”。</p>
+<h2 id="GB2312、GBK和BIG5"><a href="#GB2312、GBK和BIG5" class="headerlink" title="GB2312、GBK和BIG5"></a>GB2312、GBK和BIG5</h2><p>ASCII中是没有汉字的，而常用简体汉字就有几千个。所以中国制定了GB2312（GB是国标的拼音缩写）。GB2312规定：一个小于127的字符的意义与原来相同，但两个大于127的字符连在一起时，就表示一个汉字。GB2312收录了6763个常用汉字。这也是为什么在以前一个汉字算两个英文字符的原因。</p>
+<p>但是汉字有那么多，GB2312中并不包含生僻字，所以还是需要扩展。扩展之后的编码方案被称为GBK标准，GBK包括了GB2312的所有内容，同时又增加了近20000个新的汉字（包括繁体字）和符号。 </p>
+<p>当时同文同种的港台同胞们也制定一套编码标准BIG5，这套标准和GB2312/GBK并不兼容。而世界各地其他国家也制定了自己的标准。虽然本地使用没有问题，然而在网络中由于字符集不兼容，大家谁也看不懂别人的编码，互相访问就会出现乱码。我们仿佛进入了巴别塔被摧毁后的世界。</p>
+<h2 id="unicode"><a href="#unicode" class="headerlink" title="unicode"></a>unicode</h2><p>为解决这个问题，ISO（国际标谁化组织）制定了通用字符集：“Universal Multiple-Octet Coded Character Set”，简称UCS，又称unicode。<br>ISO规定必须用4个字节来统一表示所有的字符，对于ASCII里的那些“半角”字符，unicode包持其原编码不变，只是将其长度由原来的8位扩展为32位，高位全部置为0，而其他语言的字符则全部重新统一编码。这个字符集的编码方式称为UTF-32（32-bit UCS Transfer Format）。人类通过unicode建立了计算机世界的巴别塔。</p>
+<blockquote>
+<p>有2^32个状态的unicode以后会不会也不够用？以前我们还觉得IPv4的地址用不完呢。</p>
+<p>但人类之所以伟大，原因之一就在于我们能够通过无穷的创造力解决各种问题。</p>
+</blockquote>
+<p>如果按照unicode规定，每个符号用4个字节表示，那么文本文件的大小会因此大出二三倍，在存储和传输上就会很浪费。这也是unicode在很长一段时间内无法推广的原因。</p>
+<h2 id="UTF-8"><a href="#UTF-8" class="headerlink" title="UTF-8"></a>UTF-8</h2><p>直到UTF-8的出现。UTF-8（8-bit Unicode Transformation Format）是一种针对unicode的可变长度字符编码。它可以用来表示unicode标准中的任何字符，且其编码中的第一个字节仍与ASCII兼容，这使得原来处理ASCII字符的软件无须或只须做少部份修改，即可继续使用。因此，它逐渐成为电子邮件、网页及其他存储或传送文字的应用中优先采用的编码。互联网工程工作小组（IETF）要求所有互联网协议都必须支持UTF-8编码。</p>
+<p>UTF-8使用一至四个字节为每个字符编码：</p>
+<blockquote>
+<p>unicode是字符集，UTF-8是这一字符集的编码方式。</p>
+</blockquote>
+<ul>
+<li>单字节的字符，字节的第一位设为0，对于英语文本，UTF-8码只占用一个字节，和ASCII码完全相同；</li>
+<li>n个字节的字符(n&gt;1)，第一个字节的前n位设为1，第n+1位设为0，后面字节的前两位都设为10，这n个字节的其余空位填充该字符unicode码，高位用0补足。</li>
+</ul>
+<p>这样就形成了如下的UTF-8标记位：</p>
+<ul>
+<li>0xxxxxxx</li>
+<li>110xxxxx 10xxxxxx</li>
+<li>1110xxxx 10xxxxxx 10xxxxxx</li>
+<li>11110xxx 10xxxxxx 10xxxxxx 10xxxxxx</li>
+<li>111110xx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx</li>
+<li>1111110x 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx</li>
+</ul>
 
       
     </div>
@@ -375,9 +396,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+            <a href="/tags/charset/" rel="tag"># charset</a>
           
-            <a href="/tags/递归/" rel="tag"># 递归</a>
+            <a href="/tags/encoding/" rel="tag"># encoding</a>
           
         </div>
       
@@ -390,8 +411,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/26/open-pages-in-browser/" rel="next" title="打开某个网页时发生了什么？">
-                <i class="fa fa-chevron-left"></i> 打开某个网页时发生了什么？
+              <a href="/2017/03/02/http-status-code/" rel="next" title="HTTP的状态码">
+                <i class="fa fa-chevron-left"></i> HTTP的状态码
               </a>
             
           </div>
@@ -399,10 +420,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/28/study-on-promise/" rel="prev" title="浅谈Promise">
-                浅谈Promise <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -428,8 +445,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/27/study-on-recursion/"
-           data-title="简单理解递归" data-url="http://hengg.github.Extensions/2017/02/27/study-on-recursion/">
+      <div class="ds-thread" data-thread-key="2017/03/04/charset-encoding/"
+           data-title="字符编码：计算机的巴别塔" data-url="http://hengg.github.Extensions/2017/03/04/charset-encoding/">
       </div>
     
   </div>
@@ -453,8 +470,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -505,6 +531,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ASCII"><span class="nav-number">1.</span> <span class="nav-text">ASCII</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GB2312、GBK和BIG5"><span class="nav-number">2.</span> <span class="nav-text">GB2312、GBK和BIG5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#unicode"><span class="nav-number">3.</span> <span class="nav-text">unicode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UTF-8"><span class="nav-number">4.</span> <span class="nav-text">UTF-8</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
