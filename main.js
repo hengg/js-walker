@@ -5,9 +5,9 @@ var num = 0;
 function bling() {
     num = num + 1;
     if (num % 2 == 1) {
-        document.getElementById('666').innerHTML = "老铁666！";
+        document.getElementById("666").style.color = "red";
     }else{
-        document.getElementById('666').innerHTML = "";
+        document.getElementById("666").style.color = "black";
     }
 
 }
