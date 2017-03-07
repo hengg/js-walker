@@ -26,7 +26,8 @@
 * Inspired by http://strml.net/
 * 你好，我是王亮
 * 这是我的简历，使用Vue单文件组件和CSS3动画开发
-* 还有一份类似的效果，但是用React实现的。猜猜它在哪里？
+* 还有一份类似的效果，但是用React实现的。
+* 它在 http://hengg.net/resume/react/
 * 那么我开始了，希望你能喜欢！
 */
 
