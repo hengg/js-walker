@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="charset,encoding," />
+  <meta name="keywords" content="html,browser,render,dom,cssom," />
 
 
 
@@ -87,16 +87,19 @@
 
 
 
-<meta name="description" content="巴别塔：《圣经·旧约·创世记》第11章宣称，当时人类联合起来兴建希望能通往天堂的高塔；为了阻止人类的计划，上帝让人类说不同的语言，使人类相互之间不能沟通，计划因此失败，人类自此各散东西。此故事试图为世上出现不同语言和种族提供解释。">
+<meta name="description" content="我们已经知道服务端是如何向浏览器返回网页的，那么浏览器是如何渲染页面的？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="字符编码：计算机的巴别塔">
-<meta property="og:url" content="http://hengg.github.Extensions/2017/03/04/charset-encoding/index.html">
+<meta property="og:title" content="浏览器如何渲染一个HTML页面">
+<meta property="og:url" content="http://hengg.github.Extensions/2017/03/09/browser-render/index.html">
 <meta property="og:site_name" content="hengg's Blog">
-<meta property="og:description" content="巴别塔：《圣经·旧约·创世记》第11章宣称，当时人类联合起来兴建希望能通往天堂的高塔；为了阻止人类的计划，上帝让人类说不同的语言，使人类相互之间不能沟通，计划因此失败，人类自此各散东西。此故事试图为世上出现不同语言和种族提供解释。">
-<meta property="og:updated_time" content="2017-03-04T07:06:50.000Z">
+<meta property="og:description" content="我们已经知道服务端是如何向浏览器返回网页的，那么浏览器是如何渲染页面的？">
+<meta property="og:image" content="http://coolshell.cn//wp-content/uploads/2013/05/Render-Process.jpg">
+<meta property="og:image" content="http://coolshell.cn//wp-content/uploads/2013/05/Render-Process-Skipping-1024x282.jpg">
+<meta property="og:updated_time" content="2017-03-09T13:08:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="字符编码：计算机的巴别塔">
-<meta name="twitter:description" content="巴别塔：《圣经·旧约·创世记》第11章宣称，当时人类联合起来兴建希望能通往天堂的高塔；为了阻止人类的计划，上帝让人类说不同的语言，使人类相互之间不能沟通，计划因此失败，人类自此各散东西。此故事试图为世上出现不同语言和种族提供解释。">
+<meta name="twitter:title" content="浏览器如何渲染一个HTML页面">
+<meta name="twitter:description" content="我们已经知道服务端是如何向浏览器返回网页的，那么浏览器是如何渲染页面的？">
+<meta name="twitter:image" content="http://coolshell.cn//wp-content/uploads/2013/05/Render-Process.jpg">
 
 
 
@@ -124,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://hengg.github.Extensions/2017/03/04/charset-encoding/"/>
+  <link rel="canonical" href="http://hengg.github.Extensions/2017/03/09/browser-render/"/>
 
 
 
 
 
-  <title> 字符编码：计算机的巴别塔 | hengg's Blog </title>
+  <title> 浏览器如何渲染一个HTML页面 | hengg's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -249,7 +252,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://hengg.github.Extensions/2017/03/04/charset-encoding/">
+  <link itemprop="mainEntityOfPage" href="http://hengg.github.Extensions/2017/03/09/browser-render/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="hengg">
@@ -273,7 +276,7 @@
             
             
               
-                字符编码：计算机的巴别塔
+                浏览器如何渲染一个HTML页面
               
             
           </h1>
@@ -288,8 +291,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-04T13:14:33+08:00">
-                2017-03-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-09T21:04:59+08:00">
+                2017-03-09
               </time>
             
 
@@ -307,8 +310,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/04/charset-encoding/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/04/charset-encoding/" itemprop="commentCount"></span>
+                <a href="/2017/03/09/browser-render/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/09/browser-render/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -334,45 +337,68 @@
       
 
       
-        <blockquote>
-<p>巴别塔：《圣经·旧约·创世记》第11章宣称，当时人类联合起来兴建希望能通往天堂的高塔；为了阻止人类的计划，上帝让人类说不同的语言，使人类相互之间不能沟通，计划因此失败，人类自此各散东西。此故事试图为世上出现不同语言和种族提供解释。</p>
-</blockquote>
+        <p>我们已经知道服务端是如何向浏览器返回网页的，那么浏览器是如何渲染页面的？</p>
 <a id="more"></a>
-<p>我们曾经在HTTP的响应头中见到过<code>Content-Type:text/html; charset=utf-8</code>，也曾在HTML文件中见到过<code>&lt;meta charset=&quot;utf-8&quot;&gt;</code>。它们都是用于声明字符编码为<code>utf-8</code>。那么<code>utf-8</code>到底是什么？这要从计算机的起源说起。</p>
-<p>最早的计算机是机械式继电器计算机，通过继电器的开关状态来表示0和1。后来的电子管计算机、晶体管计算机、集成电路计算机都继承了这一设定，这也是为什么计算机以二进制来存储数据。</p>
-<p>人类发明计算机的目的是处理数据，而绝大多数数据都是文本形式的，所以要把这些文本转换为计算机可识别的二进制数据，再把计算机处理过的二进制数据转换为人类可识别的文本。这个二进制和文本的对照表就是字符集。</p>
-<h2 id="ASCII"><a href="#ASCII" class="headerlink" title="ASCII"></a>ASCII</h2><p>美国人发明了最早的现代计算机。所以美国人最初制定了ASCII（American Standard Code for Information Interchange，美国信息互换标准代码）来保存<strong>控制码</strong>、空格、标点符号、数字、大小写字母。计算机的一个字节可以组合出2^8种不同的状态。 ASCII使用了128个状态。</p>
-<blockquote>
-<p>编号从0开始的32种状态分别规定了特殊的用途，这些0×20以下的字节状态称为”控制码”。</p>
-</blockquote>
-<p>随着世界各地的不同国家开始使用计算机，为了可以在计算机中使用ASCII中没有制定的文字，在128至255号之后的状态来表示这些新的字母、符号。这些字符集被称“扩展字符集”。</p>
-<h2 id="GB2312、GBK和BIG5"><a href="#GB2312、GBK和BIG5" class="headerlink" title="GB2312、GBK和BIG5"></a>GB2312、GBK和BIG5</h2><p>ASCII中是没有汉字的，而常用简体汉字就有几千个。所以中国制定了GB2312（GB是国标的拼音缩写）。GB2312规定：一个小于127的字符的意义与原来相同，但两个大于127的字符连在一起时，就表示一个汉字。GB2312收录了6763个常用汉字。这也是为什么在以前一个汉字算两个英文字符的原因。</p>
-<p>但是汉字有那么多，GB2312中并不包含生僻字，所以还是需要扩展。扩展之后的编码方案被称为GBK标准，GBK包括了GB2312的所有内容，同时又增加了近20000个新的汉字（包括繁体字）和符号。 </p>
-<p>当时同文同种的港台同胞们也制定一套编码标准BIG5，这套标准和GB2312/GBK并不兼容。而世界各地其他国家也制定了自己的标准。虽然本地使用没有问题，然而在网络中由于字符集不兼容，大家谁也看不懂别人的编码，互相访问就会出现乱码。我们仿佛进入了巴别塔被摧毁后的世界。</p>
-<h2 id="unicode"><a href="#unicode" class="headerlink" title="unicode"></a>unicode</h2><p>为解决这个问题，ISO（国际标谁化组织）制定了通用字符集：“Universal Multiple-Octet Coded Character Set”，简称UCS，又称unicode。<br>ISO规定必须用4个字节来统一表示所有的字符，对于ASCII里的那些“半角”字符，unicode包持其原编码不变，只是将其长度由原来的8位扩展为32位，高位全部置为0，而其他语言的字符则全部重新统一编码。这个字符集的编码方式称为UTF-32（32-bit UCS Transfer Format）。人类通过unicode建立了计算机世界的巴别塔。</p>
-<blockquote>
-<p>有2^32个状态的unicode以后会不会也不够用？以前我们还觉得IPv4的地址用不完呢。</p>
-<p>但人类之所以伟大，原因之一就在于我们能够通过无穷的创造力解决各种问题。</p>
-</blockquote>
-<p>如果按照unicode规定，每个符号用4个字节表示，那么文本文件的大小会因此大出二三倍，在存储和传输上就会很浪费。这也是unicode在很长一段时间内无法推广的原因。</p>
-<h2 id="UTF-8"><a href="#UTF-8" class="headerlink" title="UTF-8"></a>UTF-8</h2><p>直到UTF-8的出现。UTF-8（8-bit Unicode Transformation Format）是一种针对unicode的可变长度字符编码。它可以用来表示unicode标准中的任何字符，且其编码中的第一个字节仍与ASCII兼容，这使得原来处理ASCII字符的软件无须或只须做少部份修改，即可继续使用。因此，它逐渐成为电子邮件、网页及其他存储或传送文字的应用中优先采用的编码。互联网工程工作小组（IETF）要求所有互联网协议都必须支持UTF-8编码。</p>
-<p>UTF-8使用一至四个字节为每个字符编码：</p>
-<blockquote>
-<p>unicode是字符集，UTF-8是这一字符集的编码方式。</p>
-</blockquote>
+<p>通常一个网页由HTML，CSS和JavaScript三大件组成，CSS和JavaScript通常内嵌或外链至HTML中：</p>
 <ul>
-<li>单字节的字符，字节的第一位设为0，对于英语文本，UTF-8码只占用一个字节，和ASCII码完全相同；</li>
-<li>n个字节的字符(n&gt;1)，第一个字节的前n位设为1，第n+1位设为0，后面字节的前两位都设为10，这n个字节的其余空位填充该字符unicode码，高位用0补足。</li>
+<li>HTML负责页面的内容</li>
+<li>CSS指定内容的样式</li>
+<li>JavaScript则可以为网页添加动态功能</li>
 </ul>
-<p>这样就形成了如下的UTF-8标记位：</p>
+<p>所以当浏览器收到服务端的响应时，它会顺序解析HTML文件为DOM树，遇到CSS则构建CSS 规则树，遇到JavaScript会通过DOM API和CSSOM API来操作DOM树和CSS规则树。</p>
+<p>浏览器引擎会通过DOM树和CSS规则树来构造渲染树（Rendering Tree）。引擎会以尽快的展示内容，也就是说DOM树的解析和渲染会同步进行。所以有时会发生FOUC(flash of unstyled content)现象。</p>
+<p>最后通过调用操作系统提供的GUI API绘制页面。</p>
+<p><img src="http://coolshell.cn//wp-content/uploads/2013/05/Render-Process.jpg" alt=""></p>
+<h2 id="DOM树的解析"><a href="#DOM树的解析" class="headerlink" title="DOM树的解析"></a>DOM树的解析</h2><p>DOM树是渲染树的输入。浏览器引擎同步(synchronous)解析HTML为DOM树。</p>
+<h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><p>CSS会被解析为CSSOM（CSS对象模型）。因为CSS层叠的特性决定了页面中每一个元素都有可能被许多样式匹配。那么浏览器如何在多个样式中选择呢？</p>
 <ul>
-<li>0xxxxxxx</li>
-<li>110xxxxx 10xxxxxx</li>
-<li>1110xxxx 10xxxxxx 10xxxxxx</li>
-<li>11110xxx 10xxxxxx 10xxxxxx 10xxxxxx</li>
-<li>111110xx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx</li>
-<li>1111110x 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx</li>
+<li>子节点的样式优先级高于父节点</li>
+<li>选择器越精确则优先级越高：id样式 &gt; 类样式 &gt; 元素样式</li>
+<li>类型相同的样式，在样式表文件中越靠后则优先级越高</li>
+<li>类型相同的样式，使用!important指定的优先级最高</li>
 </ul>
+<p>例如：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">  .span-class &#123;</div><div class="line">    color: green !important;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  .span-class &#123;</div><div class="line">    color: red;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  #sidebar #widget &#123;</div><div class="line">    color: orange;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  #sidebar &#123;</div><div class="line">    color: yellow;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  #sidebar .class-div &#123;</div><div class="line">    color: blue;</div><div class="line">  &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">sidebar</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">widget</span> <span class="attr">class</span>=<span class="string">class-div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">span-class</span> <span class="attr">style</span>=<span class="string">color:black</span> &gt;</span>Hello, world!<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>如上代码的样式优先级为<code>green</code>&gt;<code>black</code>&gt;<code>red</code>&gt;<code>orange</code>&gt;<code>yellow</code>&gt;<code>blue</code>。</p>
+<p>浏览器引擎会把最终的CSSOM附加到DOM树上后，开始渲染页面。</p>
+<p><strong>所以CSS会阻塞DOM渲染，但不会阻塞DOM解析。因此通常在HTML头部引入CSS，防止页面发生样式跳动。这种情况下外链CSS会导致页面加载延迟，如果考虑性能应使用内联CSS。</strong></p>
+<h3 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h3><p>浏览器引擎解析到<code>&lt;script&gt;</code>的时候，JavaScript代码是立刻执行的；而JavaScript可以<code>document.write</code>等方式修改HTML文件，因此<code>&lt;script&gt;</code>的解析过程如下：</p>
+<ul>
+<li>浏览器停止HTML解析并获取脚本</li>
+<li>将控制权交给JavaScript引擎，执行JavaScript代码</li>
+<li>浏览器恢复HTML的解析</li>
+</ul>
+<p><strong>所以<code>&lt;script&gt;</code>会阻塞后续DOM的解析，所以要在HTML底部引入JavaScript，脚本仍在下载时页面已经可以正常地显示了。而浏览器引擎遇到了<code>&lt;script&gt;</code>，但是此时还有未加载完的样式文件同样也会阻塞DOM的解析</strong></p>
+<h2 id="渲染"><a href="#渲染" class="headerlink" title="渲染"></a>渲染</h2><h3 id="渲染树-Render-Tree"><a href="#渲染树-Render-Tree" class="headerlink" title="渲染树(Render Tree)"></a>渲染树(Render Tree)</h3><p>DOM和CSSOM会合并成为渲染树。但只有DOM树中被展示的节点才会在渲染树中：<code>head</code>，<code>script</code>等节点，拥有<code>display:none</code>样式的节点都不会出现在渲染树中。</p>
+<h3 id="页面绘制"><a href="#页面绘制" class="headerlink" title="页面绘制"></a>页面绘制</h3><p><img src="http://coolshell.cn//wp-content/uploads/2013/05/Render-Process-Skipping-1024x282.jpg" alt="渲染"></p>
+<ul>
+<li>Layout</li>
+</ul>
+<p>浏览器根据CSS或JavaScript定位节点几何图形的位置和维度。</p>
+<ul>
+<li>Paint</li>
+</ul>
+<p>最后我们得到了一棵渲染树，它包括以下内容：</p>
+<pre><code>可视化的节点
+节点该按照何种顺序渲染
+节点的样式
+节点的几何位置
+</code></pre><p>通过这些内容浏览器就可以完完整整的把一个页面呈现在用户面前了。</p>
+<ul>
+<li>Repaint：</li>
+</ul>
+<p>屏幕的一部分要重画，比如某个CSS的背景色变了。但是节点的几何尺寸没有变。</p>
+<ul>
+<li>Reflow：</li>
+</ul>
+<p>HTML使用的是流式布局，如果某个节点的几何尺寸发生了变化，就需要重新布局，这个过程叫做Reflow。Reflow会从这个渲染树开始递归往下，依次计算所有的结点几何尺寸和位置。</p>
+<p>Reflow的成本比Repaint的成本高的多。在手机上Reflow的过程是非常消耗资源的。所以，下面这些动作有很大可能会是成本比较高的：</p>
+<pre><code>增加、删除、修改DOM结点
+移动DOM的位置
+修改CSS样式
+Resize窗口
+修改网页的默认字体
+</code></pre><p>参考资料</p>
+<p><a href="http://coolshell.cn/articles/9666.html" target="_blank" rel="external">浏览器的渲染原理简介</a></p>
 
       
     </div>
@@ -396,9 +422,15 @@
       
         <div class="post-tags">
           
-            <a href="/tags/charset/" rel="tag"># charset</a>
+            <a href="/tags/html/" rel="tag"># html</a>
           
-            <a href="/tags/encoding/" rel="tag"># encoding</a>
+            <a href="/tags/browser/" rel="tag"># browser</a>
+          
+            <a href="/tags/render/" rel="tag"># render</a>
+          
+            <a href="/tags/dom/" rel="tag"># dom</a>
+          
+            <a href="/tags/cssom/" rel="tag"># cssom</a>
           
         </div>
       
@@ -411,8 +443,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/02/http-status-code/" rel="next" title="HTTP的状态码">
-                <i class="fa fa-chevron-left"></i> HTTP的状态码
+              <a href="/2017/03/08/html-meta/" rel="next" title="HTML中的常用meta">
+                <i class="fa fa-chevron-left"></i> HTML中的常用meta
               </a>
             
           </div>
@@ -420,10 +452,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/08/html-meta/" rel="prev" title="HTML中的常用meta">
-                HTML中的常用meta <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -449,8 +477,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/04/charset-encoding/"
-           data-title="字符编码：计算机的巴别塔" data-url="http://hengg.github.Extensions/2017/03/04/charset-encoding/">
+      <div class="ds-thread" data-thread-key="2017/03/09/browser-render/"
+           data-title="浏览器如何渲染一个HTML页面" data-url="http://hengg.github.Extensions/2017/03/09/browser-render/">
       </div>
     
   </div>
@@ -545,7 +573,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ASCII"><span class="nav-number">1.</span> <span class="nav-text">ASCII</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GB2312、GBK和BIG5"><span class="nav-number">2.</span> <span class="nav-text">GB2312、GBK和BIG5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#unicode"><span class="nav-number">3.</span> <span class="nav-text">unicode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UTF-8"><span class="nav-number">4.</span> <span class="nav-text">UTF-8</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM树的解析"><span class="nav-number">1.</span> <span class="nav-text">DOM树的解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS"><span class="nav-number">1.1.</span> <span class="nav-text">CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript"><span class="nav-number">1.2.</span> <span class="nav-text">JavaScript</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#渲染"><span class="nav-number">2.</span> <span class="nav-text">渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#渲染树-Render-Tree"><span class="nav-number">2.1.</span> <span class="nav-text">渲染树(Render Tree)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#页面绘制"><span class="nav-number">2.2.</span> <span class="nav-text">页面绘制</span></a></li></ol></li></ol></div>
             
 
           </div>
