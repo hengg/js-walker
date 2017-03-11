@@ -31,16 +31,40 @@ $ git config --global merge.tool vimdiff  #指定差异分析工具
 >有些人在Github上遇到了提交但却不刷绿的情况，大多数情况下都是因为没有正确的配置用户名和邮箱
 
 ## Git基本操作
+Git的大多数操作都需要在仓库中进行。可以在工作目录下通过`git init`命令创建仓库，也可以通过`git clone [url] [name]`命令克隆一个远程仓库。
+可以通过`git remote add [shortname] [url]`命令为`git init`创建的仓库添加一个远程仓库。
+>克隆的仓库会包括该项目的所有历史数据
 
+在仓库中新建文件后需要通过`git add path`命令将新建文件纳入Git跟踪。此时该文件的状态为staged；
+将staged状态的文件再次修改，该文件状态变为modified；
+执行`git commit`命令可以提交staged状态的文件，提交后文件状态变更为committed。
+
+可以看出，在add后修改文件再commit，是不会提交add之后的变更的。所以commit前应该通过`git status`查看文件状态，确保变更已被纳入暂存区。
+命令`git status`的输出中会有非常友善的提示，比如如何取消暂存、如何取消对文件的修改
+也可以通过在提交命令中添加参数a的方式通知Git将所有tracked的文件全部纳入暂存区：`git commit -a`。
+命令`git commit`的参数`--amend`代表修改上一次的提交，如果提交日志写错了或者忘记暂存某些文件可以使用该命令修改
+有些文件我们并不想纳入Git追踪，但又不想删除它们，比如说日志文件、node_modules等。可以通过添加`.gitignore`忽略指定文件：
+```
+#Git会忽略注释行
+*.log   #忽略所有.log结尾的文件
+!update.log    #除了update.log
+node_modules/   #忽略node_modules/目录下的所有文件
+```
+提交之后可以通过`git log`查看提交历史：
+```
+commit ca61730da28e71d2a31d69ea6bf39851f8b25ee0
+Author: hengg <user@example.com>
+Date:   Fri Mar 3 20:53:17 2017 +0800
+
+    学习Git如何使用
+```
 ```
 $ git init  #创建一个仓库
 $ git clone [url] [name]  #获取远程仓库，name为可选，用于命名文件夹
 
-$ git add *.c
-$ git add README
-$ git commit -m 'initial project version'
+$ git add README.md #将文件纳入Git
+$ git commit -m '添加README.md'   #提交变更
 
-$ git status
+$ git status #查看文件状态
 ```
 
-.gitignore 忽略文件
