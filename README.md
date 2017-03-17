@@ -15,7 +15,7 @@
 - **CSS** [选择器](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Reference#选择器),[关键字](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Reference#关键字索引)
 - **JavaScript** [参考手册](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference)
 - **jQuery** [API 参考手册](http://www.jquery123.com/)
-- **HTTP** [状态码](https://zh.wikipedia.org/wiki/HTTP%E7%8A%B6%E6%80%81%E7%A0%81)",[请求方法](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Methods)
+- **HTTP** [状态码](https://zh.wikipedia.org/wiki/HTTP%E7%8A%B6%E6%80%81%E7%A0%81),[请求方法](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Methods)
 - **JSON** [官网](http://www.json.org/json-zh.html)
 - **ES 6** [新增特性](https://frankfang.github.io/es-6-tutorials/)
 
