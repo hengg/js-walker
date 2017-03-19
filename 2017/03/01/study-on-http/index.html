@@ -87,16 +87,16 @@
 
 
 
-<meta name="description" content="上周写了篇博客：打开某个页面的时候发生了什么 ，文中更关注的是HTTP的请求与响应，今天就简要了解下HTTP本身。">
+<meta name="description" content="HTTP浏览器和服务器的相互通信使用的是HTTP协议（HyperText Transfer Protocol，超文本传输协议）。毫不夸张的说，整个互联网就是建立在HTTP协议基础之上的。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HTTP入门">
+<meta property="og:title" content="一个网页的漂洋过海之旅：传输">
 <meta property="og:url" content="http://hengg.github.Extensions/2017/03/01/study-on-http/index.html">
 <meta property="og:site_name" content="hengg's Blog">
-<meta property="og:description" content="上周写了篇博客：打开某个页面的时候发生了什么 ，文中更关注的是HTTP的请求与响应，今天就简要了解下HTTP本身。">
-<meta property="og:updated_time" content="2017-03-09T14:13:31.000Z">
+<meta property="og:description" content="HTTP浏览器和服务器的相互通信使用的是HTTP协议（HyperText Transfer Protocol，超文本传输协议）。毫不夸张的说，整个互联网就是建立在HTTP协议基础之上的。">
+<meta property="og:updated_time" content="2017-03-19T08:45:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HTTP入门">
-<meta name="twitter:description" content="上周写了篇博客：打开某个页面的时候发生了什么 ，文中更关注的是HTTP的请求与响应，今天就简要了解下HTTP本身。">
+<meta name="twitter:title" content="一个网页的漂洋过海之旅：传输">
+<meta name="twitter:description" content="HTTP浏览器和服务器的相互通信使用的是HTTP协议（HyperText Transfer Protocol，超文本传输协议）。毫不夸张的说，整个互联网就是建立在HTTP协议基础之上的。">
 
 
 
@@ -130,7 +130,7 @@
 
 
 
-  <title> HTTP入门 | hengg's Blog </title>
+  <title> 一个网页的漂洋过海之旅：传输 | hengg's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -273,7 +273,7 @@
             
             
               
-                HTTP入门
+                一个网页的漂洋过海之旅：传输
               
             
           </h1>
@@ -334,53 +334,36 @@
       
 
       
-        <p>上周写了篇博客：<a href="https://hengg.github.io/2017/02/26/open-pages-in-browser/" target="_blank" rel="external">打开某个页面的时候发生了什么</a> ，文中更关注的是HTTP的请求与响应，今天就简要了解下HTTP本身。</p>
+        <h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><p>浏览器和服务器的相互通信使用的是HTTP协议（HyperText Transfer Protocol，超文本传输协议）。毫不夸张的说，整个互联网就是建立在HTTP协议基础之上的。</p>
 <a id="more"></a>
-<h2 id="TCP-IP协议族"><a href="#TCP-IP协议族" class="headerlink" title="TCP/IP协议族"></a>TCP/IP协议族</h2><p>HTTP（HyperText Transfer Protocol，超文本传输协议），顾名思义，用于在Web上传输文件。毫不夸张的说，整个互联网就是建立在HTTP协议基础之上的。 </p>
 <p>网络上不同硬件，不同操作系统的设备之间想要进行通信，就必须遵守相同的规则，如怎样发起通信、通信内容格式、如何结束通信等，这一系列事先约定的规则就是协议（protocol）。</p>
-<p>HTTP是TCP/IP协议族的一个子集。TCP/IP协议族分为以下4层:应用层、传输层、网络层和数据链路层。</p>
+<p>HTTP是TCP/IP协议族的一个子集。TCP/IP协议族分为4层：应用层、传输层、网络层和数据链路层。</p>
 <blockquote>
 <p>“计算机科学的任何问题都可以通过增加一个中间层来解决”</p>
 </blockquote>
-<h3 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h3><p>应用层为应用程序提供网络服务。FTP和DNS服务以及HTTP都位于该层。</p>
-<h3 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h3><p>传输层为应用层提供处于网络连接中的两台计算机之间的数据传输。TCP(Transmission Control Protocol，传输控制协议)和 UDP(User Data Protocol，用户数据报协议)位于传输层。</p>
-<blockquote>
-<p>TCP的三次握手：</p>
-<p>通过TCP协议发送数据包后，TCP会向对方确认是否成功送达。握手过程中<br>发送端首先发送一个带SYN（synchronize）标志的数据包给对方。接收端收到后，回传一个带有SYN/ACK（acknowledgement）标志的数据包以示传达确认信息。最后，发送端再回传一个带ACK标志的数据包，代表“握手”结束。<br>若在握手过程中某个阶段莫名中断，TCP 协议会再次以相同的顺序 发送相同的数据包。</p>
-<p>我讲了一个UDP的笑话，但是你可能没听到</p>
-</blockquote>
-<h3 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h3><p>网络层用来处理在网络上流动的数据包。IP位于该层。</p>
-<blockquote>
-<p>IP和IP地址：</p>
-<p>IP是把各种数据包传送给对方的协议。IP地址是节点被分配到的地址。</p>
-</blockquote>
-<h3 id="链路层"><a href="#链路层" class="headerlink" title="链路层"></a>链路层</h3><p>用来处理连接网络的硬件部分。</p>
-<p>利用 TCP/IP 协议族进行网络通信时，会通过分层顺序与对方进行 通信。发送端从应用层往下走，每经过一层时必定就会被打上一个 该层所属的首部信息。接收端则往应用层往上走，每经过一层 时会把对应的首部消去。</p>
-<h2 id="持久链接和管线化"><a href="#持久链接和管线化" class="headerlink" title="持久链接和管线化"></a>持久链接和管线化</h2><p>请求头中常见的属性<code>Connection: keep-alive</code>，意为持久连接。<br>持久连接的特点是，只要任意一端没 有明确提出断开连接，则保持TCP连接状态。</p>
-<p>持久连接的好处在于减少了TCP连接的重复建立和断开所造成的 额外开销，减轻了服务器端的负载，也就相应的提高Web页面的显示速度。<br>在 HTTP/1.1 中，所有的连接默认都是持久连接。</p>
-<p>持久连接使得多数请求以管线化（pipelining）方式发送成为可能。管线化技术是指并行发送多个请求。</p>
-<h2 id="Cookie的用途"><a href="#Cookie的用途" class="headerlink" title="Cookie的用途"></a>Cookie的用途</h2><p>HTTP是无状态协议，它不对之前发生过的请求和响应的状态进行管理。而随着Web的发展，许多业务处理需要保持状态，比如用户的登录状态。为了实现保持状态功能，HTTP引入了Cookie技术来管理状态。Cookie技术通过在请求和响应报文中写入 Cookie信息来控制客户端的状态。</p>
-<p>Cookie 会根据从服务器端发送的响应报文内的一个叫做Set-Cookie的首部字段信息，通知客户端保存Cookie。当下次客户端再往该服务器发送请求时，客户端会自动在请求报文中加入Cookie值后发送出去。</p>
-<p>服务器端发现客户端发送过来的Cookie后，会去检查是从哪一个客户端发来的连接请求，然后对比服务器上的记录，最后得到之前的状态信息。</p>
-<h2 id="HTTP报文"><a href="#HTTP报文" class="headerlink" title="HTTP报文"></a>HTTP报文</h2><p>用于HTTP协议交互的信息被称为HTTP报文。报文本身是由多行数据构成的字符串文本。HTTP报文大致可分为报文首部和报文主体两块，首部和主体由换行符分隔。报文主体不是必须的。</p>
-<h3 id="报文首部"><a href="#报文首部" class="headerlink" title="报文首部"></a>报文首部</h3><p>报文首部的内容如下：</p>
-<h4 id="请求行-状态行"><a href="#请求行-状态行" class="headerlink" title="请求行/状态行"></a>请求行/状态行</h4><p>请求行包含用于请求的方法，请求 URI 和 HTTP 版本。 状态行包含表明响应结果的状态码，原因短语和 HTTP 版本。 </p>
-<h4 id="首部字段"><a href="#首部字段" class="headerlink" title="首部字段"></a>首部字段</h4><p>包含表示请求和响应的各种条件和属性的各类首部。通常有如下四种首部:通用首部、请求首部、响应首部和实体首部。</p>
-<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>未定义的首部如Cookie等。</p>
-<h3 id="报文主体"><a href="#报文主体" class="headerlink" title="报文主体"></a>报文主体</h3><p>通常，报文主体等于实体主体。只有当传输中进行编码操作时，实体主体的内容发生变化，才导致它和报文主体产生差异。</p>
-<p>为什么进行编码操作？举例来说，将文件压缩后会减小体积从而获得更高效的传输效率。压缩就是典型的文件编码操作。</p>
-<h4 id="内容编码"><a href="#内容编码" class="headerlink" title="内容编码"></a>内容编码</h4><p><a href="https://hengg.github.io/2017/02/26/open-pages-in-browser/" target="_blank" rel="external">打开某个页面的时候发生了什么</a>，文中提到<code>Accept-Encoding: gzip, deflate</code>，就是在声明内容编码格式。</p>
-<p>常见的内容编码有以下几种：</p>
+<h2 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h2><p>应用层为应用程序提供网络服务。例如：FTP为文件传输提供服务、DNS为域名解析提供服务、SMTP为邮件传输提供服务、HTTP为浏览器和服务器通信提供服务。</p>
+<h2 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h2><p>传输层为应用层提供处于网络连接中的两台计算机之间的数据传输。TCP(Transmission Control Protocol，传输控制协议)和 UDP(User Data Protocol，用户数据报协议)位于传输层。</p>
+<p>TCP是可靠的传输协议。可靠意味着使用TCP传输的数据会准确无误的送达至目标。TCP通过三次握手来确保数据可靠送达：</p>
 <ul>
-<li>gzip： GNU zip</li>
-<li>compress： UNIX系统的标准压缩</li>
-<li>deflate： zlib</li>
-<li>identity： 不进行编码</li>
+<li>请求端发送SYN（synchronize）包至接收端，并进入SYN_SEND状态，等待响应端确认；</li>
+<li>响应端收到后SYN包后回传一个SYN/ACK（acknowledgement）包以示传达确认信息，响应端进入SYN_RECV状态；</li>
+<li>请求端收到服务器的SYN/ACK包，向接收端回传ACK包，发送完毕后请求端和响应端进入ESTABLISHED状态，完成三次握手。</li>
 </ul>
-<h4 id="分块编码"><a href="#分块编码" class="headerlink" title="分块编码"></a>分块编码</h4><p>在传输大容量数据时，可以把数据分割成多块来传输，这种方式叫做分块编码。</p>
+<p>若在握手过程中某个阶段中断，TCP会再次以相同的顺序发送相同的数据包。<br>HTTP使用TCP。</p>
+<p>UDP不提供数据包分组、组装，也不能对数据包进行排序。所以相对TCP来说，UDP不确保传输的可靠。</p>
 <blockquote>
-<p>在对HTTP有了一个简单的认识之后，还有状态码和首部字段等内容需要了解。</p>
+<p>我讲了一个UDP的笑话，但是你可能没听到🌚</p>
 </blockquote>
+<h2 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h2><p>IP是网络层最重要的协议。在请求端和响应端中可能存在多种连接方式，网络层为数据包选择合适的传输路径，如果数据包较大那么网络层会将其分为分为多个较小的数据包。</p>
+<p>IP在进行中转时MAC 地址是指网卡所属的固 定地址。IP 地址可以和 MAC 地址进行配对。IP 地址可变换，但 MAC 地址基本上不会更改。 </p>
+<p>IP间的通信依赖MAC地址(Media Access Control Address，网卡所属的固定地址)。在进行数据包中转时，会通过ARP协议(Address Resolution Protocol：根据通信方的IP地址就可以反查出对应的MAC地址)找到下一站的MAC地址，直至数据包成功送达。</p>
+<blockquote>
+<p>IP和IP地址：<br>IP是把各种数据包传送给对方的协议。IP地址是节点被分配到的地址。</p>
+</blockquote>
+<h2 id="链路层-物理层"><a href="#链路层-物理层" class="headerlink" title="链路层/物理层"></a>链路层/物理层</h2><p>链路层用来处理连接网络的硬件部分，如网卡驱动等。链路层之下是提供物理连接的物理层。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>HTTP可以简单的理解为客户端发出请求，服务器端响应该请求并返回。用于HTTP协议交互的信息被称为HTTP报文。如果你还不了解报文中有什么，请点击这里。</p>
+<p>那么网页的传输就是浏览器通过HTTP向服务器发送一个获取网页的请求，服务器收到请求后返回网页这么简单吗？</p>
+<p>显然不是。通过网络层协议我们可以得知，通常情况下浏览器的请求不会直达服务器，它们之间可能需要许多“中间人”。下一篇文章，我们就来一起了解一下“中间人”。</p>
 <p><em>参考资料：《图解HTTP》</em></p>
 
       
@@ -465,7 +448,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2017/03/01/study-on-http/"
-           data-title="HTTP入门" data-url="http://hengg.github.Extensions/2017/03/01/study-on-http/">
+           data-title="一个网页的漂洋过海之旅：传输" data-url="http://hengg.github.Extensions/2017/03/01/study-on-http/">
       </div>
     
   </div>
@@ -560,7 +543,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-IP协议族"><span class="nav-number">1.</span> <span class="nav-text">TCP/IP协议族</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#应用层"><span class="nav-number">1.1.</span> <span class="nav-text">应用层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#传输层"><span class="nav-number">1.2.</span> <span class="nav-text">传输层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络层"><span class="nav-number">1.3.</span> <span class="nav-text">网络层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链路层"><span class="nav-number">1.4.</span> <span class="nav-text">链路层</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#持久链接和管线化"><span class="nav-number">2.</span> <span class="nav-text">持久链接和管线化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie的用途"><span class="nav-number">3.</span> <span class="nav-text">Cookie的用途</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP报文"><span class="nav-number">4.</span> <span class="nav-text">HTTP报文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#报文首部"><span class="nav-number">4.1.</span> <span class="nav-text">报文首部</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#请求行-状态行"><span class="nav-number">4.1.1.</span> <span class="nav-text">请求行/状态行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#首部字段"><span class="nav-number">4.1.2.</span> <span class="nav-text">首部字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他"><span class="nav-number">4.1.3.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#报文主体"><span class="nav-number">4.2.</span> <span class="nav-text">报文主体</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内容编码"><span class="nav-number">4.2.1.</span> <span class="nav-text">内容编码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分块编码"><span class="nav-number">4.2.2.</span> <span class="nav-text">分块编码</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP"><span class="nav-number">1.</span> <span class="nav-text">HTTP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用层"><span class="nav-number">2.</span> <span class="nav-text">应用层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传输层"><span class="nav-number">3.</span> <span class="nav-text">传输层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络层"><span class="nav-number">4.</span> <span class="nav-text">网络层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链路层-物理层"><span class="nav-number">5.</span> <span class="nav-text">链路层/物理层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">6.</span> <span class="nav-text">小结</span></a></li></ol></div>
             
 
           </div>
