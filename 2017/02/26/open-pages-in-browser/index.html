@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="hengg's Blog">
 <meta property="og:description" content="每天我都会在Chrome的地址栏中敲进许许多多的字符，然后按下回车。过不了多久，Chrome就带我进入一个又一个的页面——有资料，有新闻，有视频——互联网和网页对于我们来说就像是自来水和电那样自然而然。
 然而这一切究竟是怎么发生的？我为什么要在浏览器里敲进一大堆字符？按下回车后发生了什么？下面就简单的介绍一下存放在大洋彼岸服务器上的页面文件是怎样出现在我们面前的浏览器中。">
-<meta property="og:updated_time" content="2017-03-19T08:33:14.000Z">
+<meta property="og:updated_time" content="2017-03-19T08:35:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一个网页的漂洋过海之旅：起航">
 <meta name="twitter:description" content="每天我都会在Chrome的地址栏中敲进许许多多的字符，然后按下回车。过不了多久，Chrome就带我进入一个又一个的页面——有资料，有新闻，有视频——互联网和网页对于我们来说就像是自来水和电那样自然而然。
@@ -365,9 +365,9 @@
 <li>POST 向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST请求可能会导致新的资源的建立和/或已有资源的修改。常用方法</li>
 <li>PUT 从客户端向服务器传送的数据取代指定的文档的内容。</li>
 <li>DELETE 请求服务器删除指定的页面。</li>
-<li>PATCH 类似于PUT，但只更新浏览器所指定的数据<br>请求头的关键参数如下：<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Host: hengg.net</div><div class="line">User-Agent: 用户操作系统及浏览器信息</div><div class="line">Accept: 文件类型</div><div class="line">A文件类型，应该是浏览器可接受的MIME类型</div><div class="line">Accept-Language: 浏览器所希望的语言类型 </div><div class="line">Accept-Encoding: 编码方式</div><div class="line">Connection: 是否需要持久链接</div><div class="line">Cookie:</div></pre></td></tr></table></figure>
-</li>
+<li>PATCH 类似于PUT，但只更新浏览器所指定的数据</li>
 </ul>
+<p>请求头的关键参数如下：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Host: hengg.net</div><div class="line">User-Agent: 用户操作系统及浏览器信息</div><div class="line">Accept: 文件类型</div><div class="line">A文件类型，应该是浏览器可接受的MIME类型</div><div class="line">Accept-Language: 浏览器所希望的语言类型 </div><div class="line">Accept-Encoding: 编码方式</div><div class="line">Connection: 是否需要持久链接</div><div class="line">Cookie:</div></pre></td></tr></table></figure></p>
 <p>请求体：<br>在本例中没有请求体。请求头和请求体之间是一个空行，表示请求头已经结束，接下来的是请求体。用户登录时请求体可能如下：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">username=admin&amp;password=1234</div></pre></td></tr></table></figure></p>
 <h2 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h2><p>服务器收到浏览器发送的请求后进行相应的处理，并返回响应。响应由响应头，响应行和响应体组成。本例中响应行如下：</p>
 <ul>
