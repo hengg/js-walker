@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="front-end,web,HTTP,back-end,Cookie," />
+  <meta name="keywords" content="front-end,web,http,proxy,cache,cookie," />
 
 
 
@@ -87,16 +87,16 @@
 
 
 
-<meta name="description" content="HTTP浏览器和服务器的相互通信使用的是HTTP协议（HyperText Transfer Protocol，超文本传输协议）。毫不夸张的说，整个互联网就是建立在HTTP协议基础之上的。">
+<meta name="description" content="代理通常来说客户端不会直接与服务器建立连接。它们之间可能需要一个或多个“中间人”才能完成对话。这个“中间人”就是代理服务器。代理服务器接收客户端发送的请求并转发给服务器，同时接收服务器的响应并转发给客户端。代理相对客户端和下级代理来说就是服务器；相对服务器和上级代理来说就是客户端。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一个网页的漂洋过海之旅：传输">
-<meta property="og:url" content="http://hengg.github.Extensions/2017/03/01/study-on-http/index.html">
+<meta property="og:title" content="一个网页的漂洋过海之旅：中间人">
+<meta property="og:url" content="http://hengg.github.Extensions/2017/03/19/http-proxy-cache/index.html">
 <meta property="og:site_name" content="hengg's Blog">
-<meta property="og:description" content="HTTP浏览器和服务器的相互通信使用的是HTTP协议（HyperText Transfer Protocol，超文本传输协议）。毫不夸张的说，整个互联网就是建立在HTTP协议基础之上的。">
-<meta property="og:updated_time" content="2017-03-19T08:45:43.000Z">
+<meta property="og:description" content="代理通常来说客户端不会直接与服务器建立连接。它们之间可能需要一个或多个“中间人”才能完成对话。这个“中间人”就是代理服务器。代理服务器接收客户端发送的请求并转发给服务器，同时接收服务器的响应并转发给客户端。代理相对客户端和下级代理来说就是服务器；相对服务器和上级代理来说就是客户端。">
+<meta property="og:updated_time" content="2017-03-19T08:56:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一个网页的漂洋过海之旅：传输">
-<meta name="twitter:description" content="HTTP浏览器和服务器的相互通信使用的是HTTP协议（HyperText Transfer Protocol，超文本传输协议）。毫不夸张的说，整个互联网就是建立在HTTP协议基础之上的。">
+<meta name="twitter:title" content="一个网页的漂洋过海之旅：中间人">
+<meta name="twitter:description" content="代理通常来说客户端不会直接与服务器建立连接。它们之间可能需要一个或多个“中间人”才能完成对话。这个“中间人”就是代理服务器。代理服务器接收客户端发送的请求并转发给服务器，同时接收服务器的响应并转发给客户端。代理相对客户端和下级代理来说就是服务器；相对服务器和上级代理来说就是客户端。">
 
 
 
@@ -124,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://hengg.github.Extensions/2017/03/01/study-on-http/"/>
+  <link rel="canonical" href="http://hengg.github.Extensions/2017/03/19/http-proxy-cache/"/>
 
 
 
 
 
-  <title> 一个网页的漂洋过海之旅：传输 | hengg's Blog </title>
+  <title> 一个网页的漂洋过海之旅：中间人 | hengg's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -249,7 +249,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://hengg.github.Extensions/2017/03/01/study-on-http/">
+  <link itemprop="mainEntityOfPage" href="http://hengg.github.Extensions/2017/03/19/http-proxy-cache/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="hengg">
@@ -273,7 +273,7 @@
             
             
               
-                一个网页的漂洋过海之旅：传输
+                一个网页的漂洋过海之旅：中间人
               
             
           </h1>
@@ -288,8 +288,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-01T19:19:57+08:00">
-                2017-03-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-19T16:47:31+08:00">
+                2017-03-19
               </time>
             
 
@@ -307,8 +307,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/01/study-on-http/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/01/study-on-http/" itemprop="commentCount"></span>
+                <a href="/2017/03/19/http-proxy-cache/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/19/http-proxy-cache/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -334,37 +334,28 @@
       
 
       
-        <h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><p>浏览器和服务器的相互通信使用的是HTTP协议（HyperText Transfer Protocol，超文本传输协议）。毫不夸张的说，整个互联网就是建立在HTTP协议基础之上的。</p>
+        <h2 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h2><p>通常来说客户端不会直接与服务器建立连接。它们之间可能需要一个或多个“中间人”才能完成对话。这个“中间人”就是代理服务器。代理服务器接收客户端发送的请求并转发给服务器，同时接收服务器的响应并转发给客户端。代理相对客户端和下级代理来说就是服务器；相对服务器和上级代理来说就是客户端。</p>
 <a id="more"></a>
-<p>网络上不同硬件，不同操作系统的设备之间想要进行通信，就必须遵守相同的规则，如怎样发起通信、通信内容格式、如何结束通信等，这一系列事先约定的规则就是协议（protocol）。</p>
-<p>HTTP是TCP/IP协议族的一个子集。TCP/IP协议族分为4层：应用层、传输层、网络层和数据链路层。</p>
-<blockquote>
-<p>“计算机科学的任何问题都可以通过增加一个中间层来解决”</p>
-</blockquote>
-<h2 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h2><p>应用层为应用程序提供网络服务。例如：FTP为文件传输提供服务、DNS为域名解析提供服务、SMTP为邮件传输提供服务、HTTP为浏览器和服务器通信提供服务。</p>
-<h2 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h2><p>传输层为应用层提供处于网络连接中的两台计算机之间的数据传输。TCP(Transmission Control Protocol，传输控制协议)和 UDP(User Data Protocol，用户数据报协议)位于传输层。</p>
-<p>TCP是可靠的传输协议。可靠意味着使用TCP传输的数据会准确无误的送达至目标。TCP通过三次握手来确保数据可靠送达：</p>
+<p>代理不仅仅是一个术语，它在生活当中也随处可见。最常见的代理就是路由器。常见代理的使用场景如下：</p>
 <ul>
-<li>请求端发送SYN（synchronize）包至接收端，并进入SYN_SEND状态，等待响应端确认；</li>
-<li>响应端收到后SYN包后回传一个SYN/ACK（acknowledgement）包以示传达确认信息，响应端进入SYN_RECV状态；</li>
-<li>请求端收到服务器的SYN/ACK包，向接收端回传ACK包，发送完毕后请求端和响应端进入ESTABLISHED状态，完成三次握手。</li>
+<li>在企业内网/教育网等内网环境和外网进行通信大多通过代理，可以过滤想要阻止的内容，对联网的访问进行控制。你可能见过某些“连接超时，xxx的服务器响应时间过长”的页面，相信你已经知道它们是怎么回事儿了；</li>
+<li>为了不被“连接超时”而广泛使用的各种梯子使用的也是代理技术；</li>
+<li>有些黑客会使用多级代理来避免被追踪；</li>
+<li>利用缓存技术减少冗余数据传输，缓解网络带宽压力</li>
 </ul>
-<p>若在握手过程中某个阶段中断，TCP会再次以相同的顺序发送相同的数据包。<br>HTTP使用TCP。</p>
-<p>UDP不提供数据包分组、组装，也不能对数据包进行排序。所以相对TCP来说，UDP不确保传输的可靠。</p>
-<blockquote>
-<p>我讲了一个UDP的笑话，但是你可能没听到🌚</p>
-</blockquote>
-<h2 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h2><p>IP是网络层最重要的协议。在请求端和响应端中可能存在多种连接方式，网络层为数据包选择合适的传输路径，如果数据包较大那么网络层会将其分为分为多个较小的数据包。</p>
-<p>IP在进行中转时MAC 地址是指网卡所属的固 定地址。IP 地址可以和 MAC 地址进行配对。IP 地址可变换，但 MAC 地址基本上不会更改。 </p>
-<p>IP间的通信依赖MAC地址(Media Access Control Address，网卡所属的固定地址)。在进行数据包中转时，会通过ARP协议(Address Resolution Protocol：根据通信方的IP地址就可以反查出对应的MAC地址)找到下一站的MAC地址，直至数据包成功送达。</p>
-<blockquote>
-<p>IP和IP地址：<br>IP是把各种数据包传送给对方的协议。IP地址是节点被分配到的地址。</p>
-</blockquote>
-<h2 id="链路层-物理层"><a href="#链路层-物理层" class="headerlink" title="链路层/物理层"></a>链路层/物理层</h2><p>链路层用来处理连接网络的硬件部分，如网卡驱动等。链路层之下是提供物理连接的物理层。</p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>HTTP可以简单的理解为客户端发出请求，服务器端响应该请求并返回。用于HTTP协议交互的信息被称为HTTP报文。如果你还不了解报文中有什么，请点击这里。</p>
-<p>那么网页的传输就是浏览器通过HTTP向服务器发送一个获取网页的请求，服务器收到请求后返回网页这么简单吗？</p>
-<p>显然不是。通过网络层协议我们可以得知，通常情况下浏览器的请求不会直达服务器，它们之间可能需要许多“中间人”。下一篇文章，我们就来一起了解一下“中间人”。</p>
-<p><em>参考资料：《图解HTTP》</em></p>
+<h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><p>缓存是代理服务器或客户端保存的资源副本，利用缓存可减少对源服务器的访问，也就节省了流量和响应时间。缓存分为私有缓存和公有缓存两种。</p>
+<ul>
+<li><p>最常见的私有缓存就是浏览器缓存。浏览器会在硬盘上专门开辟一个空间存储资源副本。如果在网站上访问一张被浏览器缓存过的图片，那么该图片将不再从服务器下载，而是从浏览器缓存中调出。</p>
+</li>
+<li><p>公有缓存一般是指代理服务器缓存，通常由大企业或ISP架设。其原理和浏览器缓存类似，当代理转发从服务器返回的响应时，代理就会保存一份资源副本。</p>
+</li>
+</ul>
+<p>缓存具有时效性，如果源服务器上的资源更新了，那么缓存自然也就过时了。所以通常会通过HTTP的<code>Cache-Control</code>首部为缓存指定最大生存时间；<code>Expires</code>首部指定过期日期。<br>即使存在缓存，也会因为客户端的要求、缓存的有效期等因素，向源服务器确认资源的有效性。若判断缓存失效，缓存服务器将会再次从源服务器上获取“新”资源。</p>
+<p>关于缓存的高阶技巧： <a href="https://www.zhihu.com/question/20790576/answer/32602154" target="_blank" rel="external">https://www.zhihu.com/question/20790576/answer/32602154</a></p>
+<h2 id="Cookie和缓存"><a href="#Cookie和缓存" class="headerlink" title="Cookie和缓存"></a>Cookie和缓存</h2><p>对于初学者来说，很容易把这两者弄混。所以我们也来简单介绍一下Cookie：<br>HTTP是无状态协议。它不会保存之前发生过的请求和响应的通信状态。也就是说，HTTP无法根据之前的状态进行本次的请求处理。由于不必保存状态，自然可减少服务器的 CPU 及内存资源的消耗。从另一侧面来说，也正是 因为 HTTP 协议本身是非常简单的，所以才会被应用在各种场景里。然而一个购物网站的用户如果每次向购物车添加商品都必须重新登录，显然是不合理的。为了保留无状态协议这个特征的同时又要解决类似的矛盾问题，HTTP引入了Cookie技术。</p>
+<p>Cookie技术通过在请求和响应报文中写入Cookie信息来控制客户端的状态。<br>Cookie会根据从服务器端发送的响应报文内的一个叫做<code>Set-Cookie</code>的首部字段信息，通知客户端保存Cookie。当下次客户端再往该服务器 发送请求时，客户端会自动在请求报文中加入<code>Cookie</code>值后发送出去。<br>服务器端发现客户端发送过来的Cookie后，会去检查究竟是从哪一个客户端发来的连接请求，然后对比服务器上的记录，最后得到之前的状态信息。</p>
+<p>那么Cookie和缓存的区别就很明显了：Cookie是响应报文的一个首部，而缓存则是资源的副本。如果把Cookie视作资源，那么它也是可以被缓存的。但通常不建议这么干。</p>
+<p>现在我知道了页面是通过什么方式来到了浏览器中，那么服务器又是怎么知道我想要哪些页面的？</p>
 
       
     </div>
@@ -392,11 +383,13 @@
           
             <a href="/tags/web/" rel="tag"># web</a>
           
-            <a href="/tags/HTTP/" rel="tag"># HTTP</a>
+            <a href="/tags/http/" rel="tag"># http</a>
           
-            <a href="/tags/back-end/" rel="tag"># back-end</a>
+            <a href="/tags/proxy/" rel="tag"># proxy</a>
           
-            <a href="/tags/Cookie/" rel="tag"># Cookie</a>
+            <a href="/tags/cache/" rel="tag"># cache</a>
+          
+            <a href="/tags/cookie/" rel="tag"># cookie</a>
           
         </div>
       
@@ -409,8 +402,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/28/study-on-promise/" rel="next" title="浅谈Promise">
-                <i class="fa fa-chevron-left"></i> 浅谈Promise
+              <a href="/2017/03/09/browser-render/" rel="next" title="浏览器如何渲染一个HTML页面">
+                <i class="fa fa-chevron-left"></i> 浏览器如何渲染一个HTML页面
               </a>
             
           </div>
@@ -418,10 +411,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/02/http-status-code/" rel="prev" title="HTTP的状态码">
-                HTTP的状态码 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -447,8 +436,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/01/study-on-http/"
-           data-title="一个网页的漂洋过海之旅：传输" data-url="http://hengg.github.Extensions/2017/03/01/study-on-http/">
+      <div class="ds-thread" data-thread-key="2017/03/19/http-proxy-cache/"
+           data-title="一个网页的漂洋过海之旅：中间人" data-url="http://hengg.github.Extensions/2017/03/19/http-proxy-cache/">
       </div>
     
   </div>
@@ -543,7 +532,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP"><span class="nav-number">1.</span> <span class="nav-text">HTTP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用层"><span class="nav-number">2.</span> <span class="nav-text">应用层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传输层"><span class="nav-number">3.</span> <span class="nav-text">传输层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络层"><span class="nav-number">4.</span> <span class="nav-text">网络层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链路层-物理层"><span class="nav-number">5.</span> <span class="nav-text">链路层/物理层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">6.</span> <span class="nav-text">小结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#代理"><span class="nav-number">1.</span> <span class="nav-text">代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存"><span class="nav-number">2.</span> <span class="nav-text">缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie和缓存"><span class="nav-number">3.</span> <span class="nav-text">Cookie和缓存</span></a></li></ol></div>
             
 
           </div>
