@@ -12,6 +12,19 @@
             throw new Error('Could not find element with selector: ' + selector);
         }
     }
+    FormHandler.prototype.addInputHandler = function (fn) {
+        console.log('Setting input handler for form');
+        this.$formElement.on('input', '[name="emailAddress"]', function (event) {
+            var emailAddress = event.target.value;
+            var message = '';
+            if (fn(emailAddress)) {
+                event.target.setCustomValidity('');
+            } else {
+                message = emailAddress + ' is not an authorized email address!'
+                event.target.setCustomValidity(message);
+            }
+        });
+    };
     FormHandler.prototype.addSubmitHandler = function (fn) {
         console.log('Setting submit handler for form');
         this.$formElement.on('submit', function (event) {
@@ -22,6 +35,9 @@
                 data[item.name] = item.value;
                 console.log(item.name + ' is ' + item.value);
             });
+            fn(data);
+            this.reset();
+            this.elements[0].focus();
         });
     };
     App.FormHandler = FormHandler;
