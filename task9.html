@@ -1,0 +1,132 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>task9</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav-wrapper {
+            display: flex;
+            height: 100px;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        nav {
+            margin: auto;
+            width: 500px;
+            box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.3);
+        }
+        
+        nav>ul>li {
+            position: relative;
+            /* top: 100%; */
+            float: left;
+        }
+        
+        nav a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+        
+        nav a:hover {
+            background-color: #ccc;
+            color: #000;
+        }
+        
+        nav::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+        
+        .sub-menu {
+            position: absolute;
+            top: 100%;
+            box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.3);
+            display: none;
+        }
+        
+        nav>ul>li:hover .sub-menu {
+            display: block;
+        }
+        
+        .q6 {
+            display: flex;
+            height: 200px;
+        }
+        
+        .notify {
+            margin: auto;
+            padding: 5px 15px;
+            width: 500px;
+            height: 100px;
+            color: white;
+            background-color: #2196f3;
+            border-radius: 5px;
+            /* line-height: 1.5; */
+        }
+        
+        .close {
+            text-decoration: none;
+            float: right;
+            font-size: 24px;
+            font-weight: bold;
+            color: inherit;
+            cursor: pointer;
+        }
+        
+        h2 {
+            line-height: 2em;
+        }
+        
+        p {
+            line-height: 3em;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li><a href="task9q5">Navbar</a></li>
+        <li><a href="task9q6">学霸</a></li>
+    </ul>
+    <hr />
+    <a href="" name="task9q5"></a>
+    <div class="nav-wrapper">
+        <nav>
+            <ul>
+                <li><a href="#">外卖</a></li>
+                <li><a href="#">堂食</a></li>
+                <li><a href="#">哪个端？</a>
+                    <ul class="sub-menu">
+                        <li><a href="#">前端</a></li>
+                        <li><a href="#">客户端</a></li>
+                        <li><a href="#">服务员端</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <hr/>
+    <a href="" name="task9q6"></a>
+    <div class="q6">
+        <div class="notify">
+            <span class="close">×</span>
+            <h2>您好！</h2>
+            <p>您的餐需要自己端一下！</p>
+        </div>
+    </div>
+</body>
+
+</html>
