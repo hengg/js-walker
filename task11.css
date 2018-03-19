@@ -59,23 +59,10 @@
 
 .q5-main {
     margin: auto;
-    height: 200px;
     width: 400px;
     background-color: aliceblue;
     text-align: center;
-    position: relative;
-}
-
-.q5-main>p::before {
-    content: '';
-    display: inline-block;
-    height: 160px;
-    vertical-align: middle;
-}
-
-.q5-main>p {
-    margin: 0;
-    vertical-align: middle;
+    padding: 40px;
 }
 
 h2 {
@@ -83,7 +70,7 @@ h2 {
     height: 40px;
 }
 
-.q6-main {
+*/ .q6-main {
     position: relative;
     margin: auto;
     height: 200px;
