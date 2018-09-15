@@ -1,5 +1,5 @@
 
-![tide](img/tide.jpg)
+![tide](../img/tide.jpg)
 
 ## 一个网页的漂洋过海之旅
 
