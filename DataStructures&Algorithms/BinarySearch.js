@@ -4,8 +4,9 @@
  * 定义索引值[low,high]=[0,array.length]
  * 执行循环不变式执行比较待查值在数组的位置,找到后返回索引值
  * 未找到则返回 -1
- * @param {Array} array 
- * @param {*} item 
+ * @param {array} 有序数组
+ * @param {number} 待查数据
+ * @returns {number} 待查数据在数组中的索引值
  */
 binarySearch = (array, item) => {
   let low = 0
