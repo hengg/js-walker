@@ -48,3 +48,23 @@ decimalToBinary=(number)=>{
     }
 }
 ```
+### 判断回文
+
+- 原字符串转字符,入栈
+- 字符出栈,拼接为新字符串
+- 比较新旧字符串
+
+```JavaScript
+isPalindrome=(string)=>{
+    let stack = new Stack()
+    let array = string.split('')
+    for(let char of string){
+        stack.push(char)
+    }
+    let reverseString=''
+    while(stack.length()>0){
+        newString += stack.pop()
+    }
+    return string===reverseString
+}
+```
