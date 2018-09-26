@@ -80,11 +80,15 @@ module.exports = isSquare
  * maskify("1") == "1"
  * maskify("") == ""
  */
+// const maskify = (string) => {
+//     return string.length > 3 ?
+//         Array.from(string).reduce((acc, item, index) => {
+//             return index < string.length - 4 ? acc + '#' : acc + item
+//         }, '')
+//         : string
+// }
 const maskify = (string) => {
-    return string.length > 3 ?
-        Array.from(string).reduce((acc, item, index) => {
-            return index < string.length - 4 ? acc + '#' : acc + item
-        }, '')
-        : string
+    if ((typeof string) !== 'string') throw new error("argument is not string");
+    return string.length > 4 ? string.slice(-4).padStart(string.length, '#') : string
 }
 module.exports = maskify
