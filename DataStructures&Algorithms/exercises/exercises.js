@@ -89,6 +89,7 @@ module.exports = isSquare
 // }
 const maskify = (string) => {
     if ((typeof string) !== 'string') throw new error("argument is not string");
-    return string.length > 4 ? string.slice(-4).padStart(string.length, '#') : string
+    // return string.length > 4 ? string.slice(-4).padStart(string.length, '#') : string
+    return string.length > 4 ? string.slice(0, -4).replace(/./g, '#') + string.slice(-4) : string
 }
 module.exports = maskify
