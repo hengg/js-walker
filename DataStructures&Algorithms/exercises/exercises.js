@@ -48,7 +48,22 @@ const highAndLow = (string) => {
     array.sort((a, b) => a - b);
     return `${array[arr.length - 1]} ${array[0]}`;
 }
-module.exports = highAndLow
+module.exports = highAndLow;
+
+/**
+ * 实现如下函数,判断字符串内X与O的数量是否相等,忽略大小写
+ * XO("ooxx") => true
+ * XO("xooxx") => false
+ * XO("ooxXm") => true
+ * XO("zpzpzpp") => true
+ */
+const XO = (string) => {
+    let array = Array.from(string);
+    let x = array.filter(char => char.toUpperCase() === 'X').length;
+    let o = array.filter(char => char.toUpperCase() === 'O').length;
+    return x === o;
+}
+module.exports = XO;
 /**
  * 判断一个数字是不是某个整数的平方
  * isSquare(2); // false 
