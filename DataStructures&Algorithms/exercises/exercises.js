@@ -93,3 +93,17 @@ const maskify = (string) => {
     return string.length > 4 ? string.slice(0, -4).replace(/./g, '#') + string.slice(-4) : string
 }
 module.exports = maskify
+
+/**
+ * 三角数列求第N列相加之和
+ * 1
+ * 3 5
+ * 7 9 11
+ * 13 15 17 19
+ * 21 23 25 27 29
+ */
+const sumOfRow = (n) => {
+    if ((typeof n) !== 'number' || n <= 0) throw 'argument error';
+    return Math.pow(n, 3);
+}
+module.exports = sumOfRow;

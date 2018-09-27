@@ -66,3 +66,16 @@ test('return regular string', () => {
 test('return regular string', () => {
     expect(maskify('')).toBe('')
 })
+
+const sumOfRow = require('./exercises.js')
+test('return regular number', () => {
+    expect(sumOfRow(2)).toBe(8)
+})
+
+test('return regular number', () => {
+    expect(sumOfRow(3)).toBe(27)
+})
+
+test('return regular number', () => {
+    expect(sumOfRow(42)).toBe(74088)
+})
