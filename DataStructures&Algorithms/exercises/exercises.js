@@ -98,22 +98,73 @@ const solution = (number) => {
  * 如果没有找到目标值，返回目标值应该被插入的位置
  */
 const bsearch = (array, item) => {
-    // TODO:
-    let low = 0
-    let high = array.length - 1
+    let low = 0;
+    let high = array.length - 1;
+    let index
     while (low <= high) {
-        let mid = parseInt((low + high) / 2)// JS除法不取整
+        let mid = parseInt((low + high) / 2);
         if (item === array[mid]) {
-            return mid
+            return mid;
         }
         if (item < array[mid]) {
-            high = mid - 1
+            if (mid === 0 || array[mid - 1] < item) {
+                index = mid
+            }
+            high = mid - 1;
         }
         else {
-            low = mid + 1
+            if (mid === array.length - 1 || array[mid + 1] > item) {
+                index = mid + 1
+            }
+            low = mid + 1;
         }
     }
-    return -1
+    return index;
+}
+/**
+ * 在一个数组中大部分都是奇数(或偶数），只有1个可能是偶数（或奇数），找到这个不一样的值
+ */
+const special = (arr) => {
+    let evenArr = arr.filter(item => item % 2 === 0);
+    let oddArr = arr.filter(item => item % 2 !== 0);
+    return evenArr.length === 1 ? evenArr[0] : oddArr[0]
 }
 
-module.exports = { squareDigits, sumOfRow, accum, maskify, XO, highAndLow, isSquare, solution, bsearch }
+/**
+ * 反转一个数组,不创建新数组
+ */
+const reverse = (array) => {
+    for (let i = 0; i < array.length / 2; i++) {
+        [array[i], array[array.length - 1 - i]] = [array[array.length - 1 - i], array[i]];
+    }
+    return array;
+}
+/**
+ * 定义数组的旋转操作rotate(A, amount)，让数尾部amount个元素移动到头部。
+ * 例如数组: A=[1,2,3,4,5,6,7]
+ * rotate(A, 1) // [7,1,2,3,4,5,6]
+ * rotate(A, 2) // [6,7,1,2,3,4,5]
+ * rotate(A, 3) // [5,6,7,1,2,3,4]
+ */
+// const rotate = (A, amount) => {
+//     let arr = A;
+//     let temp = [];
+//     for (let i = 0; i < amount; i++) {
+//         temp.unshift(arr.pop());
+//     }
+//     return temp.concat(arr);
+// }
+const rotate = (A, amount) => {
+    return A.slice(A.length - amount).concat(A.slice(0, A.length - amount))
+}
+/**
+ * 递归版本的reverse
+ */
+const recursiveReverse = (array) => {
+    // TODO:
+    if (array.length === 1) return array
+    if (array.length === 2) [array[0], array[1]] = [array[1], array[0]]
+    return
+}
+
+module.exports = { squareDigits, sumOfRow, accum, maskify, XO, highAndLow, isSquare, solution, bsearch, special, reverse }
