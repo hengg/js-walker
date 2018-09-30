@@ -27,5 +27,4 @@
 - **AJAX**[教程](http://javascript.ruanyifeng.com/bom/ajax.html)
 - **正则**[教程](http://deerchao.net/tutorials/regex/regex.htm)
 
-
-[简历模板](https://github.com/jirengu-inc/frontend-resumes/issues)
+https://github.com/camsong/blog/issues/3
