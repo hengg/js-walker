@@ -157,14 +157,17 @@ const reverse = (array) => {
 const rotate = (A, amount) => {
     return A.slice(A.length - amount).concat(A.slice(0, A.length - amount))
 }
+
 /**
  * 递归版本的reverse
+ * 分为问题为同类小问题:
+ * 将数组分为两部分,首项为a0,其他项为others;将a0添加到others末尾,再递归处理others
+ * 结束条件:数组长度为1
  */
 const recursiveReverse = (array) => {
-    // TODO:
     if (array.length === 1) return array
-    if (array.length === 2) [array[0], array[1]] = [array[1], array[0]]
-    return
+    const [a0, ...others] = array;
+    return [...recursiveReverse(others), a0]
 }
 
 module.exports = { squareDigits, sumOfRow, accum, maskify, XO, highAndLow, isSquare, solution, bsearch, special, reverse }

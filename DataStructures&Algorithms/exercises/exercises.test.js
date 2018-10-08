@@ -88,3 +88,7 @@ test('solution return regular number', () => {
 test('solution return regular number', () => {
     expect(solution(1)).toBe(0)
 })
+const { recursiveReverse } = require('./exercises.js')
+test('recursiveReverse return array', () => {
+    expect(recursiveReverse([1, 2, 3])).toEqual([3, 2, 1])
+})
