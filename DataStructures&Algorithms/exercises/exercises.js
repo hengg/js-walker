@@ -169,5 +169,19 @@ const recursiveReverse = (array) => {
     const [a0, ...others] = array;
     return [...recursiveReverse(others), a0]
 }
-
+const flat = (arr) => {
+    return arr.reduce((acc, item) => acc.concat(Array.isArray(item) ? flat(item) : item), []);
+}
+// function flat(arr) {
+//     let flatArr = []
+//     for (var i = 0; i < arr.length; i++) {
+//         if (Array.isArray(arr[i])) {
+//             flatArr.push.apply(flatArr, flat(arr[i]));
+//         } else {
+//             flatArr.push(arr[i]);
+//         }
+//     }
+//     return flatArr;
+// }
+// console.log(flat([1, 2, [3, [4, 5], '6'], [7, '8']]))
 module.exports = { squareDigits, sumOfRow, accum, maskify, XO, highAndLow, isSquare, solution, bsearch, special, reverse }
