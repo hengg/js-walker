@@ -1,0 +1,71 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>task12</title>
+    <style>
+        .main {
+            /* position: relative; */
+        }
+
+        .tooltips {
+            border: solid 1px gray;
+            margin-top: 50px;
+            height: 100px;
+            width: 200px;
+            position: relative;
+            /* display: inline-block; */
+        }
+
+        .gray-tri::before {
+            display: inline-block;
+            position: absolute;
+            top: -30px;
+            left: 30px;
+            content: "";
+            border-top: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 15px solid gray;
+            border-left: 15px solid transparent;
+        }
+
+        .red-tri::before {
+            display: inline-block;
+            position: absolute;
+            transform: rotate(-135deg);
+            top: -15px;
+            left: 186px;
+            content: "";
+            border-top: 15px solid red;
+            border-right: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            border-left: 15px solid transparent;
+        }
+
+        .trans-tri::before {
+            display: inline-block;
+            height: 15px;
+            width: 15px;
+            position: absolute;
+            top: -8px;
+            left: 30px;
+            content: "";
+            border-top: 1px solid gray;
+            border-right: 1px solid gray;
+            background-color: #fff;
+            transform: rotate(-45deg);
+        }
+    </style>
+</head>
+
+<body>
+    <main class="main">
+        <div class="tooltips gray-tri"></div>
+        <div class="tooltips red-tri"></div>
+        <div class="tooltips trans-tri"></div>
+    </main>
+</body>
+
+</html>

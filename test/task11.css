@@ -1,0 +1,109 @@
+.layout {
+    /* display: flex; */
+}
+
+.wrapper {
+    height: 500px;
+    width: 80%;
+    border: dashed 1px #ccc;
+    margin: 10px auto;
+}
+
+.wrapper:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.q1-aside {
+    float: right;
+    width: 200px;
+    height: 100%;
+    background-color: beige;
+}
+
+.q1-main {
+    margin-right: 210px;
+    height: 100%;
+    background-color: aliceblue;
+}
+
+.q2-menu {
+    float: left;
+    width: 200px;
+    height: 100%;
+    background-color: beige;
+}
+
+.q2-aside {
+    float: right;
+    width: 200px;
+    height: 100%;
+    background-color: beige;
+}
+
+.q2-main {
+    /* float: right; */
+    margin: 0 210px;
+    height: 100%;
+    background-color: aliceblue;
+}
+
+.q4-main {
+    margin: auto;
+    height: 200px;
+    width: 300px;
+    background-color: aliceblue;
+    /* text-align: center; */
+}
+
+.q5-main {
+    margin: auto;
+    width: 400px;
+    background-color: aliceblue;
+    text-align: center;
+    padding: 40px;
+}
+
+h2 {
+    margin: auto;
+    height: 40px;
+}
+
+.q6-main {
+    position: relative;
+    margin: auto;
+    height: 200px;
+    width: 800px;
+    background-color: aliceblue;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.button-list {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+}
+
+.button {
+    padding: 10px;
+    text-decoration: none;
+    color: #fff;
+    background-color: red;
+    border-radius: 5px;
+}
+
+.q7-main {
+    height: 600px;
+    width: 600px;
+    background-color: aliceblue;
+    border: solid skyblue 1px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.q7-main>img {
+    height: 300px;
+}
