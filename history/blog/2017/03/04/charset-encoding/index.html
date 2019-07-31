@@ -1,0 +1,729 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="HTML,front-end,web,charset,encoding," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="巴别塔：《圣经·旧约·创世记》第11章宣称，当时人类联合起来兴建希望能通往天堂的高塔；为了阻止人类的计划，上帝让人类说不同的语言，使人类相互之间不能沟通，计划因此失败，人类自此各散东西。此故事试图为世上出现不同语言和种族提供解释。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="字符编码：计算机的巴别塔">
+<meta property="og:url" content="http://hengg.github.Extensions/2017/03/04/charset-encoding/index.html">
+<meta property="og:site_name" content="hengg's Blog">
+<meta property="og:description" content="巴别塔：《圣经·旧约·创世记》第11章宣称，当时人类联合起来兴建希望能通往天堂的高塔；为了阻止人类的计划，上帝让人类说不同的语言，使人类相互之间不能沟通，计划因此失败，人类自此各散东西。此故事试图为世上出现不同语言和种族提供解释。">
+<meta property="og:updated_time" content="2017-03-09T13:23:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="字符编码：计算机的巴别塔">
+<meta name="twitter:description" content="巴别塔：《圣经·旧约·创世记》第11章宣称，当时人类联合起来兴建希望能通往天堂的高塔；为了阻止人类的计划，上帝让人类说不同的语言，使人类相互之间不能沟通，计划因此失败，人类自此各散东西。此故事试图为世上出现不同语言和种族提供解释。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://hengg.github.Extensions/2017/03/04/charset-encoding/"/>
+
+
+
+
+
+  <title> 字符编码：计算机的巴别塔 | hengg's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">hengg's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://hengg.github.Extensions/2017/03/04/charset-encoding/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="hengg">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="hengg's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="hengg's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                字符编码：计算机的巴别塔
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-04T13:14:33+08:00">
+                2017-03-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/04/charset-encoding/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/04/charset-encoding/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>巴别塔：《圣经·旧约·创世记》第11章宣称，当时人类联合起来兴建希望能通往天堂的高塔；为了阻止人类的计划，上帝让人类说不同的语言，使人类相互之间不能沟通，计划因此失败，人类自此各散东西。此故事试图为世上出现不同语言和种族提供解释。</p>
+</blockquote>
+<a id="more"></a>
+<p>我们曾经在HTTP的响应头中见到过<code>Content-Type:text/html; charset=utf-8</code>，也曾在HTML文件中见到过<code>&lt;meta charset=&quot;utf-8&quot;&gt;</code>。它们都是用于声明字符编码为<code>utf-8</code>。那么<code>utf-8</code>到底是什么？这要从计算机的起源说起。</p>
+<p>最早的计算机是机械式继电器计算机，通过继电器的开关状态来表示0和1。后来的电子管计算机、晶体管计算机、集成电路计算机都继承了这一设定，这也是为什么计算机以二进制来存储数据。</p>
+<p>人类发明计算机的目的是处理数据，而绝大多数数据都是文本形式的，所以要把这些文本转换为计算机可识别的二进制数据，再把计算机处理过的二进制数据转换为人类可识别的文本。这个二进制和文本的对照表就是字符集。</p>
+<h2 id="ASCII"><a href="#ASCII" class="headerlink" title="ASCII"></a>ASCII</h2><p>美国人发明了最早的现代计算机。所以美国人最初制定了ASCII（American Standard Code for Information Interchange，美国信息互换标准代码）来保存<strong>控制码</strong>、空格、标点符号、数字、大小写字母。计算机的一个字节可以组合出2^8种不同的状态。 ASCII使用了128个状态。</p>
+<blockquote>
+<p>编号从0开始的32种状态分别规定了特殊的用途，这些0×20以下的字节状态称为”控制码”。</p>
+</blockquote>
+<p>随着世界各地的不同国家开始使用计算机，为了可以在计算机中使用ASCII中没有制定的文字，在128至255号之后的状态来表示这些新的字母、符号。这些字符集被称“扩展字符集”。</p>
+<h2 id="GB2312、GBK和BIG5"><a href="#GB2312、GBK和BIG5" class="headerlink" title="GB2312、GBK和BIG5"></a>GB2312、GBK和BIG5</h2><p>ASCII中是没有汉字的，而常用简体汉字就有几千个。所以中国制定了GB2312（GB是国标的拼音缩写）。GB2312规定：一个小于127的字符的意义与原来相同，但两个大于127的字符连在一起时，就表示一个汉字。GB2312收录了6763个常用汉字。这也是为什么在以前一个汉字算两个英文字符的原因。</p>
+<p>但是汉字有那么多，GB2312中并不包含生僻字，所以还是需要扩展。扩展之后的编码方案被称为GBK标准，GBK包括了GB2312的所有内容，同时又增加了近20000个新的汉字（包括繁体字）和符号。 </p>
+<p>当时同文同种的港台同胞们也制定一套编码标准BIG5，这套标准和GB2312/GBK并不兼容。而世界各地其他国家也制定了自己的标准。虽然本地使用没有问题，然而在网络中由于字符集不兼容，大家谁也看不懂别人的编码，互相访问就会出现乱码。我们仿佛进入了巴别塔被摧毁后的世界。</p>
+<h2 id="unicode"><a href="#unicode" class="headerlink" title="unicode"></a>unicode</h2><p>为解决这个问题，ISO（国际标谁化组织）制定了通用字符集：“Universal Multiple-Octet Coded Character Set”，简称UCS，又称unicode。<br>ISO规定必须用4个字节来统一表示所有的字符，对于ASCII里的那些“半角”字符，unicode包持其原编码不变，只是将其长度由原来的8位扩展为32位，高位全部置为0，而其他语言的字符则全部重新统一编码。这个字符集的编码方式称为UTF-32（32-bit UCS Transfer Format）。人类通过unicode建立了计算机世界的巴别塔。</p>
+<blockquote>
+<p>有2^32个状态的unicode以后会不会也不够用？以前我们还觉得IPv4的地址用不完呢。</p>
+<p>但人类之所以伟大，原因之一就在于我们能够通过无穷的创造力解决各种问题。</p>
+</blockquote>
+<p>如果按照unicode规定，每个符号用4个字节表示，那么文本文件的大小会因此大出二三倍，在存储和传输上就会很浪费。这也是unicode在很长一段时间内无法推广的原因。</p>
+<h2 id="UTF-8"><a href="#UTF-8" class="headerlink" title="UTF-8"></a>UTF-8</h2><p>直到UTF-8的出现。UTF-8（8-bit Unicode Transformation Format）是一种针对unicode的可变长度字符编码。它可以用来表示unicode标准中的任何字符，且其编码中的第一个字节仍与ASCII兼容，这使得原来处理ASCII字符的软件无须或只须做少部份修改，即可继续使用。因此，它逐渐成为电子邮件、网页及其他存储或传送文字的应用中优先采用的编码。互联网工程工作小组（IETF）要求所有互联网协议都必须支持UTF-8编码。</p>
+<p>UTF-8使用一至四个字节为每个字符编码：</p>
+<blockquote>
+<p>unicode是字符集，UTF-8是这一字符集的编码方式。</p>
+</blockquote>
+<ul>
+<li>单字节的字符，字节的第一位设为0，对于英语文本，UTF-8码只占用一个字节，和ASCII码完全相同；</li>
+<li>n个字节的字符(n&gt;1)，第一个字节的前n位设为1，第n+1位设为0，后面字节的前两位都设为10，这n个字节的其余空位填充该字符unicode码，高位用0补足。</li>
+</ul>
+<p>这样就形成了如下的UTF-8标记位：</p>
+<ul>
+<li>0xxxxxxx</li>
+<li>110xxxxx 10xxxxxx</li>
+<li>1110xxxx 10xxxxxx 10xxxxxx</li>
+<li>11110xxx 10xxxxxx 10xxxxxx 10xxxxxx</li>
+<li>111110xx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx</li>
+<li>1111110x 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HTML/" rel="tag"># HTML</a>
+          
+            <a href="/tags/front-end/" rel="tag"># front-end</a>
+          
+            <a href="/tags/web/" rel="tag"># web</a>
+          
+            <a href="/tags/charset/" rel="tag"># charset</a>
+          
+            <a href="/tags/encoding/" rel="tag"># encoding</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/02/http-status-code/" rel="next" title="HTTP的状态码">
+                <i class="fa fa-chevron-left"></i> HTTP的状态码
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/08/html-meta/" rel="prev" title="HTML中的常用meta">
+                HTML中的常用meta <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/04/charset-encoding/"
+           data-title="字符编码：计算机的巴别塔" data-url="http://hengg.github.Extensions/2017/03/04/charset-encoding/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="hengg" />
+          <p class="site-author-name" itemprop="name">hengg</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ASCII"><span class="nav-number">1.</span> <span class="nav-text">ASCII</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GB2312、GBK和BIG5"><span class="nav-number">2.</span> <span class="nav-text">GB2312、GBK和BIG5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#unicode"><span class="nav-number">3.</span> <span class="nav-text">unicode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UTF-8"><span class="nav-number">4.</span> <span class="nav-text">UTF-8</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hengg</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"henggblog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

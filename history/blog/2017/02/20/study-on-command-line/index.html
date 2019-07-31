@@ -1,0 +1,756 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="cli," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="什么是命令行命令行是用户通过键盘输入字符指令、计算机输出字符结果的一种人机交互的方式。在熟记命令的前提下，使用命令行往往要较使用图形用户界面的操作速度要快，并且更容易执行批量操作。
+Bash是比较常用的命令行shell，它是大多数Linux系统以及Mac OS X默认的shell，它能运行于大多数类Unix风格的操作系统之上，甚至被移植到了Microsoft Windows上的Cygwin系统中，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初探命令行">
+<meta property="og:url" content="http://hengg.github.Extensions/2017/02/20/study-on-command-line/index.html">
+<meta property="og:site_name" content="hengg's Blog">
+<meta property="og:description" content="什么是命令行命令行是用户通过键盘输入字符指令、计算机输出字符结果的一种人机交互的方式。在熟记命令的前提下，使用命令行往往要较使用图形用户界面的操作速度要快，并且更容易执行批量操作。
+Bash是比较常用的命令行shell，它是大多数Linux系统以及Mac OS X默认的shell，它能运行于大多数类Unix风格的操作系统之上，甚至被移植到了Microsoft Windows上的Cygwin系统中，">
+<meta property="og:updated_time" content="2017-03-09T13:21:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初探命令行">
+<meta name="twitter:description" content="什么是命令行命令行是用户通过键盘输入字符指令、计算机输出字符结果的一种人机交互的方式。在熟记命令的前提下，使用命令行往往要较使用图形用户界面的操作速度要快，并且更容易执行批量操作。
+Bash是比较常用的命令行shell，它是大多数Linux系统以及Mac OS X默认的shell，它能运行于大多数类Unix风格的操作系统之上，甚至被移植到了Microsoft Windows上的Cygwin系统中，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://hengg.github.Extensions/2017/02/20/study-on-command-line/"/>
+
+
+
+
+
+  <title> 初探命令行 | hengg's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">hengg's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://hengg.github.Extensions/2017/02/20/study-on-command-line/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="hengg">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="hengg's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="hengg's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                初探命令行
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-20T19:22:05+08:00">
+                2017-02-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/20/study-on-command-line/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/20/study-on-command-line/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="什么是命令行"><a href="#什么是命令行" class="headerlink" title="什么是命令行"></a>什么是命令行</h2><p>命令行是用户通过键盘输入字符指令、计算机输出字符结果的一种人机交互的方式。在熟记命令的前提下，使用命令行往往要较使用图形用户界面的操作速度要快，并且更容易执行批量操作。</p>
+<p>Bash是比较常用的命令行shell，它是大多数Linux系统以及Mac OS X默认的shell，它能运行于大多数类Unix风格的操作系统之上，甚至被移植到了Microsoft Windows上的Cygwin系统中，以实现Windows的POSIX虚拟接口。<br><a id="more"></a></p>
+<blockquote>
+<p>Cygwin是一个在windows平台上运行的类UNIX模拟环境。</p>
+<p>shell是指操作系统最外层（壳），通常指的是命令行界面的解析器。</p>
+<p>POSIX表示可移植操作系统接口（Portable Operating System Interface），POSIX标准定义了操作系统应该为应用程序提供的接口标准，是IEEE为要在各种操作系统上运行的软件而定义的一系列API标准的总称。</p>
+</blockquote>
+<h2 id="为什么要使用命令行"><a href="#为什么要使用命令行" class="headerlink" title="为什么要使用命令行"></a>为什么要使用命令行</h2><h3 id="高效-批量"><a href="#高效-批量" class="headerlink" title="高效/批量"></a>高效/批量</h3><p>举个例子：为了调试某功能，需要频繁的切换本机IP，如果每次都从图形界面手动更改显然太浪费时间，而使用命令行则简洁轻松：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netsh interface ip set address &quot;本地连接&quot; static 192.168.0.127 255.255.255.0 192.168.0.x1 auto</div></pre></td></tr></table></figure></p>
+<h3 id="强力工具"><a href="#强力工具" class="headerlink" title="强力工具"></a>强力工具</h3><p>有许多开发中常用的强力工具和命令行更搭，比如Vim，Git和npm</p>
+<blockquote>
+<p>Vim是一个功能强大、在程序员中被广泛使用的文本编辑器。</p>
+<p>Git是Linus Torvalds开发的分布式版本控制工具,几乎所有的开源软件都在使用Git，同时使用了Git的<a href="github.com">github</a>也是世界上最受欢迎的软件项目托管平台</p>
+<p>NPM (Node Package Manager)，是一个NodeJS包管理和分发工具，已经成为了事实上发布Node模块的标准。<br>前端常用模块如SASS，LESS，webpack，babel等都需要使用npm命令来安装。</p>
+</blockquote>
+<h2 id="使用命令行"><a href="#使用命令行" class="headerlink" title="使用命令行"></a>使用命令行</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>路径：从起点到终点的全程路由；路径分为绝对路径和相对路径。</p>
+<ul>
+<li>绝对路径，以 / 开头，能唯一确定一个节点，如<code>/tmp/a/1.txt</code></li>
+<li>相对路径，不以 / 开头，是一个相对值，如 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">a/, ./a/</div><div class="line">b.txt, ./b.txt</div><div class="line">a/b.txt, ./a/b.txt</div><div class="line">../c/d.txt</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>在路径中当前目录用 . 表示，一般可省略；父目录用 .. 表示。</p>
+<h3 id="命令行格式"><a href="#命令行格式" class="headerlink" title="命令行格式"></a>命令行格式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ 命令 -选项缩写 --选项 参数</div><div class="line">结果</div></pre></td></tr></table></figure>
+<h3 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h3><ul>
+<li><p>目录操作</p>
+<p>  <code>cd</code>：Change Directory的缩写，切换目录  </p>
+<p>  <code>pwd</code>：Print Working Directory的缩写，显示当前目录    </p>
+<p>  <code>mkdir [-p] directoryname</code>：mkdir是Make Directory的缩写，创建目录; 使用参数-p时若路径中的某些目录尚不存在，将创建这些尚不存在的目录。</p>
+</li>
+<li><p>查看路径 </p>
+<p>  <code>ls [-al] path</code>：ln是List的缩写，查看路径；参数a：列出目录下的一切文件，包括隐藏文件；参数l：列出目录下文件的具体信息，包括权限，大小，创建者等等</p>
+</li>
+<li><p>创建文件</p>
+<p>  <code>cho &#39;1&#39; &gt; filepath</code>：创建文件 </p>
+<p>  <code>touch filename</code>：创建文件，如果文件已存在则改变文件更新时间 </p>
+</li>
+<li><p>复制及移动</p>
+<p>  <code>cp [-r] source_file target_file</code>：cp是cpoy的缩写，复制文件；参数r代表recursive，递归复制目录及其内容</p>
+<p>  <code>mv source target</code>：mv是move缩写，移动节点 </p>
+</li>
+<li><p>删除</p>
+<p>  <code>rm [-fr] file</code>：rm是remove的缩写，删除文件；参数f代表force，忽略提示；参数r代表recursive递归删除目录及其内容</p>
+</li>
+<li><p>其他</p>
+<p>  <code>tree</code>：查看目录结构  </p>
+<p>  <code>ln source_file target_dir</code>：建立软链接 （ Windows 系统默认不支持链接）</p>
+</li>
+</ul>
+<p><strong>详情参照：<a href="http://explainshell.com/" target="_blank" rel="external">ExplainShell</a></strong></p>
+<h3 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h3><ul>
+<li><p>一句话执行两个命令：</p>
+<p><code>mkdi； a;mkdir b</code> 命令1成功与否不影响命令2执行；</p>
+<p><code>mkdir a&amp;&amp;mkdir b</code>命令1成功才执行命令2</p>
+</li>
+<li>回车： \后面接回车  </li>
+<li>有空格等特殊字符的时候需要加引号</li>
+</ul>
+<h3 id="bashrc"><a href="#bashrc" class="headerlink" title=".bashrc"></a>.bashrc</h3><p>.bashrc是一个文件，主要保存用户的一些个性化设置，如命令别名、路径等。bash 会在启动时运行 ~/.bashrc 里面的内容。</p>
+<ul>
+<li><p>在~/.bashrc里添加alias（别名）：<br>打开~/.bashrc，添加 <code>alias ga=&#39;git add .&#39;</code>,然后重启bash或在bash中运行<code>source ~/.bashrc</code>，即可使用<code>ga</code>代替<code>git add .</code></p>
+</li>
+<li><p>在~/.bashrc里定义如下函数，重启bash或在bash中运行<code>source ~/.bashrc</code>，即可调用<code>mcd dirname</code>创建并进入文件夹：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mcd() &#123; </div><div class="line">  mkdir -p &quot;$1&quot;; </div><div class="line">  cd &quot;$1&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>使用z命令：下载 <a href="https://github.com/rupa/z" target="_blank" rel="external">z.sh</a>,在~/.bashrc里面加入<code>source /path/to/z.sh</code>,重启bash或在bash中运行<code>source ~/.bashrc</code>，即可调用z命令。<blockquote>
+<p>z命令是多个目录切换利器。进入某目录后，输入<code>z</code>命令，便会出现该目录的完整目录名，下次再进入的话，只需输入<code>z 字符</code>（按下tab键会自动补齐）</p>
+</blockquote>
+</li>
+</ul>
+<p><a href="https://linux.cn/article-4585-1.html" target="_blank" rel="external">一大波有用的 bash 别名和函数 </a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/cli/" rel="tag"># cli</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/19/javascript-async-task/" rel="next" title="JavaScript异步任务与闭包">
+                <i class="fa fa-chevron-left"></i> JavaScript异步任务与闭包
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/21/javascript-variable-scope/" rel="prev" title="JavaScript变量和作用域">
+                JavaScript变量和作用域 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/20/study-on-command-line/"
+           data-title="初探命令行" data-url="http://hengg.github.Extensions/2017/02/20/study-on-command-line/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="hengg" />
+          <p class="site-author-name" itemprop="name">hengg</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是命令行"><span class="nav-number">1.</span> <span class="nav-text">什么是命令行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要使用命令行"><span class="nav-number">2.</span> <span class="nav-text">为什么要使用命令行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#高效-批量"><span class="nav-number">2.1.</span> <span class="nav-text">高效/批量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#强力工具"><span class="nav-number">2.2.</span> <span class="nav-text">强力工具</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用命令行"><span class="nav-number">3.</span> <span class="nav-text">使用命令行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概念"><span class="nav-number">3.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行格式"><span class="nav-number">3.2.</span> <span class="nav-text">命令行格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用操作"><span class="nav-number">3.3.</span> <span class="nav-text">常用操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tips"><span class="nav-number">3.4.</span> <span class="nav-text">tips</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bashrc"><span class="nav-number">3.5.</span> <span class="nav-text">.bashrc</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hengg</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"henggblog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

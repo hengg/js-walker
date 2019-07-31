@@ -1,0 +1,720 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="HTML,front-end,web,meta,SEO," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="什么是meta？在了解字符编码的过程中我们曾在html的head标签中见过&amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;，在这里通过meta来声明页面的字符编码格式为utf-8。今天就进一步了解meta。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML中的常用meta">
+<meta property="og:url" content="http://hengg.github.Extensions/2017/03/08/html-meta/index.html">
+<meta property="og:site_name" content="hengg's Blog">
+<meta property="og:description" content="什么是meta？在了解字符编码的过程中我们曾在html的head标签中见过&amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;，在这里通过meta来声明页面的字符编码格式为utf-8。今天就进一步了解meta。">
+<meta property="og:updated_time" content="2017-03-09T13:23:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML中的常用meta">
+<meta name="twitter:description" content="什么是meta？在了解字符编码的过程中我们曾在html的head标签中见过&amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;，在这里通过meta来声明页面的字符编码格式为utf-8。今天就进一步了解meta。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://hengg.github.Extensions/2017/03/08/html-meta/"/>
+
+
+
+
+
+  <title> HTML中的常用meta | hengg's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">hengg's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://hengg.github.Extensions/2017/03/08/html-meta/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="hengg">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="hengg's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="hengg's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                HTML中的常用meta
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-08T22:15:47+08:00">
+                2017-03-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/08/html-meta/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/08/html-meta/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="什么是meta？"><a href="#什么是meta？" class="headerlink" title="什么是meta？"></a>什么是meta？</h1><p>在了解字符编码的过程中我们曾在html的head标签中见过<code>&lt;meta charset=&quot;utf-8&quot;&gt;</code>，在这里通过<code>meta</code>来声明页面的字符编码格式为<code>utf-8</code>。今天就进一步了解<code>meta</code>。</p>
+<a id="more"></a>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta" target="_blank" rel="external">MDN中对于<code>meta</code>的定义</a>如下：元素表示那些不能由其它HTML元相关元素 (<code>&lt;base&gt;</code>, <code>&lt;link&gt;</code>, <code>&lt;script&gt;</code>, <code>&lt;style&gt;</code> 或 <code>&lt;title&gt;</code>) 之一表示的任何元数据信息。</p>
+<h1 id="meta有什么用？"><a href="#meta有什么用？" class="headerlink" title="meta有什么用？"></a>meta有什么用？</h1><p>浏览器不会渲染<code>meta</code>元素，但仍然会解析它。此外搜索引擎也可以读取<code>meta</code>元素。因此我们可以通过<code>meta</code>向浏览器和搜索引擎传递信息。</p>
+<h1 id="怎样使用meta？"><a href="#怎样使用meta？" class="headerlink" title="怎样使用meta？"></a>怎样使用meta？</h1><p><code>meta</code>元素通常在<code>head</code>元素中声明。<code>meta</code>元素有四个重要属性，分别是<code>name</code>，<code>http-equiv</code>，以及为以上两种属性提供相关值的<code>content</code>和我们熟悉的<code>charset</code>。</p>
+<h2 id="charset"><a href="#charset" class="headerlink" title="charset"></a>charset</h2><p>声明当前文档所使用的字符编码，虽然规范中没有对字符编码做要求，但推荐使用<code>utf-8</code>。</p>
+<h2 id="name"><a href="#name" class="headerlink" title="name"></a>name</h2><p><code>name</code>和<code>content</code>成对出现，把<code>content</code>值关联到一个<code>name</code>属性上，举例来说：<code>&lt;meta name=&quot;author&quot; content=&quot;hengg&quot;&gt;</code>即声明文件作者为hengg。</p>
+<p>常用<code>name</code>属性有如下几种：</p>
+<h3 id="viewport"><a href="#viewport" class="headerlink" title="viewport"></a>viewport</h3><p>优化页面的显示，常用于响应式开发。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- content说明：</span></div><div class="line">    width：宽度（数值/device-width）</div><div class="line">    height：高度（数值/device-height）</div><div class="line">    initial-scale：初始的缩放比例（0&lt;比例&lt;10，下同）</div><div class="line">    minimum-scale：允许用户缩放到的最小比例</div><div class="line">    maximum-scale：允许用户缩放到的最大比例</div><div class="line">    user-scalable：用户是否可以手动缩 (no,yes)</div><div class="line">--&gt;</div></pre></td></tr></table></figure>
+<h3 id="author，description和keywords"><a href="#author，description和keywords" class="headerlink" title="author，description和keywords"></a>author，description和keywords</h3><p>这三个值通常用于搜索引擎:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"author"</span> <span class="attr">content</span>=<span class="string">"hengg"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--keywords不应超过874个字符--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"keywords"</span> <span class="attr">content</span>=<span class="string">"html,meta,description"</span> &gt;</span></div><div class="line"><span class="comment">&lt;!--description不应超过150个字符--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"description"</span> <span class="attr">content</span>=<span class="string">"html中meta元素的简介"</span> &gt;</span></div></pre></td></tr></table></figure></p>
+<p>搜索引擎通过以上<code>meta</code>声明能够得知该页面的作者、关键字和主要内容。  </p>
+<h3 id="robots"><a href="#robots" class="headerlink" title="robots"></a>robots</h3><p>声明搜索引擎索引方式：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"robots"</span> <span class="attr">content</span>=<span class="string">"index,follow"</span> /&gt;</span></div><div class="line"><span class="comment">&lt;!--</span></div><div class="line">    all：文件将被检索，且页面上的链接可以被查询；</div><div class="line">    none：文件将不被检索，且页面上的链接不可以被查询；</div><div class="line">    index：文件将被检索；</div><div class="line">    follow：页面上的链接可以被查询；</div><div class="line">    noindex：文件将不被检索；</div><div class="line">    nofollow：页面上的链接不可以被查询。</div><div class="line"> --&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="Apple-WebApp-相关"><a href="#Apple-WebApp-相关" class="headerlink" title="Apple WebApp 相关"></a>Apple WebApp 相关</h3><p>在iOS上可以把页面添加到桌面，让用户像使用原生应用一样使用移动页，这种技术叫做WebApp。想使用WebApp，需要如下设置已获得更好的体验：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 启用WebApp全屏模式 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"apple-mobile-web-app-capable"</span> <span class="attr">content</span>=<span class="string">"yes"</span> /&gt;</span> </div><div class="line"><span class="comment">&lt;!--</span></div><div class="line">设置状态栏颜色：启用WebApp全屏模式时生效。</div><div class="line">content值为default/black/black-translucent </div><div class="line">--&gt;</div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"apple-mobile-web-app-status-bar-style"</span> <span class="attr">content</span>=<span class="string">"black-translucent"</span> /&gt;</span></div><div class="line"><span class="comment">&lt;!--添加到主屏后的标题--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"apple-mobile-web-app-title"</span> <span class="attr">content</span>=<span class="string">"标题"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--WebApp的设置还需要如下两个link支持--&gt;</span></div><div class="line"><span class="comment">&lt;!--设置WebApp的放置主屏幕上icon文件路径--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"apple-touch-icon-precomposed"</span> <span class="attr">href</span>=<span class="string">"iphone_hengg.png"</span> /&gt;</span></div><div class="line"><span class="comment">&lt;!--设置WebApp启动界面--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"apple-touch-startup-image"</span> <span class="attr">href</span>=<span class="string">"hengg_startup.png"</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--添加智能App广告条：告诉浏览器这个网站对应的app，并在页面上显示下载banner--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"apple-itunes-app"</span> <span class="attr">content</span>=<span class="string">"app-id=myAppStoreID, affiliate-data=myAffiliateData, app-argument=myURL"</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="mobile-agent"><a href="#mobile-agent" class="headerlink" title="mobile-agent"></a>mobile-agent</h3><p>主要用于PC页和移动页的对应关系。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--format：移动页的协议语言；url：当前PC页所对应的移动页URL--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"mobile-agent"</span> <span class="attr">content</span>=<span class="string">"format=html5; url=url"</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="renderer"><a href="#renderer" class="headerlink" title="renderer"></a>renderer</h3><p>浏览器内核选择：许多双核浏览器中分为使用webkit内核的高速模式和IE内核的兼容模式。通过<code>renderer</code>可以指定浏览器内核：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"renderer"</span> <span class="attr">content</span>=<span class="string">"webkit|ie-comp|ie-stand"</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<!--用于IE固定网站功能，设置应用名称-->
+<meta name="application-name" content="应用名">
+
+<h3 id="站点描述"><a href="#站点描述" class="headerlink" title="站点描述"></a>站点描述</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 用来命名软件或用于构建网页，如WordPress --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"generator"</span> <span class="attr">content</span>=<span class="string">"program"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 关于网站主题的简短描述 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"subject"</span> <span class="attr">content</span>=<span class="string">"网站主题"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 用于学术论文的简短描述 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"abstract"</span> <span class="attr">content</span>=<span class="string">""</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 完整的域名或网址 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">content</span>=<span class="string">"https://example.com/"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 基于网站内容给出一般的年龄分级 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"rating"</span> <span class="attr">content</span>=<span class="string">"General"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 允许控制 referrer 信息如何传递 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"referrer"</span> <span class="attr">content</span>=<span class="string">"never"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 禁用自动检测和格式化可能的电话号码 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"format-detection"</span> <span class="attr">content</span>=<span class="string">"telephone=no"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>关于referrer的延伸：<a href="https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer" target="_blank" rel="external">whatwg-meta-reffer</a></p>
+<h2 id="http-equiv"><a href="#http-equiv" class="headerlink" title="http-equiv"></a>http-equiv</h2><h3 id="X-UA-Compatible"><a href="#X-UA-Compatible" class="headerlink" title="X-UA-Compatible"></a>X-UA-Compatible</h3><p>用于指定IE版本：IE=edge代表最新版IE；chrome=1则代表使用Chrome Frame技术，可以让旧版IE浏览器使用Chrome的WebKit渲染引擎处理网页，体验到包括HTML5在内的众多现代网页技术。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--指定浏览器版本 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=edge,chrome=1"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=8"</span> &gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="Pragma"><a href="#Pragma" class="headerlink" title="Pragma"></a>Pragma</h3><p><code>content</code>为<code>no-cache</code>禁止浏览器从本地计算机的缓存中访问页面内容，访问者将无法脱机浏览。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Pragma"</span> <span class="attr">content</span>=<span class="string">"no-cache"</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h3><p>我想你一定遇到过“该网页已由百度转码”的情况，如果不想被百度转码，你需要如下设置：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--避免转码声明：用百度打开网页可能会对其进行转码--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Cache-Control"</span> <span class="attr">content</span>=<span class="string">"no-siteapp"</span> /&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 通过设置为off完全退出DNS预取 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"x-dns-prefetch-control"</span> <span class="attr">content</span>=<span class="string">"off"</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="set-cookie"><a href="#set-cookie" class="headerlink" title="set-cookie"></a>set-cookie</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 在客户端存储 cookie，web 浏览器的客户端识别 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"set-cookie"</span> <span class="attr">content</span>=<span class="string">"name=value; expires=date; path=url"</span>&gt;</span></div></pre></td></tr></table></figure>
+<h1 id="还有没有其他meta？"><a href="#还有没有其他meta？" class="headerlink" title="还有没有其他meta？"></a>还有没有其他meta？</h1><p>如果遇到了其他没有列出的<code>meta</code>，或者想使用<code>meta</code>的其他功能，请参考：</p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta" target="_blank" rel="external">MDN-meta</a></p>
+<p><a href="https://github.com/joshbuchea/HEAD#meta" target="_blank" rel="external">joshbuchea/HEAD</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HTML/" rel="tag"># HTML</a>
+          
+            <a href="/tags/front-end/" rel="tag"># front-end</a>
+          
+            <a href="/tags/web/" rel="tag"># web</a>
+          
+            <a href="/tags/meta/" rel="tag"># meta</a>
+          
+            <a href="/tags/SEO/" rel="tag"># SEO</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/04/charset-encoding/" rel="next" title="字符编码：计算机的巴别塔">
+                <i class="fa fa-chevron-left"></i> 字符编码：计算机的巴别塔
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/09/open-pages-in-browser/" rel="prev" title="一个网页的漂洋过海之旅：起航">
+                一个网页的漂洋过海之旅：起航 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/08/html-meta/"
+           data-title="HTML中的常用meta" data-url="http://hengg.github.Extensions/2017/03/08/html-meta/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="hengg" />
+          <p class="site-author-name" itemprop="name">hengg</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是meta？"><span class="nav-number">1.</span> <span class="nav-text">什么是meta？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#meta有什么用？"><span class="nav-number">2.</span> <span class="nav-text">meta有什么用？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#怎样使用meta？"><span class="nav-number">3.</span> <span class="nav-text">怎样使用meta？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#charset"><span class="nav-number">3.1.</span> <span class="nav-text">charset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#name"><span class="nav-number">3.2.</span> <span class="nav-text">name</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#viewport"><span class="nav-number">3.2.1.</span> <span class="nav-text">viewport</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#author，description和keywords"><span class="nav-number">3.2.2.</span> <span class="nav-text">author，description和keywords</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#robots"><span class="nav-number">3.2.3.</span> <span class="nav-text">robots</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Apple-WebApp-相关"><span class="nav-number">3.2.4.</span> <span class="nav-text">Apple WebApp 相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mobile-agent"><span class="nav-number">3.2.5.</span> <span class="nav-text">mobile-agent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#renderer"><span class="nav-number">3.2.6.</span> <span class="nav-text">renderer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#站点描述"><span class="nav-number">3.2.7.</span> <span class="nav-text">站点描述</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http-equiv"><span class="nav-number">3.3.</span> <span class="nav-text">http-equiv</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#X-UA-Compatible"><span class="nav-number">3.3.1.</span> <span class="nav-text">X-UA-Compatible</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pragma"><span class="nav-number">3.3.2.</span> <span class="nav-text">Pragma</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache-Control"><span class="nav-number">3.3.3.</span> <span class="nav-text">Cache-Control</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS"><span class="nav-number">3.3.4.</span> <span class="nav-text">DNS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set-cookie"><span class="nav-number">3.3.5.</span> <span class="nav-text">set-cookie</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#还有没有其他meta？"><span class="nav-number">4.</span> <span class="nav-text">还有没有其他meta？</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hengg</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"henggblog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
