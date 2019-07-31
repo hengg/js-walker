@@ -1,0 +1,763 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="HTML,browser,render,DOM,CSS,CSSOM,JavaScript,front-end,web," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="我们已经知道服务端是如何向浏览器返回网页的，那么浏览器是如何渲染页面的？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器如何渲染一个HTML页面">
+<meta property="og:url" content="http://hengg.github.Extensions/2017/03/09/browser-render/index.html">
+<meta property="og:site_name" content="hengg's Blog">
+<meta property="og:description" content="我们已经知道服务端是如何向浏览器返回网页的，那么浏览器是如何渲染页面的？">
+<meta property="og:image" content="http://coolshell.cn//wp-content/uploads/2013/05/Render-Process.jpg">
+<meta property="og:image" content="http://coolshell.cn//wp-content/uploads/2013/05/Render-Process-Skipping-1024x282.jpg">
+<meta property="og:updated_time" content="2017-03-09T13:23:25.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浏览器如何渲染一个HTML页面">
+<meta name="twitter:description" content="我们已经知道服务端是如何向浏览器返回网页的，那么浏览器是如何渲染页面的？">
+<meta name="twitter:image" content="http://coolshell.cn//wp-content/uploads/2013/05/Render-Process.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://hengg.github.Extensions/2017/03/09/browser-render/"/>
+
+
+
+
+
+  <title> 浏览器如何渲染一个HTML页面 | hengg's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">hengg's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://hengg.github.Extensions/2017/03/09/browser-render/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="hengg">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="hengg's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="hengg's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                浏览器如何渲染一个HTML页面
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-09T21:04:59+08:00">
+                2017-03-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/09/browser-render/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/09/browser-render/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>我们已经知道服务端是如何向浏览器返回网页的，那么浏览器是如何渲染页面的？</p>
+<a id="more"></a>
+<p>通常一个网页由HTML，CSS和JavaScript三大件组成，CSS和JavaScript通常内嵌或外链至HTML中：</p>
+<ul>
+<li>HTML负责页面的内容</li>
+<li>CSS指定内容的样式</li>
+<li>JavaScript则可以为网页添加动态功能</li>
+</ul>
+<p>所以当浏览器收到服务端的响应时，它会顺序解析HTML文件为DOM树，遇到CSS则构建CSS 规则树，遇到JavaScript会通过DOM API和CSSOM API来操作DOM树和CSS规则树。</p>
+<p>浏览器引擎会通过DOM树和CSS规则树来构造渲染树（Rendering Tree）。引擎会以尽快的展示内容，也就是说DOM树的解析和渲染会同步进行。所以有时会发生FOUC(flash of unstyled content)现象。</p>
+<p>最后通过调用操作系统提供的GUI API绘制页面。</p>
+<p><img src="http://coolshell.cn//wp-content/uploads/2013/05/Render-Process.jpg" alt=""></p>
+<h2 id="DOM树的解析"><a href="#DOM树的解析" class="headerlink" title="DOM树的解析"></a>DOM树的解析</h2><p>DOM树是渲染树的输入。浏览器引擎同步(synchronous)解析HTML为DOM树。</p>
+<h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><p>CSS会被解析为CSSOM（CSS对象模型）。因为CSS层叠的特性决定了页面中每一个元素都有可能被许多样式匹配。那么浏览器如何在多个样式中选择呢？</p>
+<ul>
+<li>子节点的样式优先级高于父节点</li>
+<li>选择器越精确则优先级越高：id样式 &gt; 类样式 &gt; 元素样式</li>
+<li>类型相同的样式，在样式表文件中越靠后则优先级越高</li>
+<li>类型相同的样式，使用!important指定的优先级最高</li>
+</ul>
+<p>例如：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">  .span-class &#123;</div><div class="line">    color: green !important;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  .span-class &#123;</div><div class="line">    color: red;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  #sidebar #widget &#123;</div><div class="line">    color: orange;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  #sidebar &#123;</div><div class="line">    color: yellow;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  #sidebar .class-div &#123;</div><div class="line">    color: blue;</div><div class="line">  &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">sidebar</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">widget</span> <span class="attr">class</span>=<span class="string">class-div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">span-class</span> <span class="attr">style</span>=<span class="string">color:black</span> &gt;</span>Hello, world!<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>如上代码的样式优先级为<code>green</code>&gt;<code>black</code>&gt;<code>red</code>&gt;<code>orange</code>&gt;<code>yellow</code>&gt;<code>blue</code>。</p>
+<p>浏览器引擎会把最终的CSSOM附加到DOM树上后，开始渲染页面。</p>
+<p><strong>所以CSS会阻塞DOM渲染，但不会阻塞DOM解析。因此通常在HTML头部引入CSS，防止页面发生样式跳动。这种情况下外链CSS会导致页面加载延迟，如果考虑性能应使用内联CSS。</strong></p>
+<h3 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h3><p>浏览器引擎解析到<code>&lt;script&gt;</code>的时候，JavaScript代码是立刻执行的；而JavaScript可以<code>document.write</code>等方式修改HTML文件，因此<code>&lt;script&gt;</code>的解析过程如下：</p>
+<ul>
+<li>浏览器停止HTML解析并获取脚本</li>
+<li>将控制权交给JavaScript引擎，执行JavaScript代码</li>
+<li>浏览器恢复HTML的解析</li>
+</ul>
+<p><strong>所以<code>&lt;script&gt;</code>会阻塞后续DOM的解析，所以要在HTML底部引入JavaScript，脚本仍在下载时页面已经可以正常地显示了。而浏览器引擎遇到了<code>&lt;script&gt;</code>，但是此时还有未加载完的样式文件同样也会阻塞DOM的解析</strong></p>
+<h2 id="渲染"><a href="#渲染" class="headerlink" title="渲染"></a>渲染</h2><h3 id="渲染树-Render-Tree"><a href="#渲染树-Render-Tree" class="headerlink" title="渲染树(Render Tree)"></a>渲染树(Render Tree)</h3><p>DOM和CSSOM会合并成为渲染树。但只有DOM树中被展示的节点才会在渲染树中：<code>head</code>，<code>script</code>等节点，拥有<code>display:none</code>样式的节点都不会出现在渲染树中。</p>
+<h3 id="页面绘制"><a href="#页面绘制" class="headerlink" title="页面绘制"></a>页面绘制</h3><p><img src="http://coolshell.cn//wp-content/uploads/2013/05/Render-Process-Skipping-1024x282.jpg" alt="渲染"></p>
+<ul>
+<li>Layout</li>
+</ul>
+<p>浏览器根据CSS或JavaScript定位节点几何图形的位置和维度。</p>
+<ul>
+<li>Paint</li>
+</ul>
+<p>最后我们得到了一棵渲染树，它包括以下内容：</p>
+<pre><code>可视化的节点
+节点该按照何种顺序渲染
+节点的样式
+节点的几何位置
+</code></pre><p>通过这些内容浏览器就可以完完整整的把一个页面呈现在用户面前了。</p>
+<ul>
+<li>Repaint：</li>
+</ul>
+<p>屏幕的一部分要重画，比如某个CSS的背景色变了。但是节点的几何尺寸没有变。</p>
+<ul>
+<li>Reflow：</li>
+</ul>
+<p>HTML使用的是流式布局，如果某个节点的几何尺寸发生了变化，就需要重新布局，这个过程叫做Reflow。Reflow会从这个渲染树开始递归往下，依次计算所有的结点几何尺寸和位置。</p>
+<p>Reflow的成本比Repaint的成本高的多。在手机上Reflow的过程是非常消耗资源的。所以，下面这些动作有很大可能会是成本比较高的：</p>
+<pre><code>增加、删除、修改DOM结点
+移动DOM的位置
+修改CSS样式
+Resize窗口
+修改网页的默认字体
+</code></pre><p>参考资料</p>
+<p><a href="http://coolshell.cn/articles/9666.html" target="_blank" rel="external">浏览器的渲染原理简介</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HTML/" rel="tag"># HTML</a>
+          
+            <a href="/tags/browser/" rel="tag"># browser</a>
+          
+            <a href="/tags/render/" rel="tag"># render</a>
+          
+            <a href="/tags/DOM/" rel="tag"># DOM</a>
+          
+            <a href="/tags/CSS/" rel="tag"># CSS</a>
+          
+            <a href="/tags/CSSOM/" rel="tag"># CSSOM</a>
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/front-end/" rel="tag"># front-end</a>
+          
+            <a href="/tags/web/" rel="tag"># web</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/09/open-pages-in-browser/" rel="next" title="一个网页的漂洋过海之旅：起航">
+                <i class="fa fa-chevron-left"></i> 一个网页的漂洋过海之旅：起航
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/13/study-on-http/" rel="prev" title="一个网页的漂洋过海之旅：传输">
+                一个网页的漂洋过海之旅：传输 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/09/browser-render/"
+           data-title="浏览器如何渲染一个HTML页面" data-url="http://hengg.github.Extensions/2017/03/09/browser-render/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="hengg" />
+          <p class="site-author-name" itemprop="name">hengg</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM树的解析"><span class="nav-number">1.</span> <span class="nav-text">DOM树的解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS"><span class="nav-number">1.1.</span> <span class="nav-text">CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript"><span class="nav-number">1.2.</span> <span class="nav-text">JavaScript</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#渲染"><span class="nav-number">2.</span> <span class="nav-text">渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#渲染树-Render-Tree"><span class="nav-number">2.1.</span> <span class="nav-text">渲染树(Render Tree)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#页面绘制"><span class="nav-number">2.2.</span> <span class="nav-text">页面绘制</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hengg</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"henggblog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
