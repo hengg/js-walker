@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "i-know-nothing-about-js",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "commit-msg-checker": "^1.0.4"
+  },
   "devDependencies": {
     "cz-conventional-changelog": "^3.0.2"
   },
