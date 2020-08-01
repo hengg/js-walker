@@ -1,2 +1,3 @@
-# i-know-nothing-about-js
-i-know-nothing-about-js
+# JS漫步指南
+
+
